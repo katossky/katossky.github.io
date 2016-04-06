@@ -11,12 +11,21 @@
         Default Page Title
       {% endif %}
     </title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/css/main.css" type="text/css">
   </head>
-  <header>
-    <img src='/img/arthur.png'/>
-    <p><strong>Arthur</strong> is a statistician, data scientist, environmental economist, organic food grower, amateur graphist and urbanist. He loves food, bike touring, coding, handcrafts, arts, epistemology, maps and social sciences. He speaks French, English, Danish, basic Spanish, and is learning Italian and German.</p>
-    <p>He doesn't always talks about himself in the third person.</p>
+  <header class='container-fluid'>
+    <div class='row'>
+      <div class='col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3'>
+        <div class='row'>
+          <div class='col-sm-5'><div class='img-container'><img src='/img/arthur.png'/></div></div>
+          <div class='col-sm-7'>
+            <p><strong>Arthur</strong> is a statistician, data scientist, environmental economist, organic food grower, amateur graphist and urbanist. He loves food, bike touring, coding, handcrafts, arts, epistemology, maps and social sciences. He speaks French, English, Danish, basic Spanish, and is learning Italian and German.</p>
+            <p>He doesn't always talks about himself in the third person.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </header>
   <body>
     {{ content }}
@@ -24,4 +33,6 @@
   <footer>
     Made with Jekyll + Less + Bootstraps. Picture from the <a href='http://www.editions-delcourt.fr/bouletmaton'>Bouletmaton</a>, &copy; Delcourt 2016.
   </footer>
+  <script src="/js/jquery.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
 </html>
