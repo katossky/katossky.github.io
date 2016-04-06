@@ -1,20 +1,62 @@
-header {
-  p {
-    text-align: justify;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    strong {
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  position:relative;
+}
+header{
+  background-color: #428bca;
+  -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+          box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+  /* nav bar after http://getbootstrap.com/examples/blog/ */
+  nav{
+    width: 500px;
+    margin-right: auto;
+    margin-left: auto;
+    paddingmargin-right: auto;
+    a{
+      position: relative;
       display: inline-block;
-      float: left;
-      font-size: 200% !important;
-      padding: 0 1em 0 0;
+      padding: 10px;
+      font-weight: 500;
+      color: #cdddeb;
+      &:hover, &:focus {
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+    .active {
+      color: #fff;
+      &:after {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 0;
+        margin-left: -5px;
+        vertical-align: middle;
+        content: " ";
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid;
+        border-left: 5px solid transparent;
+      }
     }
   }
 }
-
+footer{
+  position:absolute;
+  bottom:0;
+  right:0;
+  float: right;
+  font-size: 80%;
+  p{
+    margin: 10px;
+  }
+}
 .img-container {
-  max-width: 200px;
-  margin: 10px auto;
+  max-width: 165px;
+  margin: 15px auto;
   img {
     width: 100%;
     /* border for a circle: from https://ctrlq.org/code/19282-css-round-images */
@@ -24,4 +66,7 @@ header {
     border: 5px solid #eee;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
   }
+}
+aside p strong{
+  color: #428bca;
 }
