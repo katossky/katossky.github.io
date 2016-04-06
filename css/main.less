@@ -1,53 +1,27 @@
-@ribbon-color: #ba89b6;
-
-// source for ribbon: https://css-tricks.com/snippets/css/ribbon
-.ribbon {
-  font-size: 16px !important;
+header {
   width: 50%;
   position: relative;
-  background: @ribbon-color;
-  color: #fff;
-  padding: 0 2em; /* Adjust to suit */
-  margin: 2em auto 3em;
-  .ribbon-content{
-    &:before, &:after{
-      content: "";
-      position: absolute;
-      display: block;
-      border-style: solid;
-      border-color: transparent transparent darken(@ribbon-color, 20%) transparent;
-      top: -1em;
-    }
-    &:before {
-      left: 0;
-      border-width: 0 0 1em 1em; 
-    }
-    &:after {
-      right: 0;
-      border-width: 0em 1em 1em 0;
-    }
-    p {
-      text-align: justify;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      strong {
-        display: inline-block;
-        float: left;
-        font-size: 200% !important;
-        padding: 0 1em 0 0;
-      }
-    }
-    img {
+  margin: 0 auto;
+  p {
+    text-align: justify;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    strong {
+      display: inline-block;
       float: left;
-      height: 200px;
-      margin-top: -10px;
-      margin-right: 2em;
-      /* border for a circle: from https://ctrlq.org/code/19282-css-round-images */
-      -webkit-border-radius: 99em;
-      -moz-border-radius: 99em;
-      border-radius: 99em;
-      border: 5px solid #eee;
-      box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+      font-size: 200% !important;
+      padding: 0 1em 0 0;
     }
+  }
+  img {
+    float: left;
+    height: 200px;
+    margin-right: 2em;
+    /* border for a circle: from https://ctrlq.org/code/19282-css-round-images */
+    -webkit-border-radius: 99em;
+    -moz-border-radius: 99em;
+    border-radius: 99em;
+    border: 5px solid #eee;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
   }
 }
