@@ -19,11 +19,9 @@
   <body>
     <header>
       <nav>
-        <a href="/" {% if page.url == '/' %} class="active" {% endif %}>Home</a>
-        <a href="#">Blog</a>
-        <a href="/eurovelo.html" {% if page.url == '/eurovelo.html' %} class="active" {% endif %}>
-          Eurovelo 3
-        </a>
+        <a href="/"              {% if page.url == '/' %}              class="active" {% endif %}>Home</a>
+        <a href="/blog.html"     {% if page.url == '/blog.html' %}     class="active" {% endif %}>Blog</a>
+        <a href="/eurovelo.html" {% if page.url == '/eurovelo.html' %} class="active" {% endif %}>Eurovelo 3</a>
         <a href="#">More about Arthur</a>
       </nav>
     </header>
