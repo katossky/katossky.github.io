@@ -4,14 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-      {% if page.title %}
-        {{ page.title }}
-      {% else %}
-        Default Page Title
-      {% endif %}
-    </title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <title>{% if page.title %} {{ page.title }} {% else %} One page on Arthur's site {% endif %}</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css"> 
     <link rel="stylesheet" href="/css/main.css" type="text/css">
     <link rel="stylesheet" href="/css/leaflet.css" type="text/css">
     <script src='/js/leaflet.js'></script>
@@ -25,7 +19,9 @@
         <a href="#">More about Arthur</a>
       </nav>
     </header>
-    {{ content }}
+    <div id='text-content'>
+      {{ content }}
+    </div>
     <script src="/js/jquery-2.2.3.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
   </body>
