@@ -1,0 +1,27 @@
+---
+layout: page
+title:  Itinirary data
+---
+
+<p>I decided to make a website for Eurovelo 3, <a href="http://www.eurovelo.com/fr/eurovelos/eurovelo-3"><em>The Pilgrim Road</em></a>, after I discovered one that existed for Eurovelo 12, <a href="http://www.eurovelo.com/en/eurovelos/eurovelo-12"><em>The North Sea Cycle Route</em></a>.
+
+<p class="wide"><img src="/img/screenshot-northsea-cycle.jpg"/></p>
+
+<p>I'll talk more about this project later on, and the focus on this post will be on data availability for such a project. Indeed, one of the first questions in such project is the one of data source. Where can I find data about the route, so that I do not manually encode the thousands of points it is made of? The responde is, infortunately, nation-wide and in this post, I will focus on Denmark. Why Denmark? 1) It is the country I live in. 2) It is small. 3) It is generally rather good for providing public information.</p>
+
+First, where to find the data? Sadly, [the Eurovelo website](http://www.eurovelo.com) does not link to any data sources. For the part in Denmark, it links to [Cyclistic](http://cyclistic.dk), an itinirary planner that does not seem to be working currently, and to [*Hærvejen*] (http://www.haervej.com), the official Danish website for `Eurovelo 3 | The Pilgrim Road`. Hærvejen's website in turn points us to the account of `VisitViborg` on the `GPSies` portal ([link](http://www.gpsies.com/mapUser.do?username=VisitViborg)), where we can download the track of the Pilgrim Road in three segments. Here is our first data source.
+
+![Main page of Hærvejen's website.](img/screenshots/2016-02-26-www-haervej-com-1.tiff)
+The site seems recently designed (not much text, big images, big buttons), but it does not offer a good user experience: what is this image of a website embedded in the page?
+
+![Signature from official bodies.](img/screenshots/2016-02-26-www-haervej-com-2.tiff)
+The sites shows the logoes of the European Agricultural Fund for Rural Development (did it finance the website?) and of the Danish ministry for cities, housing and rural areas. This ministry having  ceased to exist in June 2015, it is a sign that the website is not maintained.
+
+![Footers.](img/screenshots/2016-02-26-www-haervej-com-3-dense.tiff)
+We recognize the heart of [VisitDenmark](http://visitdenmark.com), the Danish tourism agency. And the site is indeed recent, from 2015.
+
+Hærvejen's website also points to a (rich in information but terribly not user-friendly) interactive map ([link](http://kort.haervej.dk/index.php)). The interactive does not provide any information about sources but an inspection of the page reveals that the cycle track is produced on the fly from a URL giving the coordinates: `http://kort.haervej.dk/index.php/en/?option=com_geocontent&task=layers.kml&typename=23`. And here is a second data source.
+
+[*Vejdirektoratet*](http://vejdirektoratet.dk), the Danish agency for road maintenance, also provides [a map of national cycle tracks](http://trafikkort.vejdirektoratet.dk/index.html?usertype=3), one of which is *Hærvejsruten*. When contacted about their sources, they reply that they rely on OpenStreetMap. [OpenStreeetMap](http://www.openstreetmap.org) has the advantage of being world-wide, constantly updated, and to potentially contain all the Eurovelo routes. On the other hand, *Vejdirektoratet* warns me that no consistency checks were performed on OpenStreetMap so that the route can be interupted on some segments or, on the contrary, present competing itiniraries. OpenStreetMap is our third source. The complete data can be downloaded from [geofabrik.de](http://download.geofabrik.de) at different level, from the whole world to a small contry like [Denmark](http://download.geofabrik.de/europe/denmark.html).
+
+To finish with, [*Kortforsyningen*](http://kortforsyningen.dk), the agency for map production, does not seem to provide any information about national (or local) cycle routes.
