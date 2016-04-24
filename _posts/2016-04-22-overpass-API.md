@@ -1,6 +1,8 @@
 ---
-layout: page
-title:  The Overpass API
+layout:     page
+title:      The Overpass API
+categories: [Eurovelo 3 - The making of]
+tags:       [leaflet.js, OverPass API, regular expressions, OSM relations, OpenStreetMap]
 ---
 
 In the process of creating a website for Eurovelo 3, I wanted to automate the download of the itinirary data from Open Street Map, and the display on my own website. Unfortunately, this is not an easy task.

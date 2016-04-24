@@ -7,20 +7,30 @@
     <title>{% if page.title %} {{ page.title }} {% else %} One page on Arthur's site {% endif %}</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css"> 
-    <link rel="stylesheet" href="/css/main.css" type="text/css">
     <link rel="stylesheet" href="/css/leaflet.css" type="text/css">
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
     <script src='/js/leaflet.js'></script>
     <script src='/js/jquery-2.2.3.min.js'></script>
   </head>
   <body>
     <header>
-      <nav>
-        {{page.category}}
-        <a href="/"              {% if page.url == '/' %}              class="active" {% endif %}>Home</a>
-        <a href="/blog.html"     {% if page.url == '/blog.html' %}     class="active" {% endif %}>Blog</a>
-        <a href="/eurovelo.html" {% if page.url == '/eurovelo.html' %} class="active" {% endif %}>Eurovelo 3</a>
-        <a href="#">More about Arthur</a>
-      </nav>
+      <nav><ul>
+        <li{% if page.url == '/' %}              class="active" {% endif %}><a href="/">Home</a></li>
+        <li{% if page.url == '/blog.html' %}     class="active" {% endif %}><a href="#">Blogs</a>
+           <ul>
+              <li><a href="#">All posts</a><span>{{ site.posts | size }}</span></li>
+            {% for category in site.categories %}
+              <li><a href="#">{{ category[0] }}</a><span>{{ category[1].size }}</span></li>
+              <!--http://stackoverflow.com/questions/12625113/total-number-of-posts-->
+            {% endfor %}
+          </ul>
+        </li>
+        <li{% if page.url == '/eurovelo.html' %} class="active" {% endif %}><a href="#">Projects</a>
+           <ul>
+              <li><a href="/eurovelo.html">Eurovelo 3</a></li>
+          </ul>
+        <li><a href="#">Résumé</a></li>
+      </ul></nav>
     </header>
     <div id='text-content'>
       {{ content }}
