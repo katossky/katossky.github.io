@@ -10,10 +10,12 @@
     <link rel="stylesheet" href="/css/main.css" type="text/css">
     <link rel="stylesheet" href="/css/leaflet.css" type="text/css">
     <script src='/js/leaflet.js'></script>
+    <script src='/js/jquery-2.2.3.min.js'></script>
   </head>
   <body>
     <header>
       <nav>
+        {{page.category}}
         <a href="/"              {% if page.url == '/' %}              class="active" {% endif %}>Home</a>
         <a href="/blog.html"     {% if page.url == '/blog.html' %}     class="active" {% endif %}>Blog</a>
         <a href="/eurovelo.html" {% if page.url == '/eurovelo.html' %} class="active" {% endif %}>Eurovelo 3</a>
