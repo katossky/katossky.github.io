@@ -1,3 +1,9 @@
+---
+url_mapping:
+  Eurovelo 3 - The making of: eurovelo-3-the-making-of.html
+  Eurovelo 3 - The trip:      eurovelo-3-the-trip.html
+---
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,9 +24,11 @@
         <li{% if page.url == '/' %}              class="active" {% endif %}><a href="/">Home</a></li>
         <li{% if page.url == '/blog.html' %}     class="active" {% endif %}><a href="#">Blogs</a>
            <ul>
-              <li><a href="#">All posts</a><span>{{ site.posts | size }}</span></li>
+              <li><a href="/all-posts.html">All posts</a><span>{{ site.posts | size }}</span></li>
             {% for category in site.categories %}
-              <li><a href="#">{{ category[0] }}</a><span>{{ category[1].size }}</span></li>
+              {% assign category_title = category[0] %}
+              <li><a href="{{ layout.url_mapping[category_title] }}">{{ category_title }}</a><span>{{ category[1].size }}</span></li>
+
               <!--http://stackoverflow.com/questions/12625113/total-number-of-posts-->
             {% endfor %}
           </ul>
