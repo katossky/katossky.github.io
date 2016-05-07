@@ -3,8 +3,8 @@ layout:     page
 title:      The Overpass API
 categories: [Eurovelo 3 - The making of]
 tags:       [leaflet.js, OverPass API, regular expressions, OSM relations, OpenStreetMap]
-thumbnail:  /images/photo2.jpg
-summary:    
+thumbnail:  /img/thumbnails/overpass-api-small.jpg
+summary:    An exploration of OpenStreetMap's feature extraction tool
 ---
 
 In the process of creating a website for Eurovelo 3, I wanted to automate the download of the itinirary data from Open Street Map, and the display on my own website. Unfortunately, this is not an easy task.
@@ -22,7 +22,7 @@ I'll pass over the API language complexities (<a href="http://wiki.openstreetmap
 
  This returns a list of relations. Some of them are irrelevant, and result from a bad match with regular expressions. For instance, I match the Italian montain bike itinirary `PNEV3`. But most of them are relevant like relations 2797378 (Norway), 1911568 (Denmark) and 2795128 (Germany). The last ones are relavant since they are correctly on the route, but they form such a small part of it that they are virtually useless: relations 299546 in Denmark and 4291999, 4292056, 6117075 in France.
 
- <p id='map' class='wide'></p>
+ <div id='map' class='wide'></div>
 
  But so far, I did not show how to retrieve the information needed to map those so-called relations. Actually, as I explained, a relation is just a collection of points and lines and, in our case, only of lines. If we want to map the route, we have to get access to the coordinates of each line making up the route. This is done on the Overpass API with the , and if we plant to plot them, we do not have any spatial information - which is however necessary for mapping them! I can get access the data throught this other request:
 
