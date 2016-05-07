@@ -134,6 +134,65 @@ main{
   }
   p.wide{
     width:100%;
+  ul#blog-index{
+    list-style: none;
+    margin:     0px;
+    padding:    0px;
+    li{
+      display:   block;
+      height:    170px;
+      min-width: 350px;
+      width:     70%;
+      max-width: 500px;
+      margin:    20px 0;
+      overflow:  hidden;
+      position:  relative;
+      img{
+        width:  170px;
+        height: 170px;
+        float: left;
+        margin-right: 10px;
+      }
+      span.blog-index-post-title{
+        // width: 100%-150px;
+        // display: inline-block;
+        font-weight: 900;
+      }
+      span.blog-index-post-date{
+        display: block;
+        &:before{
+          content: " ~ "
+        }
+        &:after{
+          content: " ~ "
+        }
+      }
+      p:nth-child(4){ // to be replaced when post.excerpt is replaced by post.summary
+        padding-bottom: 20px;
+      }
+      .tags-container{
+        position: absolute;
+        // white-space: nowrap;
+        height: 19px;
+        bottom: 0;
+        left: 180px;
+        overflow: hidden;
+        span.tag{
+          display: inline-block;
+          padding: .2em .6em .3em;
+          font-size: 75%;
+          font-weight: bold;
+          line-height: 1;
+          color: #fff;
+          text-align: center;
+          white-space: nowrap;
+          vertical-align: baseline;
+          border-radius: .25em;
+          background-color: @header-color-background;
+          margin-right: 1px;
+        }
+      }
+    }
   }
 } 
 

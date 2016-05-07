@@ -2,7 +2,10 @@
 url_mapping:
   Eurovelo 3 - The making of: eurovelo-3-the-making-of.html
   Eurovelo 3 - The trip:      eurovelo-3-the-trip.html
+  Cartothèque:                cartotheque.html
 ---
+
+<!-- url_mapping can be replaced by :handle; https://docs.shopify.com/themes/liquid/basics/handle" -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,14 +23,16 @@ url_mapping:
   </head>
   <body>
     <header>
+      {% assign slice = page.url | slice:1, 6 %}
       <nav><ul>
-        <li{% if page.url == '/' %}              class="active" {% endif %}><a href="/">Home</a></li>
-        <li{% if page.url == '/blog.html' %}     class="active" {% endif %}><a href="#">Blogs</a>
+        <li{% if page.url == '/' %}   class="active" {% endif %}><a href="/">Home </a>
+        </li>
+        <li{% if slice == 'blogs/' %} class="active" {% endif %}><a href="#">Blogs</a>
            <ul>
-              <li><a href="/all-posts.html">All posts</a><span>{{ site.posts | size }}</span></li>
+              <li><a href="/blogs/all-posts.html">All posts</a><span>{{ site.posts | size }}</span></li>
             {% for category in site.categories %}
               {% assign category_title = category[0] %}
-              <li><a href="{{ layout.url_mapping[category_title] }}">{{ category_title }}</a><span>{{ category[1].size }}</span></li>
+              <li><a href="/blogs/{{ layout.url_mapping[category_title] }}">{{ category_title }}</a><span>{{ category[1].size }}</span></li>
 
               <!--http://stackoverflow.com/questions/12625113/total-number-of-posts-->
             {% endfor %}

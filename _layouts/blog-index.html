@@ -1,46 +1,48 @@
 ---
-layout: default
+layout: page
 ---
 
-<div id='left-column'>
-  <section id='presentation'>
-    <div class='img-container'><a href="/"><img src='/img/arthur.png'/></a></div>
-    <p><strong>Arthur</strong> is a statistician, data scientist, environmental economist, organic food grower, amateur graphist and urbanist. He loves food, bike touring, coding, handcrafts, arts, epistemology, maps and social sciences. He speaks French, English, Danish, basic Spanish, and is learning Italian and German.</p>
-    <p>He doesn't always talk about himself in the third person.</p>
-    <ul class='list-inline text-center'>
-      <li><a href=""><i class="fa fa-twitter fa-2x"></i></a></li>
-      <li><a href=""><i class="fa fa-github fa-2x"></i></a></li>
-    </ul>
-  </section>
-  <footer>
-    <p>Made with Jekyll + Less + Bootstraps. Picture from the <a href='http://www.editions-delcourt.fr/bouletmaton'>Bouletmaton</a>, &copy; Delcourt 2016.</p>
-  </footer>
-</div>
-<div id='right-column'>
-  <main>
-    <h1>Blogs > {{page.title}}</h1>
-    <ul>
-      {% if page.title == 'All posts' %}
-        {% for post in site.posts %} 
-        <li>
-          <a href="{{ post.url }}">{{ post.title }}</a>
-          - {{ post.date | date: "%d %B %Y" }}
-          {{ post.excerpt }}
-        </li>
-        {% endfor %}
-      {% else %}
-      {% for category in site.categories %}
-      {% if page.title == category[0] %}
-        {% for post in category[1] %}
-        <li>
-          <a href="{{ post.url }}">{{ post.title }}</a>
-          - {{ post.date | date: "%d %B %Y" }}
-          {{ post.excerpt }}
-        </li>
-        {% endfor %}
-      {% endif %}
+<ul id='blog-index'>
+  {% if page.title == 'All posts' %}
+    {% for post in site.posts %} 
+    <li>
+      <a href="{{ post.url }}"><img src='{{ post.thumbnail }}'/></a>
+      <div class='tags-container'>
+      {% assign tags = post.tags | sort: 'size') %}
+      <!-- sorting by size does not work even if tag.size exists -->
+      {% for tag in tags %}
+        <span class="tag">{{ tag }}</span>
       {% endfor %}
-      {% endif %}
-    </ul>
-  </main>
-</div>
+      </div>
+      <p>
+        <span class='blog-index-post-date'>{{ post.date | date: "%d %B %Y" }}</span>
+        <span class='blog-index-post-title'><a href="{{ post.url }}">{{ post.title }}</a></span>
+        <p>{{ post.summary }}<p/>
+        {{ post.excerpt }}
+      </p>
+    </li>
+    {% endfor %}
+  {% else %}
+  {% for category in site.categories %}
+  {% if page.title == category[0] %}
+    {% for post in category[1] %}
+    <li>
+      <a href="{{ post.url }}"><img src='{{ post.thumbnail }}'/></a>
+      <p>
+        <span class='blog-index-post-date'>{{ post.date | date: "%d %B %Y" }}</span>
+        <span class='blog-index-post-title'><a href="{{ post.url }}">{{ post.title }}</a></span>
+        <p>{{ post.summary }}</p>
+        {{ post.excerpt }}
+      </p>
+    </li>
+    {% endfor %}
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+</ul>
+
+<!-- http://stackoverflow.com/questions/6222616/with-css-use-for-overflowed-block-of-multi-lines -->
+<script src="/js/jquery.dotdotdot.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $('#blog-index li').dotdotdot();
+</script>
