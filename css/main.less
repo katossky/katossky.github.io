@@ -10,6 +10,9 @@
 @variable-between-columns-margin:   7%;
 @right-column-width: (100% - @variable-between-column-margin)/2;
 */
+
+@import post;
+
 html {
   height: 100%;
 }
@@ -132,31 +135,6 @@ main{
   margin-right: 5%;
   width:        100% - @margin-btw-cols-var - 5%;
   // overflow:     hidden;
-  img{
-    width: 100%;
-    &.screenshot{
-      margin-top:    30px;
-      margin-bottom: 30px;
-      box-shadow:    -10px 10px 80px 0px #606060;
-    }
-  }
-  aside{
-    float: right;
-    clear: right;
-    width: 30%; // problem with margin
-    img.screenshot{
-      margin-top:    20px;
-      margin-bottom: 20px;
-      box-shadow:    -5px 5px 40px 0px #909090;
-    }
-  }
-  .legend{
-      color: #808080;
-      font-size: 80%;
-      border-bottom:  1px solid #909090;
-      padding-top: 10px;
-      padding-bottom: 10px;
-  }
   // about clipping / masking
   // https://css-tricks.com/clipping-masking-css/
   // https://sarasoueidan.com/blog/css-shapes/
@@ -172,9 +150,6 @@ main{
       clip-path:         polygon(50% 100%, 0% 100%, 0% 70%, 70% 0%, 100% 0%, 100% 50%);
       // border-radius:     .5em;
     }
-  }
-  #map{
-    height: 300px;
   }
   #project-showcase{
     width:         100%;
@@ -279,50 +254,6 @@ main{
     }
     img{
       width: 100px;
-    }
-  }
-  a.discreet{
-    color: inherit;
-    border-bottom: 1px dotted;
-    text-decoration: none;
-    &:hover{
-      border-bottom: 1px solid;
-    }
-  }
-  & > p, & > div{
-    width:              70%;
-    max-width:          420px; // move this constraints to main
-    .vignettes{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      // align-items: stretch;
-      div{
-        max-width: 18.5%;
-        img{
-          max-width: 100%;
-          width: 100%;
-          // max-width: 149px;
-          height: 100%;
-        }
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-      img{
-        //width: 200px;
-        max-width: 38.7%; //313px;
-        height: 100%;
-      }
-    }
-    &.wide{
-      width:            100%;
-      max-width:        100%; // here too
-      .legend{
-        float:          right;
-        clear:          right;
-        width:          30%;
-      }
     }
   }
   ul#blog-index{
