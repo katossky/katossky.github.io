@@ -345,6 +345,12 @@ main{
     border-radius: 99em;
     border: 5px solid #eee;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+    transition: transform .5s ease-in-out;
+    &:hover{
+      -ms-transform: rotate(7deg); /* IE 9 */
+      -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
+      transform: rotate(7deg);
+    }
   }
 }
 /*aside {
