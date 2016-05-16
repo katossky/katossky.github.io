@@ -4,6 +4,7 @@ setwd('~/Projets/katossky.github.io/data')
 
 # install_packages(c('devtools', 'sp'))
 # devtools::install_github("hrbrmstr/overpass")
+# exemples: http://rpubs.com/hrbrmstr/overpass
 
 library(overpass)
 library(sp)
