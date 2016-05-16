@@ -1,62 +1,112 @@
 setwd('~/Projets/katossky.github.io/data')
+
+# STEP 1 DOWLOAD
+
+# install_packages(c('devtools', 'sp'))
 # devtools::install_github("hrbrmstr/overpass")
+
 library(overpass)
-library(dplyr)
-library(plyr)
 library(sp)
-library(rgeos)
-library(geojsonio)
 
-Sweden  <- overpass_query("[out:xml];relation(1770999);(._;>;);out;")
-Denmark <- overpass_query("[out:xml];relation(1911568);(._;>;);out;")
-Germany <- overpass_query("[out:xml];relation(2795128);(._;>;);out;")
-Norway  <- overpass_query("[out:xml];relation(2797378);(._;>;);out;")
+query <- function(number){
+  overpass_query(
+    paste0(
+      '[out:xml];',
+      'relation(', number, ');',
+      '(._;>;);',
+      'out;'
+    )
+  )
+}
 
-# exemples
-# https://github.com/hrbrmstr/overpass
-# http://rpubs.com/hrbrmstr/overpass
+Sweden  <- query(1770999)
+Denmark <- query(1911568)
+Germany <- query(2795128)
+Norway  <- query(2797378)
 
-# filter Sweden
-# 1. create a bouding box whose south limits corresponds to the end of the EV3
-#    in Sweden
-bbox <- gEnvelope(Sweden)
-bbox_polygons <- bbox@polygons
-bbox_polygons[[1]]@Polygons[[1]]@coords <-
-  bbox_polygons[[1]]@Polygons[[1]]@coords %>%
-  as.data.frame %>%
-  mutate(y=ifelse(y==min(y), 57.7015602, y)) %>%
-  as.matrix
-bbox <- SpatialPolygons(bbox_polygons)
-# 1bis. check that is correct
-plot(Sweden, col='grey55')
-plot(gIntersection(Sweden, bbox), col='grey55')
+# STEP 2 FILTER SWEDEN
+
+# install_packages('rgeos')
+library(rgeos) # for gEnvelope and gIntersection
+
+# get a sp square that contains the Swedish track
+bbox          <- gEnvelope(Sweden)
+
+# get the y coordinates of the only polygon
+# component
+str(bbox)
+bbox_polygons <- bbox@polygons[[1]]
+bbox_polygon  <- bbox_polygons@Polygons[[1]]
+y             <- bbox_polygon@coords[,'y']
+
+# modify the coordinates of the square
+y[y==min(y)]                <- 57.7015602
+bbox_polygon@coords[,'y']   <- y
+bbox_polygons@Polygons[[1]] <- bbox_polygon
+# sp object "SpatialPolygons" has integrity
+# constraints ; it's then better use the
+# constructor
+bbox <- SpatialPolygons(list(bbox_polygons))
+
+# visualize the part of the track to be cropped
+plot(Sweden, col='grey')
 plot(bbox, add=TRUE)
-# 2. intersect
+
+# intersect the Swedish track with the new
+# bounding box
 Sweden <- gIntersection(Sweden, bbox)
-Sweden <- Sweden@lines[[1]]@Lines %>%
-  llply(function(obj) Lines(list(obj), ID=runif(1,0,10000))) %>%
-  SpatialLines
+# let's check that the line is correctly cropped
+plot(Sweden, col='grey')
+plot(bbox, add=TRUE)
 
-# merge all data in only one file
-ev3 <- SpatialLines(c(Norway@lines, Sweden2@lines, Denmark@lines, Germany@lines))
-plot(ev3)
-plot(gLineMerge(ev3))
-ev3 <- gLineMerge(ev3)
+# STEP 3 BUNDLING
 
-# 461 lines just now... which means 460 errors? (there should be no hole)
-ev3@lines[[1]]@Lines %>% length
-ev3@lines[[1]]@Lines[1]
-ev3@lines[[1]]@Lines[2]
+# gIntersection returns all the segments as only
+# one "Lines" object containing many "Line"
+# objects whereas Denmark, Germany and Norway
+# tracks are made of several "Lines" made of each
+# one and only one "Line"
 
-# simplify for plotting at big scale
-ev3_simplified <- gSimplify(ev3, tol = 5)
-plot(ev3_simplified)
-ev3_simplified@lines[[1]]@Lines %>% length
-# ev3_simplified <- 1:length(ev3_simplified@lines) %>%
-#   data.frame(row.names = .) %>%
-#   SpatialLinesDataFrame(ev3_simplified, data=., match.ID = FALSE)
+# extract the list of "Line" objects that
+# constitute the first and only one "Lines" object
+Sweden_lines <- Sweden@lines[[1]]@Lines
+# create a list of "Lines" objects, with each one
+# "Line" ; since an identifier is needed, I chose
+# to randomly create them ; the code may randomly
+# break in the event - unlikely but possible -
+# where twice the same idenfier is chosen
+big_number   <- 10e10
+Sweden_lines <- lapply(Sweden_lines,
+  function(line) Lines(
+    slinelist = list(line),
+    ID        = sample.int(n=big_number, size=1)
+  )
+)
+Sweden <- SpatialLines(Sweden_lines)
 
-# export simplified shape as geo_json
-# library(rgdal)
-geojson_write(ev3_simplified, file = 'ev3-simplified.geojson')
-# writeOGR(ev3_simplified, 'ev3-simplified.json', layer="inputJSON", driver="GeoJSON", check_exists = FALSE)
+# merge the 4 tracks into a unique "SpatialLines" object
+EV3 <- SpatialLines(c(
+  Norway@lines,
+  Sweden@lines,
+  Denmark@lines,
+  Germany@lines
+))
+plot(EV3)
+length(EV3@lines) # 5329 "Lines" objects
+
+# merge the adjacent "Line" objects with each other
+EV3 <- gLineMerge(EV3)
+plot(EV3) # no change
+length(EV3@lines)            #   1 "Lines" object
+length(EV3@lines[[1]]@Lines) # 441 "Line"  objects
+# 441 "Line" objects is 440 too many!
+
+# simplify the shape for plotting at small scale
+EV3 <- gSimplify(EV3, tol = 3)
+# does not work well because of all the disconnected lines
+plot(EV3)
+
+# export as geoJSON
+# install.packages('geojsonio')
+library(geojsonio)
+geojson_write(EV3, file = 'ev3-simplified.geojson')

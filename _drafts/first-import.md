@@ -21,7 +21,7 @@ Both issues have to be confronted on an *ad hoc* basis, by manually editting the
     relation[name~"[Ee](uro)?[Vv](elo)? ?3"];
     out tags;
 
-.. returns 14 relations, only 3 of which correspond to an actual portion of the Eurovelo 3 route: in Norway (relation n°`2797378`), Denmark (`1911568`) and Germany (`2795128`).
+... returns 14 relations, only 3 of which correspond to an actual portion of the Eurovelo 3 route: in Norway (relation n°`2797378`), Denmark (`1911568`) and Germany (`2795128`).
 
 On the other hand, completing the route when data exists but is listed under different keywords requires one additional step, namely to visit <a href="">the Eurovelo website</a> and find out which parts of Eurovelo 3 are shared with other Eurovelo routes. There are actually 3 of them: Eurovelo 12 between Oslo (Norway) and Gothenburg (Sweden) ; Eurovelo 6 between Orléans (France) and Tours (France) ; Eurovelo 1 between Pamplona (Spain) and Burgos (Spain).
 
@@ -38,43 +38,133 @@ The requests:
 
 ... reveal that Eurovelo 1 is registered solely in France and Norway (and thus not between Pamplona and Burgos); that Eurovelo 6 is recorded almost everywhere *but* between Orléans and Tours ; and that the route in Sweden is relation n°`1770999`.
 
+Then I can use <img src="/img/logos/r.png" title='R'> to collect the data directly from Overpass thanks to the <a href="">overpass</a> package<label for="sn-source-adfc" class="sidenote-number margin-toggle"></label><input type="checkbox" id="sn-source-adfc" class="margin-toggle"/><aside class="sidenote">See https://github.com/hrbrmstr/overpass and http://rpubs.com/hrbrmstr/overpassSome for exemples.</aside>:
 
+    # install_packages(c('devtools', 'sp'))
+    # devtools::install_github("hrbrmstr/overpass")
 
-<script>
-    
-  // SETTING ---------------------------------------------------------------
-  var map = L.map('map', {
-    minZoom: 3,
-    touchZoom: false,
-    scrollWheelZoom: false,
-    center: [56, 12],
-    zoom: 3
-  })
-  var relations = {};
+    library(overpass)
+    library(sp)
 
-  // chose a 'known provider' from there: http://leaflet-extras.github.io/leaflet-providers/preview/
-  L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'
-  ).addTo(map);
-
-  $.getJSON("/data/2016-04-22-overpass-API-filtered.geojson", function(data) {
-    console.log(data);
-    L.geoJson(data, {
-      onEachFeature: function (feature, layer) {
-        var relation = feature.properties['@relations'][0].rel;
-        if(relation in relations){
-          relations[relation].addLayer(layer);
-        } else {
-          relations[relation] = new L.layerGroup();
-          relations[relation].addLayer(layer);
-        }
-      }
-    });
-
-    for(relation in relations){
-      relations[relation].addTo(map);
+    query <- function(number){
+      overpass_query(
+        paste0(
+          '[out:xml];',
+          'relation(', number, ');',
+          '(._;>;);',
+          'out;'
+        )
+      )
     }
 
-    L.control.layers({}, relations, {collapsed: false}).addTo(map);
+    Sweden  <- query(1770999)
+    Denmark <- query(1911568)
+    Germany <- query(2795128)
+    Norway  <- query(2797378)
 
-  });
- </script>
+But Eurovelo 12 in Sweden only shares a limited part of the route with Eurovelo 3. I remove all tracks south of latitude `57.7015602`. (Handling spatial objects in <img src="/img/logos/r.png" title='R'> is maybe not the easiest task. The `sp` package is here unavoidable. But a seemingly simple task as modifying only a few points of an `sp` object, as we are here forced to do, ofetn requires to understand the struturing of `sp`-objects. Many of the most common spatial operations, such as intersection of shapes, are provided by the `rgeos` package.)
+
+    # install_packages('rgeos')
+    library(rgeos) # for gEnvelope and gIntersection
+    
+    # get a sp square that contains the Swedish track
+    bbox          <- gEnvelope(Sweden)
+
+    # get the y coordinates of the only polygon
+    # component
+    str(bbox)
+    bbox_polygons <- bbox@polygons[[1]]
+    bbox_polygon  <- bbox_polygons@Polygons[[1]]
+    y             <- bbox_polygon@coords[,'y']
+
+    # modify the coordinates of the square
+    y[y==min(y)]                <- 57.7015602
+    bbox_polygon@coords[,'y']   <- y
+    bbox_polygons@Polygons[[1]] <- bbox_polygon
+    # sp object "SpatialPolygons" has integrity
+    # constraints ; it's then better use the
+    # constructor
+    bbox <- SpatialPolygons(list(bbox_polygons)) 
+
+    # visualize the part of the track to be cropped
+    plot(Sweden, col='grey')
+    plot(bbox, add=TRUE)
+
+    # intersect the Swedish track with the new
+    # bounding box
+    Sweden <- gIntersection(Sweden, bbox)
+    # let's check that the line is correctly cropped
+    plot(Sweden, col='grey')
+    plot(bbox, add=TRUE)
+
+Last but not least, we must bundle the 4 tracks together, and export them together as one `geoJSON` file. Indeed, the Javascript library I am using for rendering the map, <img src="/img/logos/leaflet.png" title='Leaflet'>, does not read <img src="/img/logos/r.png" title='R'> files.
+
+    # gIntersection returns all the segments as only
+    # one "Lines" object containing many "Line"
+    # objects whereas Denmark, Germany and Norway
+    # tracks are made of several "Lines" made of each
+    # one and only one "Line"
+
+    # extract the list of "Line" objects that
+    # constitute the first and only one "Lines" object
+    Sweden_lines <- Sweden@lines[[1]]@Lines
+    # create a list of "Lines" objects, with each one
+    # "Line" ; since an identifier is needed, I chose
+    # to randomly create them ; the code may randomly
+    # break in the event - unlikely but possible -
+    # where twice the same idenfier is chosen
+    big_number   <- 10e10
+    Sweden_lines <- lapply(Sweden_lines,
+      function(line) Lines(
+        slinelist = list(line),
+        ID        = sample.int(n=big_number, size=1)
+      )
+    )
+    Sweden <- SpatialLines(Sweden_lines)
+
+    # merge the 4 tracks into a unique "SpatialLines"
+    # object
+    EV3 <- SpatialLines(c(
+      Norway@lines,
+      Sweden@lines,
+      Denmark@lines,
+      Germany@lines
+    ))
+    plot(EV3)
+    length(EV3@lines) # 5329 "Lines" objects
+
+    # merge the adjacent "Line" objects with each
+    # other
+    EV3 <- gLineMerge(EV3)
+    plot(EV3) # no change
+    length(EV3@lines)            #   1 "Lines" object
+    length(EV3@lines[[1]]@Lines) # 441 "Line"  objects
+    # 441 "Line" objects is 440 too many!
+
+    # simplify the shape for plotting at small scale
+    EV3 <- gSimplify(EV3, tol = 3)
+    # does not work well because of all the
+    # disconnected lines
+    plot(EV3)
+
+    # export as geoJSON
+    # install.packages('geojsonio')
+    library(geojsonio)
+    geojson_write(EV3, file='ev3-simplified.geojson')
+
+That's done! You can go and admire the result [here](/eurovelo.html).
+
+There are of course some details to improve. Most importantly, many lines are disconnected whereas they should actually be part of the same path. It has numerous consequences, such as:
+
+- visible gaps on the map ;
+- poor line simplification ; since each line has few points, there is often only one way to simplify: transform it to a segment;
+- poor rendering ; on the map, a line is typically rendered as transparent and if the line is broken, then the extremities become very visible.
+
+Other issues include duplicated parts of the itinirary or stand-alone points outside of the itinirary.
+
+<div>
+  <img src="/img/screenshots/2016-05-15-disconnected-lines-north-jutland.png" title="Detail of BVA's ADFC Radturenkarte near Rostock (Germany)">
+  <p class='legend'><strong>Detail of Eurovelo 3 in North Jutland. </strong>Disconnected lines artificially darken the line's extremeities (in yellow). But this is not the only problem with OpenStreetMap data. Other issues include repeated information (in blue) and actual missing information (in red). Notice also that each individual line is acutally simplified as a segment.</p>
+</div>
+
+Before to start recording and correcting data in OpenStreetMap, the only fix I can quickly develop is to merge lines whose ending points are relatively close to each other. As far as I know, the simpler solution requires the use of <img src="/img/logos/qgis.png" title='Q'>GIS and its `joinmultiplelines` pluggin. But this is an other story.
