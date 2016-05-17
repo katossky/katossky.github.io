@@ -15,7 +15,7 @@ title: eurovelo
   L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
 attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'}).addTo(map);
 
-  $.getJSON("/data/2016-05-14-ev3-simplified.geojson", function(data) {
+  $.getJSON("/data/2016-05-17-ev3.geojson", function(data) {
     console.log(data);
     L.geoJson(data).addTo(map);
   });
