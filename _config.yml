@@ -1,1 +1,2 @@
-gems: ['jekyll-less']
+gems:      ['jekyll-less']
+permalink: /:year/:month/:title
