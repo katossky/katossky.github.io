@@ -1,10 +1,10 @@
 ---
 layout:     page
-title:      First importation of the track
+title:      Importing the Eurovelo 3 track from OpenStreetMap
 categories: [Eurovelo 3 - The making of]
-tags:       [leaflet.js, OverPass API, regular expressions, OSM relations, OpenStreetMap]
+tags:       [leaflet.js, OverPass API, OSM relations, OpenStreetMap, overpass (R package), rgeos (R package), geojsonio (R package)]
 thumbnail:  /img/thumbnails/first-importation-of-the-track.png
-summary:    The track of Eurovelo 3 as they exist raw on OpenStreetMap
+summary:    A first attempt using R.
 ---
 
 
@@ -25,7 +25,7 @@ summary:    The track of Eurovelo 3 as they exist raw on OpenStreetMap
 
 <aside>
   <img src="/img/screenshots/2016-05-16-holes-near-hamar.png">
-  <p class='legend'><strong>Small holes in the itineray near Hamar (Norway). </strong>OpenStreetMap is not complete and there exist many small or big holes in the itinerary, many of which cannot be fixed in an automated way. Normally, <a href="https://wiki.openstreetmap.org/wiki/Routing">routes should be continuous</a> but is dependant on the good will of each and every map editor.</p>
+  <p class='legend'><strong>Small holes in the itineray near Hamar (Norway). </strong>OpenStreetMap is not complete and there exist many small or big holes in the itinerary, many of which cannot be fixed in an automated way. Normally, <a href="https://wiki.openstreetmap.org/wiki/Routing">routes should be continuous</a> but the implementation of this policy is dependant on the good will of each and every map editor.</p>
 </aside>
 
 <aside>
@@ -196,7 +196,9 @@ However, handling spatial objects in <img src="/img/logos/r.png" title='R'> is m
     library(geojsonio)
     geojson_write(EV3, file='ev3-simplified.geojson')
 
-That's done! You can go and admire the result [here](/eurovelo.html).
+That's done! Now we can just relax and admire the result of our efforts:
+
+<div class='wide'><div id='map'></div></div>
 
 There are of course some details to improve (see images). Most importantly, many lines are disconnected whereas they should actually be part of the same path. It has numerous consequences, such as:
 
@@ -204,4 +206,25 @@ There are of course some details to improve (see images). Most importantly, many
 - poor line simplification ; since each line has few points, there is often only one way to simplify: transform it to a segment ;
 - poor rendering ; on the map, a line is typically rendered as transparent and if the line is broken, then the extremities become very visible.
 
-Of course the cleanest way to solve these issues is to record and correct data directly in OpenStreetMap. But in the meanwhile, a quick fix is to merge lines whose ending points are relatively close to each other. As far as I could read, the simpler solution requires the use of <img src="/img/logos/qgis.png" title='Q'>GIS and its `joinmultiplelines` pluggin. But this is an other story.
+The cleanest way to solve these issues is to record and correct data directly in OpenStreetMap but a convenient fix could also be to merge lines whose ending points are relatively close to each other. <!--As far as I could read, the simpler solution requires the use of <img src="/img/logos/qgis.png" title='Q'>GIS and its `joinmultiplelines` pluggin.--> But this is an other story.
+
+<script>
+    
+  // SETTING ---------------------------------------------------------------
+  var map = L.map('map', {
+    minZoom: 4,
+    touchZoom: false,
+    scrollWheelZoom: false,
+    center: [58, 10],
+    zoom: 4
+  })
+  // chose a 'known provider' from there: http://leaflet-extras.github.io/leaflet-providers/preview/
+  L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+attribution: 'Tiles &copy; Esri'}).addTo(map);
+
+  $.getJSON("/data/2016-05-15-ev3-simplified.geojson", function(data) {
+    console.log(data);
+    L.geoJson(data).addTo(map);
+  });
+
+ </script>
