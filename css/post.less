@@ -2,7 +2,7 @@ main{
 
   counter-reset: sidenote-counter;
 
-  .legend, .sidenote{
+  .legend, .sidenote, .remark{
       color: #808080;
       font-size: 80%;
       border-bottom:  1px solid #909090;
@@ -23,10 +23,15 @@ main{
     float: right;
     clear: right;
     width: 30%; // problem with margin
-    img.screenshot{
+    img.screenshot, img.map-guide{
       margin-top:    20px;
       margin-bottom: 20px;
       box-shadow:    -5px 5px 40px 0px #909090;
+    }
+    img.map-guide{
+      border-radius: 3px;
+      width: 70%;
+      transform:rotate(-10deg)
     }
   }
 
@@ -84,8 +89,9 @@ main{
     }
   }
   & > p, & > div, & > ul{
-    width:              70%;
-    max-width:          420px; // move this constraints to main
+    width:         70%;
+    max-width:     420px; // move this constraints to main
+    margin-bottom: 15px;
 
     .vignettes{
       display: flex;
