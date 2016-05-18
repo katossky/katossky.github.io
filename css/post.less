@@ -73,7 +73,7 @@ main{
     height: 300px;
   }
 
-  a.discreet{
+  .discreet{
     color: inherit;
     border-bottom: 1px dotted;
     text-decoration: none;
@@ -81,11 +81,20 @@ main{
       border-bottom: 1px solid;
     }
   }
+
+  a.copyright{
+    .discreet;
+    &:before{
+      content: "&copy; "
+    }
+  }
   
   & p {
     img{
       height: 1em;
       width: auto;
+      border-radius: 3px;
+      margin: 0 1px;
     }
   }
   & > p, & > div, & > ul{
@@ -120,7 +129,7 @@ main{
     &.wide{
       width:            100%;
       max-width:        100%; // here too
-      .legend{
+      .legend:not(.full-width){
         float:          right;
         clear:          right;
         width:          30%;
