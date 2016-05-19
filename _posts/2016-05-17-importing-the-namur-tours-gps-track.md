@@ -9,7 +9,7 @@ summary:    A conversion from GPX to geoJSON with R.
 
 <aside>
   <a href="http://www.chamina.com/produit/namur-tours-a-velo-de-la-belgique-a-263"><img src="/img/2016-05-16-topo-namur-tours.jpg" class='map-guide'></a>
-  <p class='legend'><strong><img src="/img/logos/chamina.png" title="Chamina">'s topoguide from Namur to Tours.</strong> It was realised by the folks from CycloTransEurope. On [eurovelo3.fr](http://eurovelo3.fr/eurovelo3/), they release a lot of information -- including [the GPS tracks](http://eurovelo3.fr/services?service=download-gpx&rid=1) -- but you can support them by buying the guide.</p>
+  <p class='legend' markdown='1'>{% include logo.md what='chamina'%}**'s topoguide from Namur to Tours.** It was realised by the folks from CycloTransEurope. On [eurovelo3.fr](http://eurovelo3.fr/eurovelo3/), they release a lot of information -- including [the GPS tracks](http://eurovelo3.fr/services?service=download-gpx&rid=1) -- but you can support them by buying the guide.</p>
 </aside>
 
 In the process of mapping [the whole itinerary of route Eurovelo 3](/eurovelo.html) from Trondheim to Santiago de Compostella, I started [in a first post]() by downloading data from OpenStreetMap. But [in a precedent post](), we saw that these data are incomplete, missing the totality of France, Belgium and Spain. For those countries, we have no choice but to resort to alternative data sources, if they exist.
@@ -56,10 +56,10 @@ Now, the file can be rendered seamlessly with {% include logo.md what='leaflet' 
 
 <div class='wide'>
   <div id='map'></div>
-  <p class='legend'>**Even and uneven lines.** When the data is imported as only one track -- as here with the GPS track between Namur (Belgium) and Tours (France), the display is even, with one plain, smooth line. On the contrary, the data extracted from OpenStreetMap is made of several hundred of smaller tracks, hence the unhomogenous rendering.</p>
+  <p class='legend' markdown='1'>**Even and uneven lines.** When the data is imported as only one track -- as here with the GPS track between Namur (Belgium) and Tours (France), the display is even, with one plain, smooth line. On the contrary, the data extracted from OpenStreetMap is made of several hundred of smaller tracks, hence the unhomogenous rendering.</p>
 </div>
 
-<strong>Method 2. </strong>The other solution takes advantage of the very definition of the [`GPX`](https://en.wikipedia.org/wiki/GPS_Exchange_Format) format, which is just a variety of [`XML`](http://www.w3schools.com/xml). We can thus use the [`xml2`](https://github.com/hadley/xml2) package and build the `sp` object from scratch.
+**Method 2.** The other solution takes advantage of the very definition of the [`GPX`](https://en.wikipedia.org/wiki/GPS_Exchange_Format) format, which is just a variety of [`XML`](http://www.w3schools.com/xml). We can thus use the [`xml2`](https://github.com/hadley/xml2) package and build the `sp` object from scratch.
 
     library(dplyr) # for chaining with %>%
 
