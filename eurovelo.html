@@ -9,20 +9,25 @@ title: eurovelo
   var map = L.map('project-container', {
     minZoom: 4,
     center: [57, 6],
-    zoom: 4
+    zoom: 4,
+    zoomControl: false,
   })
+  
+  L.control.zoom({position:'topright'}).addTo(map);
+
   // chose a 'known provider' from there: http://leaflet-extras.github.io/leaflet-providers/preview/
   L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'}).addTo(map);
+      attribution: 'Tiles &copy; Esri &mdash;'
+    }
+  ).addTo(map);
 
   $.getJSON("/data/2016-05-17-ev3.geojson", function(data) {
-    console.log(data);
     L.geoJson(data).addTo(map);
   });
 
   $.getJSON("/data/2016-05-17-namur-tours.geojson", function(data) {
-    console.log(data);
     L.geoJson(data).addTo(map);
   });
+
 
  </script>
