@@ -45,6 +45,21 @@ url_mapping:
         <li><a href="#">Résumé</a></li>
       </ul></nav>
     </header>
+    <div id='left-column'>
+      <div id='me'><a href="/"><img src='/img/arthur.png'/></a></div>
+      {% if page.url != '/eurovelo' %}
+      <p><strong>Arthur</strong> is a statistician, data scientist, environmental economist, organic food grower, amateur graphist and urbanist. He loves food, bike touring, coding, handcrafts, arts, epistemology, maps and social sciences. He speaks French, English, Danish, basic Spanish, and is learning Italian and German.</p>
+      <!-- probably this text should change depending on the page -->
+      <p>He doesn't always talk about himself in the third person.</p>
+      <ul class='list-inline text-center'>
+        <li><a href=""><i class="fa fa-twitter fa-2x"></i></a></li>
+        <li><a href=""><i class="fa fa-github fa-2x"></i></a></li>
+      </ul>
+      <footer>
+        <p>Made with Jekyll + Less + Bootstraps. Picture from the <a href='http://www.editions-delcourt.fr/bouletmaton'>Bouletmaton</a>, &copy; Delcourt 2016.</p>
+      </footer>
+      {% endif %}
+    </div>
     <div id='text-content'>
       {{ content }}
     </div>

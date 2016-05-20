@@ -22,6 +22,11 @@ body {
   position:relative;
 }
 header{
+  z-index:       10;
+  position: fixed;
+  top:      0;
+  left:     0;
+  width:    100%;
   background-color: @header-color-background;
   -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
           box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
@@ -31,6 +36,7 @@ header{
     margin-right: @margin-page;
     padding: 0px;
     ul{
+      margin-bottom: 0px;
       list-style: none;
       padding: 0px;
     }
@@ -110,18 +116,23 @@ header{
   }
 }
 #left-column{
-  float:         left;
+  z-index:       10;
+  position:      fixed;
+  top:           @margin-page;
+  left:          @margin-page;
+  margin-bottom: @margin-page;
+  // float:         left;
   // position:      relative;
   width:         @column-width-left;
   height:        100%;
-  margin-left:   @margin-page;
+  // margin-left:   @margin-page;
   /* margin-top:    @margin-page;*/
-  margin-bottom: @margin-page;
+ //  margin-bottom: @margin-page;
 }
 #right-column{
   margin-left:   @margin-page+@column-width-left+@margin-btw-cols-fxd;
   margin-right:  @margin-page;
-  margin-top:    0.5*@margin-page;
+  margin-top:    @margin-page;
   margin-bottom: @margin-page;
 }
 
@@ -322,7 +333,7 @@ main{
 footer{
   font-size: 80%;
 }
-.img-container {
+#me {
   max-width: 165px;
   margin: 15px auto;
   img {
