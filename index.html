@@ -1,14 +1,50 @@
 ---
-layout: default
-title:  Arthur Katossky
+layout:   default
+title:    Arthur Katossky
 ---
 
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
+<section id='project-showcase'>
+  <h1>PROJECTS</h1>
+  <div class='list'>
+    <a href="/eurovelo"><div class='project'>
+      <h2>Eurovelo 3</h2>
+      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
+      <img src="/img/eurovelo-3-track.png">
+      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
+      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
+    </div></a>
+  </div>
+</section>
+
+<section id='blog-showcase'>
+  <h1>BLOGS</h1>
+    <div class='list'>
+    {% assign blogs = 'Eurovelo 3 - The trip, Eurovelo 3 - The making of' | split: ', ' %}
+    {% for blog in blogs %}
+    <div class='blog'>
+      <!-- presentation proper -->
+      <a href="/blogs/eurovelo-3-the-trip"><div class='presentation-proper'>
+        <img src="/img/eurovelo-3-track.png">
+        <h2>{{ blog }}</h2>
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
+      </div></a>
+      <!-- latest posts -->
+      <ul>
+        {% for post in site.categories[blog] limit:4 %}
+          <li>
+            <a href="{{ post.url }}">
+              <img src='{{ post.thumbnail }}'/>
+              <p>
+                <span class='project-related-blog-date'>{{ post.date | date: "%d %B %Y" }}</span>
+                <span class='project-related-blog-title'>{{ post.title }}</span>
+                {{ post.summary }}
+              </p>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+    <div><h2>The other blogs:</h2></div>
+  </div>
+</section>

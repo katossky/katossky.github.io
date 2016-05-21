@@ -1,0 +1,29 @@
+---
+layout: default
+title:  eurovelo
+footer: Eurovelo 3 track by the OpenStreetMap community and Biroto </a> under <a href="http://creativecommons.org/licenses/by-sa/3.0/" class='discreet'>CC BY-SA 3.0</a>. 
+---
+
+<script>
+    
+  // SETTING ---------------------------------------------------------------
+  var map = L.map('project-container', {
+    minZoom: 4,
+    center: [57, 6],
+    zoom: 4,
+    zoomControl: false,
+  })
+  
+  L.control.zoom({position:'topright'}).addTo(map);
+
+  // chose a 'known provider' from there: http://leaflet-extras.github.io/leaflet-providers/preview/
+  L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles &copy; Esri &mdash;'
+    }
+  ).addTo(map);
+
+  $.getJSON("/data/2016-05-21-ev3.geojson", function(data) {
+    L.geoJson(data).addTo(map);
+  });
+
+ </script>

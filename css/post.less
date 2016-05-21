@@ -1,0 +1,151 @@
+main#post{
+
+  counter-reset: sidenote-counter;
+  
+  h1{
+    border-bottom: solid 1px;
+    width:         70%;
+    max-width:     420px;
+  }
+
+  .legend, .sidenote, .remark{
+      color: #808080;
+      font-size: 80%;
+      border-bottom:  1px solid #909090;
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+
+  img{
+    width: 100%;
+    &.screenshot{
+      margin-top:    30px;
+      margin-bottom: 30px;
+      box-shadow:    -10px 10px 80px 0px #606060;
+    }
+  }
+
+  aside{
+    float: right;
+    clear: right;
+    width: 30%; // problem with margin
+    img.screenshot, img.map-guide{
+      margin-top:    20px;
+      margin-bottom: 20px;
+      box-shadow:    -5px 5px 40px 0px #909090;
+    }
+    img.map-guide{
+      border-radius: 3px;
+      width: 70%;
+      transform:rotate(-10deg)
+    }
+  }
+
+  .sidenote {
+    // font-size: 1.1rem;
+    // line-height: 1.3;
+    // vertical-align: baseline;
+    position: relative;
+    &:before {
+      content:   counter(sidenote-counter) " ";
+      top:       -0.5rem;
+      font-size: 1rem;
+    }
+  }
+
+  .sidenote-number { counter-increment: sidenote-counter; }
+
+  .sidenote-number:after, .sidenote:before {
+    content: counter(sidenote-counter) " ";
+    // font-family: et-book-roman-old-style;
+    position: relative;
+    // vertical-align: baseline;
+  }
+
+  .sidenote-number:after {
+    content: counter(sidenote-counter);
+    font-size: 1rem;
+    top: -0.5rem;
+    left: 0.1rem;
+  }
+
+  input.margin-toggle { display: none; }
+
+  label.sidenote-number { display: inline; }
+
+  label.margin-toggle:not(.sidenote-number) { display: none; }
+
+  #map{
+    height: 300px;
+    &.high{height: 450px;}
+  }
+
+  .discreet{
+    color: inherit;
+    border-bottom: 1px dotted;
+    text-decoration: none;
+    &:hover{
+      border-bottom: 1px solid;
+    }
+  }
+
+  a.copyright{
+    .discreet;
+    &:before{
+      content: "&copy; "
+    }
+  }
+  
+  & p {
+    img{
+      height: 1em;
+      width: auto;
+      border-radius: 3px;
+      margin: 0 1px;
+    }
+  }
+  & > p, & > div, & > ul{
+    width:         70%;
+    max-width:     420px; // move this constraints to main
+    margin-bottom: 15px;
+
+    .vignettes{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      // align-items: stretch;
+      div{
+        max-width: 18.5%;
+        img{
+          max-width: 100%;
+          width: 100%;
+          // max-width: 149px;
+          height: 100%;
+        }
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      img{
+        //width: 200px;
+        max-width: 38.7%; //313px;
+        height: 100%;
+      }
+    }
+
+    &.scroll{
+      max-height:  300px;
+      overflow-y: scroll;
+    }
+
+    &.wide{
+      width:            100%;
+      max-width:        100%; // here too
+      .legend:not(.full-width){
+        float:          right;
+        clear:          right;
+        width:          30%;
+      }
+    }
+  }
+}
