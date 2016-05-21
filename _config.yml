@@ -1,2 +1,2 @@
-gems:      ['jekyll-less']
+gems:      ['jekyll-sass-converter']
 permalink: /:year/:month/:title
