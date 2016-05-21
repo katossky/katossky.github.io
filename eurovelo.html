@@ -1,6 +1,7 @@
 ---
-layout: project
-title: eurovelo
+layout: default
+title:  eurovelo
+footer: Eurovelo 3 track by the OpenStreetMap community and Biroto </a> under <a href="http://creativecommons.org/licenses/by-sa/3.0/" class='discreet'>CC BY-SA 3.0</a>. 
 ---
 
 <script>
@@ -21,13 +22,8 @@ title: eurovelo
     }
   ).addTo(map);
 
-  $.getJSON("/data/2016-05-17-ev3.geojson", function(data) {
+  $.getJSON("/data/2016-05-21-ev3.geojson", function(data) {
     L.geoJson(data).addTo(map);
   });
-
-  $.getJSON("/data/2016-05-17-namur-tours.geojson", function(data) {
-    L.geoJson(data).addTo(map);
-  });
-
 
  </script>
