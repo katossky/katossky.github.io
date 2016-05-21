@@ -1,76 +1,50 @@
 ---
-layout:   page
+layout:   default
 title:    Arthur Katossky
-
-projects: [{
-  name:  Eurovélo 3,
-  image: /img/eurovelo-3-track.png,
-  related_blogs: [{
-    name:       Eurovelo 3 - The making of,
-    short_name: The making of,
-    link:       eurovelo-3-the-making-of.html
-  },{
-    name:       Eurovelo 3 - The trip,
-    short_name: The Trip,
-    link:       eurovelo-3-the-trip.html
-  }]
-}]
-
-categories: [{
-  name: All posts,
-  link: all-posts.html
-},{
-  name: Eurovelo 3 - the making of,
-  link: eurovelo-3-the-making-of.html
-},{
-  name: Eurovelo 3 - the trip,
-  link: eurovelo-3-the-trip.html
-}]
 ---
 
-<div id='project-showcase'>
-  {% assign project = page.projects[0] %}
-  <div class='project'>
-    <img src="/img/eurovelo-3-track.png"/>
-    <div class='project-title'>{{ project.name }}</div>
-    <div class='project-description'>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</div>
-    {% assign name       = "Eurovelo 3 - The making of" %}
-    {% assign category = site.categories[name] %}
-    <div class='project-related-blog'>
-      {% for blog in project.related_blogs %}
-        <p>Latest posts from <strong>{{ blog.short_name }}</strong></p>
-        <ul class='project-related-blog-index'>
-          {% for post in site.categories[blog.name] %}
-            <li>
-              <a href="{{ post.url }}">
-                <img src='{{ post.thumbnail }}'/>
-                <p>
-                  <span class='project-related-blog-date'>{{ post.date | date: "%d %B %Y" }}</span>
-                  <span class='project-related-blog-title'>{{ post.title }}</span>
-                  {{ post.summary }}
-                </p>
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      {% endfor %}
-    </div>
+<section id='project-showcase'>
+  <h1>PROJECTS</h1>
+  <div class='list'>
+    <a href="/eurovelo"><div class='project'>
+      <h2>Eurovelo 3</h2>
+      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
+      <img src="/img/eurovelo-3-track.png">
+      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
+      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
+    </div></a>
   </div>
-</div>
+</section>
 
-<div id='blog-showcase'>
-  <p>All the blogs:</p>
-  <ul class='project-related-blog-index'>
-    {% for category in page.categories %}
-      <li>
-        <a href="/blogs/{{ category.link }}">
-          <img src='/img/eurovelo-3-track.png'/>
-          <p>
-            <span class='project-related-blog-title'>{{ category.name }}</span>
-            {{ category.summary }}
-          </p>
-        </a>
-      </li>
+<section id='blog-showcase'>
+  <h1>BLOGS</h1>
+    <div class='list'>
+    {% assign blogs = 'Eurovelo 3 - The trip, Eurovelo 3 - The making of' | split: ', ' %}
+    {% for blog in blogs %}
+    <div class='blog'>
+      <!-- presentation proper -->
+      <a href="/blogs/eurovelo-3-the-trip"><div class='presentation-proper'>
+        <img src="/img/eurovelo-3-track.png">
+        <h2>{{ blog }}</h2>
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
+      </div></a>
+      <!-- latest posts -->
+      <ul>
+        {% for post in site.categories[blog] limit:4 %}
+          <li>
+            <a href="{{ post.url }}">
+              <img src='{{ post.thumbnail }}'/>
+              <p>
+                <span class='project-related-blog-date'>{{ post.date | date: "%d %B %Y" }}</span>
+                <span class='project-related-blog-title'>{{ post.title }}</span>
+                {{ post.summary }}
+              </p>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
     {% endfor %}
-  </ul>
-</div>
+    <div><h2>The other blogs:</h2></div>
+  </div>
+</section>
