@@ -90,7 +90,7 @@ main#post{
   }
 
   a.copyright{
-    .discreet;
+    @extend .discreet;
     &:before{
       content: "&copy; "
     }
