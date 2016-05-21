@@ -1,5 +1,5 @@
 ---
-layout:     page
+layout:     post
 title:      BVA's ADFC Radturenkarte
 categories: [Cartothèque]
 tags:       [BVA, ADFC, itinerary, bike-touring, map, Rostock, Germany]

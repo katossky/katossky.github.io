@@ -1,5 +1,5 @@
 ---
-layout:     page
+layout:     post
 title:      Radnetz Deutschland
 categories: [Eurovelo 3 - The making of]
 tags:       [Radnetz, Eurovelo network, Eurovelo 3, cycling plan]

@@ -1,5 +1,5 @@
 ---
-layout:     page
+layout:     post
 title:      The Overpass API
 categories: [Eurovelo 3 - The making of]
 tags:       [leaflet.js, OverPass API, regular expressions, OSM relations, OpenStreetMap]

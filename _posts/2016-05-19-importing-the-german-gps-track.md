@@ -1,5 +1,5 @@
 ---
-layout:     page
+layout:     post
 title:      Importing the German GPS track
 categories: [Eurovelo 3 - The making of]
 tags:       [Radnetz, Eurovelo network, Eurovelo 3]

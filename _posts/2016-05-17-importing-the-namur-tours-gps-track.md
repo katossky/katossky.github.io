@@ -1,5 +1,5 @@
 ---
-layout:     page
+layout:     post
 title:      Importing the Namur-Tours GPS track
 categories: [Eurovelo 3 - The making of]
 tags:       [leaflet.js, gpx (format), rgeos (R package), geojsonio (R package), xml2 (R package), Namur, Tours, CycloTransEurope, Chamina]

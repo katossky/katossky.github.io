@@ -1,5 +1,5 @@
 ---
-layout:     page
+layout:     post
 title:      Importing the Eurovelo 3 track from OpenStreetMap
 categories: [Eurovelo 3 - The making of]
 tags:       [leaflet.js, OverPass API, OSM relations, OpenStreetMap, overpass (R package), rgeos (R package), geojsonio (R package)]
