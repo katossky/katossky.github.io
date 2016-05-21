@@ -1,3 +1,4 @@
+@header-height:       40px;
 @margin-page:         60px;
 @margin-btw-cols-fxd: 30px;
 @margin-btw-cols-var:  10%;
@@ -12,324 +13,28 @@
 */
 
 @import "post.less";
+@import "home.less";
+@import "header.less";
+@import "blog-index.less";
 // @import "syntax.css";
 
 html {
   height: 100%;
 }
 body {
-  min-height: 100%;
-  position:relative;
-}
-header{
-  z-index:       10;
-  position: fixed;
-  top:      0;
-  left:     0;
-  width:    100%;
-  background-color: @header-color-background;
-  -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
-          box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
-  /* nav bar after http://getbootstrap.com/examples/blog/ */
-  nav{
-    margin-left:  @margin-page+@column-width-left+@margin-btw-cols-fxd;
-    margin-right: @margin-page;
-    padding: 0px;
-    ul{
-      margin-bottom: 0px;
-      list-style: none;
-      padding: 0px;
-    }
-    // la couleur du texte change au survol
-    li{
-      padding: 10px;
-      a, span {
-        color: @header-color-text;
-        text-decoration: none;
-      }
-      a:hover, a:focus, span:hover, span:focus{
-        color: @header-color-text-highlight;
-        text-decoration: none;
-      }
-    }
-    // la couleur de la section courrante change également, et une petite encoche apparaît
-    .active {
-      & > a{
-        color: @header-color-text-highlight;
-      }
-      &:after {
-        color: @header-color-text-highlight;
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        width: 0;
-        height: 0;
-        margin-left: -5px;
-        vertical-align: middle;
-        content: " ";
-        border-right: 5px solid transparent;
-        border-bottom: 5px solid;
-        border-left: 5px solid transparent;
-      }
-    }
-    // premier niveau du menu, toujours visible
-    & > ul{
-      margin-left:  -10px;
-      padding-left: @margin-btw-cols-var;
-      //width: 50%;
-      //margin: 0 auto 0 auto;
-      & > li {
-        position: relative;
-        display: inline-block;
-        font-weight: 500;
-        // deuxième niveau du menu visible au survol
-        & > ul {
-          display: none;
-          position: absolute;
-          top: 100%;
-          // 110% creates a hole in the menu, and one cannot
-          // smoothly move the mouse to the underlying categories
-          left: -10px;
-          background-color: @header-color-background;
-          width: auto;
-          -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
-                  box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
-          border-radius: 5px; 
-          border-top: 5px solid white;
-          li {
-            position: relative;
-            width: 250px;
-            span {
-              float: right;
-              display: inline-block;
-              &:before{content: "(";}
-              &:after {content: ")";}
-            }
-          }
-        }
-        &:hover > ul{
-          display: block;
-          z-index: 10;
-        }
-      }
-    }
-  }
+  height: 100%;
+  position:   relative;
+  // overflow-y: hidden;
 }
 #left-column{
   z-index:       10;
   position:      fixed;
   top:           @margin-page;
   left:          @margin-page;
-  margin-bottom: @margin-page;
-  // float:         left;
-  // position:      relative;
+  // margin-bottom: @margin-page;
   width:         @column-width-left;
-  height:        100%;
-  // margin-left:   @margin-page;
-  /* margin-top:    @margin-page;*/
- //  margin-bottom: @margin-page;
+  // height:        100%;
 }
-#right-column{
-  margin-left:   @margin-page+@column-width-left+@margin-btw-cols-fxd;
-  margin-right:  @margin-page;
-  margin-top:    @margin-page;
-  margin-bottom: @margin-page;
-}
-
-/*img.inline{
-  display: inline;
-  height: 1em;
-  width:  1em;
-}*/
-
-main{
-  margin-left:  @margin-btw-cols-var;
-  margin-right: 5%;
-  width:        100% - @margin-btw-cols-var - 5%;
-  // overflow:     hidden;
-  // about clipping / masking
-  // https://css-tricks.com/clipping-masking-css/
-  // https://sarasoueidan.com/blog/css-shapes/
-  // http://www.html5rocks.com/en/tutorials/masking/adobe/
-  #eurovelo-3{
-    float:         right;
-    shape-outside: polygon(55% 100%, 0% 100%, 0% 65%, 65% 0%, 100% 0%, 100% 55%);
-    width:         100%;
-    max-width:     100%; // to counter a previous max-width
-    margin-bottom: 20px;
-    img{
-      -webkit-clip-path: polygon(50% 100%, 0% 100%, 0% 70%, 70% 0%, 100% 0%, 100% 50%);
-      clip-path:         polygon(50% 100%, 0% 100%, 0% 70%, 70% 0%, 100% 0%, 100% 50%);
-      // border-radius:     .5em;
-    }
-  }
-  #project-showcase{
-    width:         100%;
-    max-width:     100%;
-    margin-bottom: 20px;
-    overflow:      hidden;
-    // http://pageaffairs.com/notebook/containing-floats
-    .project{
-      width: 100%;
-      & > img{
-        float: left;
-        width: 50%;
-      }
-      .project-title, .project-description, .project-related-blog{
-        width: 50%;
-        float: right;
-        padding-left: 20px;
-      }
-      .project-description, .project-related-blog{
-        margin-top: 10px;
-      }
-      .project-title{
-        font-size: 200%;
-        font-weight: 600;
-      }
-    }
-  }
-
-  ul.project-related-blog-index{
-    margin-top: 10px;
-    height: 100px;
-    list-style: none;
-    padding: 0px;
-    // overflow: hidden;
-    li{
-      a{
-        text-decoration: none;
-        color: inherit;
-      }
-      height: 100px;
-      width:  100px;
-      margin-left:  6px;
-      margin-right: 6px;
-      transform: rotate(-2deg);
-      -webkit-backface-visibility: hidden;
-      transition: transform 0.3s;
-      // transition: height 0.4s, width 0.4s, margin-left 0.4s, margin-right 0.4s;
-      &:hover{
-        transform: rotate(0deg);
-        // height: 106px;
-        // width:  106px;
-        // margin-left:  3px;
-        // margin-right: 3px;
-      }
-      overflow: hidden;
-      display: inline-block;
-      vertical-align: top;
-      padding: 5px;
-      position: relative;
-      font-size: 80%;
-      border: solid 0.5px #999999;
-      box-shadow:    -3px 3px 5px 0px #999999;
-      border-radius: 5px;
-      span{
-        display: block;
-        &.project-related-blog-title{
-          font-weight: 900;
-        }
-      }
-      img{
-        position: absolute;
-        top:0;
-        left:0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        opacity: 1;
-        transition: opacity 0.4s;
-        // border-radius: 5px;
-      }
-      &:hover img {
-        opacity: 0.3;
-      }
-      p {
-        width: 95px;
-        margin-left: auto;
-        margin-right: auto;
-        opacity: 0;
-        transition: opacity 0.4s;
-      }
-      &:hover p{
-        opacity: 1;
-      }
-    }
-  }
-  #blog-showcase{
-    width:     100%;
-    max-width: 100%;
-    // clear: both;
-    div{
-      display: inline-block;
-    }
-    img{
-      width: 100px;
-    }
-  }
-  ul#blog-index{
-    list-style: none;
-    margin:     0px;
-    padding:    0px;
-    li{
-      display:   block;
-      height:    170px;
-      min-width: 350px;
-      width:     70%;
-      max-width: 500px;
-      margin:    20px 0;
-      overflow:  hidden;
-      position:  relative;
-      img{
-        width:  170px;
-        height: 170px;
-        float: left;
-        margin-right: 10px;
-      }
-      span.blog-index-post-title{
-        // width: 100%-150px;
-        // display: inline-block;
-        font-weight: 900;
-      }
-      span.blog-index-post-date{
-        display: block;
-        &:before{
-          content: " ~ "
-        }
-        &:after{
-          content: " ~ "
-        }
-      }
-      p:nth-child(4){ // to be replaced when post.excerpt is replaced by post.summary
-        padding-bottom: 20px;
-      }
-      .tags-container{
-        position: absolute;
-        // white-space: nowrap;
-        height: 19px;
-        bottom: 0;
-        left: 180px;
-        overflow: hidden;
-        span.tag{
-          display: inline-block;
-          padding: .2em .6em .3em;
-          font-size: 75%;
-          font-weight: bold;
-          line-height: 1;
-          color: #fff;
-          text-align: center;
-          white-space: nowrap;
-          vertical-align: baseline;
-          border-radius: .25em;
-          background-color: @header-color-background;
-          margin-right: 1px;
-        }
-      }
-    }
-  }
-} 
-
 footer{
   font-size: 80%;
 }
@@ -352,15 +57,39 @@ footer{
     }
   }
 }
-/*aside {
-  width: 180px;
-  p strong{
-    color: #428bca;
-  }
-}*/
-#project-container{
+
+// GENERAL DEFAULTS
+img{width: 100%}
+
+// DIMENSIONS OF MAIN PARTS OF THE WEBSITE
+main#home{
+  //width:          100%;
+  height:         100%;
+  margin-top:     1.4*@header-height;
+  margin-left:    2*@margin-page+@column-width-left;
+  margin-right:   @margin-page;
+  margin-bottom:  @margin-page;
+}
+main#project-container{
   position: absolute;
   width:100%;
   top:40px;
   bottom:0;
+}
+main#blog-index{
+  margin-top:     1.4*@header-height+40px;
+  margin-left:    2*@margin-page+@column-width-left+40px;
+  margin-right:   @margin-page;
+  margin-bottom:  @margin-page;
+}
+main#post{
+  margin-top:     1.4*@header-height+40px;
+  margin-left:    2*@margin-page+@column-width-left+40px;
+  margin-right:   @margin-page;
+  margin-bottom:  @margin-page;
+}
+
+// COLORS
+main#blog-index{
+  span.tag{background-color: @header-color-background;}
 }

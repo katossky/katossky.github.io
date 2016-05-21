@@ -53,16 +53,20 @@ url_mapping:
       <p>He doesn't always talk about himself in the third person.</p>
       <ul class='list-inline text-center'>
         <li><a href=""><i class="fa fa-twitter fa-2x"></i></a></li>
-        <li><a href=""><i class="fa fa-github fa-2x"></i></a></li>
+        <li><a href="https://github.com/katossky"><i class="fa fa-github fa-2x"></i></a></li>
+        <li><a href="https://www.linkedin.com/in/katossky?locale=en_US"><i class="fa fa-linkedin fa-2x"></i></a></li>
+        <li><a href="http://stackoverflow.com/users/2076247/arthur"><i class="fa fa-stack-overflow fa-2x"></i></a></li>
+        
       </ul>
-      <footer>
-        <p>Made with Jekyll + Less + Bootstraps. Picture from the <a href='http://www.editions-delcourt.fr/bouletmaton'>Bouletmaton</a>, &copy; Delcourt 2016.</p>
-      </footer>
       {% endif %}
+      <footer>
+        <p>{{ page.footer }} Website hosted by GitHub and run with Jekyll & Less. Picture from the <a href='http://www.editions-delcourt.fr/bouletmaton'>Bouletmaton</a>, &copy; Delcourt 2016.</p>
+      </footer>
     </div>
-    <div id='text-content'>
+    {{page.url}}
+    <main {% if page.url == '/' %} id='home' {% elsif page.url == '/eurovelo' %} id='project-container' {% elsif slice == 'blogs/'%} id='blog-index' {% else %} id='post' {% endif %}>
       {{ content }}
-    </div>
+    </main>
     <script src="/js/jquery-2.2.3.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
   </body>

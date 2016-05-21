@@ -1,6 +1,12 @@
-main{
+main#post{
 
   counter-reset: sidenote-counter;
+  
+  h1{
+    border-bottom: solid 1px;
+    width:         70%;
+    max-width:     420px;
+  }
 
   .legend, .sidenote, .remark{
       color: #808080;
@@ -125,6 +131,11 @@ main{
         max-width: 38.7%; //313px;
         height: 100%;
       }
+    }
+
+    &.scroll{
+      max-height:  300px;
+      overflow-y: scroll;
     }
 
     &.wide{
