@@ -8,6 +8,7 @@ header{
           box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
   /* nav bar after http://getbootstrap.com/examples/blog/ */
   nav{
+    background-color: inherit;
     padding: 0px;
     ul{
       margin-bottom: 0px;
@@ -37,15 +38,18 @@ header{
     }
     // premier niveau du menu, toujours visible
     & > ul{
+      background-color: inherit;
       //width: 50%;
       //margin: 0 auto 0 auto;
       & > li {
+        background-color: inherit;
         position: relative;
         display: inline-block;
         text-transform: uppercase;
         font-weight: 500;
         // deuxième niveau du menu visible au survol
         & > ul {
+          background-color: inherit;
           display: none;
           position: absolute;
           top: 100%;
