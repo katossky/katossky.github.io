@@ -27,6 +27,11 @@ url_mapping:
       <nav><ul>
         <li{% if page.url == '/' %}   class="active" {% endif %}><a href="/">Home </a>
         </li>
+        <li{% if page.url == '/eurovelo.html' %} class="active" {% endif %}><a href="#">Projects</a>
+           <ul>
+              <li><a href="/eurovelo.html">Eurovelo 3</a></li>
+          </ul>
+        </li>
         <li{% if slice == 'blogs/' %} class="active" {% endif %}><a href="#">Blogs</a>
            <ul>
               <li><a href="/blogs/all-posts.html">All posts</a><span>{{ site.posts | size }}</span></li>
@@ -36,11 +41,6 @@ url_mapping:
 
               <!--http://stackoverflow.com/questions/12625113/total-number-of-posts-->
             {% endfor %}
-          </ul>
-        </li>
-        <li{% if page.url == '/eurovelo.html' %} class="active" {% endif %}><a href="#">Projects</a>
-           <ul>
-              <li><a href="/eurovelo.html">Eurovelo 3</a></li>
           </ul>
         </li>
         <!--<li><a href="#">Résumé</a></li>-->
