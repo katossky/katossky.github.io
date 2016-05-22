@@ -1,10 +1,5 @@
 ---
 ---
-$header-height:       40px;
-$margin-page:         60px;
-$margin-btw-cols-fxd: 30px;
-$margin-btw-cols-var:  10%;
-$column-width-left:  180px;
 $header-color-background:     #428bca;
 $header-color-text:           #cdddeb;
 $header-color-text-highlight: #fff;
@@ -20,37 +15,6 @@ $right-column-width: (100% - $variable-between-column-margin)/2;
 @import "blog-index";
 // @import "syntax.css";
 
-header{
-  background-color: $header-color-background;
-  nav{
-    a, span {
-      color: $header-color-text;
-    }
-    a:hover, a:focus, span:hover, span:focus{
-      color: $header-color-text-highlight;
-    }
-    .active {
-      & > a{
-        color: $header-color-text-highlight;
-      }
-      &:after {
-        color: $header-color-text-highlight;
-      }
-    }
-  }
-  & > ul > li > ul {
-    background-color: $header-color-background;
-  }
-}
-#left-column{
-  z-index:       10;
-  position:      fixed;
-  top:           $margin-page;
-  left:          $margin-page;
-  // margin-bottom: @margin-page;
-  width:         $column-width-left;
-  // height:        100%;
-}
 footer{
   font-size: 80%;
 }
@@ -78,7 +42,14 @@ footer{
 img{width: 100%;}
 a, a:hover {text-decoration: none;}
 
-// DIMENSIONS OF MAIN PARTS OF THE WEBSITE
+// DIMENSIONS OF MAIN PARTS OF THE WEBSITE  ---------------------
+
+$header-height:       40px;
+$margin-page:         60px;
+$margin-btw-cols-fxd: 30px;
+$margin-btw-cols-var:  10%;
+$column-width-left:  180px;
+
 html {
   height:   100%;     // for being able to use scrolling later
   position: relative; // for positionning main#project
@@ -88,16 +59,26 @@ header nav{
     // 40 px is the padding in a section element
     margin-right:  $margin-page;
 }
+#left-column{
+  z-index:       10;
+  position:      fixed;
+  top:           $margin-page;
+  left:          $margin-page;
+  // margin-bottom: @margin-page;
+  width:         $column-width-left;
+  // height:        100%;
+}
 body {
   height:          100%;
   padding-top:     1.8*$header-height;
   // probably should take the size of the profile picture instead
   padding-left:    2*$margin-page+$column-width-left;
   padding-right:   $margin-page;
-  padding-bottom:  $margin-page;
+  //padding-bottom:  $margin-page;
 }
 main#home{
   height:         100%; // prevent from scrolling
+  padding-bottom: $margin-page;
 }
 main#project-container{
   position: absolute;
@@ -107,11 +88,34 @@ main#project-container{
   right:  0;
 }
 main#blog-index{
+  height:         100%; // prevent from scrolling
 }
 main#post{
 }
 
-// COLORS
+// COLORS ------------------------------------
+header{
+  background-color: $header-color-background;
+  nav{
+    a, span {
+      color: $header-color-text;
+    }
+    a:hover, a:focus, span:hover, span:focus{
+      color: $header-color-text-highlight;
+    }
+    .active {
+      & > a{
+        color: $header-color-text-highlight;
+      }
+      &:after {
+        color: $header-color-text-highlight;
+      }
+    }
+  }
+  & > ul > li > ul {
+    background-color: $header-color-background;
+  }
+}
 main#home{
   #project-showcase h1{color: #660000;} 
   .project{
