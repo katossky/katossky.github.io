@@ -90,7 +90,7 @@ footer{
 
 // GENERAL DEFAULTS
 img{width: 100%;}
-a{text-decoration: none;}
+a, a:hover {text-decoration: none;}
 
 // DIMENSIONS OF MAIN PARTS OF THE WEBSITE
 main#home{
