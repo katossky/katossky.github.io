@@ -112,39 +112,16 @@ main#post{
 }
 
 // COLORS
-// $color-projects
-// $color-projects-hover
-// $color-blogs
-// $color-blogs-hover
-main#home{ 
-  &:hover h1, &:hover div:not(.blog){
-    //color: #197575;
-    //color: #676767;
-  }
-  #project-showcase{
-    h1{
-      color: #660000; // color: #676767;
-    }
-    &:hover h1{
-      color: #660000;
-    }
-  } 
+main#home{
+  #project-showcase h1{color: #660000;} 
   .project{
-    color: #660000; // color: #676767;
-    &:hover{
-      // color: #333;
-      border-color: fade-out(#660000, 0.9);
-    }
+    color: #660000;
+    &:hover{border-color: fade-out(#660000, 0.9);}
   }
-  #blog-showcase h1{
-    color: #197575; // color: #676767;
-  }
+  #blog-showcase h1{color: #197575;}
   .blog{
-    color: #197575; //color: #676767;
-    &:hover{
-      // color: #333; //color: #197575;
-      border-color: fade-out(#197575, 0.9);
-    }
+    color: #197575;
+    &:hover{border-color: fade-out(#197575, 0.9);}
   }
 }
 main#blog-index{
