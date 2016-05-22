@@ -42,7 +42,8 @@ url_mapping:
            <ul>
               <li><a href="/eurovelo.html">Eurovelo 3</a></li>
           </ul>
-        <li><a href="#">Résumé</a></li>
+        </li>
+        <!--<li><a href="#">Résumé</a></li>-->
       </ul></nav>
     </header>
     <div id='left-column'>
@@ -63,7 +64,6 @@ url_mapping:
         <p>{{ page.footer }} Website hosted by GitHub and run with Jekyll & Less. Picture from the <a href='http://www.editions-delcourt.fr/bouletmaton'>Bouletmaton</a>, &copy; Delcourt 2016.</p>
       </footer>
     </div>
-    {{page.url}}
     <main {% if page.url == '/' %} id='home' {% elsif page.url == '/eurovelo' %} id='project-container' {% elsif slice == 'blogs/'%} id='blog-index' {% else %} id='post' {% endif %}>
       {{ content }}
     </main>

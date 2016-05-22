@@ -20,19 +20,9 @@ $right-column-width: (100% - $variable-between-column-margin)/2;
 @import "blog-index";
 // @import "syntax.css";
 
-html {
-  height: 100%;
-}
-body {
-  height: 100%;
-  position:   relative;
-  // overflow-y: hidden;
-}
 header{
   background-color: $header-color-background;
   nav{
-    margin-left:  $margin-page+$column-width-left+$margin-btw-cols-fxd;
-    margin-right: $margin-page;
     a, span {
       color: $header-color-text;
     }
@@ -48,12 +38,8 @@ header{
       }
     }
   }
-  & > ul{
-    margin-left:  -10px;
-    padding-left: $margin-btw-cols-var;
-    & > li > ul {
-      background-color: $header-color-background;
-    }
+  & > ul > li > ul {
+    background-color: $header-color-background;
   }
 }
 #left-column{
@@ -93,34 +79,74 @@ img{width: 100%;}
 a, a:hover {text-decoration: none;}
 
 // DIMENSIONS OF MAIN PARTS OF THE WEBSITE
+html {
+  height:   100%;     // for being able to use scrolling later
+  position: relative; // for positionning main#project
+}
+header nav{
+    margin-left:   2*$margin-page+$column-width-left+40px;
+    // 40 px is the padding in a section element
+    margin-right:  $margin-page;
+}
+body {
+  height:          100%;
+  padding-top:     1.8*$header-height;
+  // probably should take the size of the profile picture instead
+  padding-left:    2*$margin-page+$column-width-left;
+  padding-right:   $margin-page;
+  padding-bottom:  $margin-page;
+}
 main#home{
-  //width:          100%;
-  height:         100%;
-  margin-top:     1.4*$header-height;
-  margin-left:    2*$margin-page+$column-width-left;
-  margin-right:   $margin-page;
-  margin-bottom:  $margin-page;
+  height:         100%; // prevent from scrolling
 }
 main#project-container{
   position: absolute;
-  width:100%;
-  top:40px;
-  bottom:0;
+  top:    $header-height;
+  bottom: 0;
+  left:   0;
+  right:  0;
 }
 main#blog-index{
-  margin-top:     1.4*$header-height+40px;
-  margin-left:    2*$margin-page+$column-width-left+40px;
-  margin-right:   $margin-page;
-  margin-bottom:  $margin-page;
 }
 main#post{
-  margin-top:     1.4*$header-height+40px;
-  margin-left:    2*$margin-page+$column-width-left+40px;
-  margin-right:   $margin-page;
-  margin-bottom:  $margin-page;
 }
 
 // COLORS
+// $color-projects
+// $color-projects-hover
+// $color-blogs
+// $color-blogs-hover
+main#home{ 
+  &:hover h1, &:hover div:not(.blog){
+    //color: #197575;
+    //color: #676767;
+  }
+  #project-showcase{
+    h1{
+      color: #660000; // color: #676767;
+    }
+    &:hover h1{
+      color: #660000;
+    }
+  } 
+  .project{
+    color: #660000; // color: #676767;
+    &:hover{
+      // color: #333;
+      border-color: fade-out(#660000, 0.9);
+    }
+  }
+  #blog-showcase h1{
+    color: #197575; // color: #676767;
+  }
+  .blog{
+    color: #197575; //color: #676767;
+    &:hover{
+      // color: #333; //color: #197575;
+      border-color: fade-out(#197575, 0.9);
+    }
+  }
+}
 main#blog-index{
   span.tag{background-color: $header-color-background;}
 }

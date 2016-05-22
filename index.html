@@ -19,7 +19,7 @@ title:    Arthur Katossky
 <section id='blog-showcase'>
   <h1>BLOGS</h1>
     <div class='list'>
-    {% assign blogs = 'Eurovelo 3 - The trip, Eurovelo 3 - The making of' | split: ', ' %}
+    {% assign blogs = 'Eurovelo 3 - The trip, Eurovelo 3 - The making of, Cartothèque' | split: ', ' %}
     {% for blog in blogs %}
     <div class='blog'>
       <!-- presentation proper -->
@@ -30,14 +30,14 @@ title:    Arthur Katossky
       </div></a>
       <!-- latest posts -->
       <ul>
-        {% for post in site.categories[blog] limit:4 %}
+        <li><img src="/img/eurovelo-3-track.png"><p><strong>Latest posts</strong></p></li>
+        {% for post in site.categories[blog] limit:3 %}
           <li>
             <a href="{{ post.url }}">
               <img src='{{ post.thumbnail }}'/>
               <p>
-                <span class='project-related-blog-date'>{{ post.date | date: "%d %B %Y" }}</span>
-                <span class='project-related-blog-title'>{{ post.title }}</span>
-                {{ post.summary }}
+                <span class='date'>{{ post.date | date: "%d/%m/%Y" }}</span>
+                <span class='title'>{{ post.title }}</span>
               </p>
             </a>
           </li>
@@ -45,6 +45,5 @@ title:    Arthur Katossky
       </ul>
     </div>
     {% endfor %}
-    <div><h2>The other blogs:</h2></div>
   </div>
 </section>
