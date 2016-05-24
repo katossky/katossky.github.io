@@ -1,8 +1,17 @@
 ---
-url_mapping:
-  Eurovelo 3 - The making of: eurovelo-3-the-making-of.html
-  Eurovelo 3 - The trip:      eurovelo-3-the-trip.html
-  Cartothèque:                cartotheque.html
+blogs:
+  -
+    title:      eURovelo
+    full_title: e<span style='font-weight:100'>UR</span>ovelo <span style='font-weight:200'>(the making of)</span>
+    url:        eurovelo.html
+  -
+    title:      Cartothèque
+    full_title: Cartothèque
+    url:        cartotheque.html
+  -
+    title:      A Ride on Eurovelo 3
+    full_title: A Ride on Eurovelo <img src="/img/logos/ev3.png">
+    url:        a-ride-on-eurovelo-3.html
 ---
 
 <!-- url_mapping can be replaced by :handle; https://docs.shopify.com/themes/liquid/basics/handle" -->
@@ -13,7 +22,7 @@ url_mapping:
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% if page.title %} {{ page.title }} {% else %} One page on Arthur's site {% endif %}</title>
+    <title>{% if page.title %} {{ page.title }} {% else %} Katossky {% endif %}</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css"> 
     <link rel="stylesheet" href="/css/leaflet.css" type="text/css">
@@ -36,10 +45,10 @@ url_mapping:
            <ul>
               <li><a href="/blogs/all-posts.html">All posts</a><span>{{ site.posts | size }}</span></li>
             {% for category in site.categories %}
-              {% assign category_title = category[0] %}
-              <li><a href="/blogs/{{ layout.url_mapping[category_title] }}">{{ category_title }}</a><span>{{ category[1].size }}</span></li>
-
+            <!-- slugify does not support ascii only so I have the uglys use of 'replace' here; the fix is ready but not implemented https://github.com/jekyll/jekyll/issues/2965 -->
+              <li><a href="/blogs/{{ category[0] | slugify | replace: 'è', 'e' }}">{{ category[0] }}</a><span>{{ category[1].size }}</span></li>
               <!--http://stackoverflow.com/questions/12625113/total-number-of-posts-->
+              <!--http://jekyllrb.com/docs/templates/-->
             {% endfor %}
           </ul>
         </li>

@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Radnetz Deutschland
-categories: [Eurovelo 3 - The making of]
+categories: [eURovelo]
 tags:       [Radnetz, Eurovelo network, Eurovelo 3, cycling plan]
 thumbnail:  /img/thumbnails/radnetz-deutschland.png
 summary:    A network of 12 national routes lauched in 2002 as part of the National Cycling Plan.

@@ -83,15 +83,6 @@ section{
     &.high{height: 450px;}
   }
 
-  .discreet{
-    color: inherit;
-    border-bottom: 1px dotted;
-    text-decoration: none;
-    &:hover{
-      border-bottom: 1px solid;
-    }
-  }
-
   a.copyright{
     @extend .discreet;
     &:before{

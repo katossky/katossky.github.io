@@ -5,33 +5,31 @@ title:    Arthur Katossky
 
 <section id='project-showcase'>
   <h1>PROJECTS</h1>
-  <div class='list'>
-    <a href="/eurovelo"><div class='project'>
-      <h2>Eurovelo 3</h2>
-      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
-      <img src="/img/eurovelo-3-track.png">
-      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
-      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
-    </div></a>
+  <div class='list'><div class='project'>
+      <a href="/eurovelo"><span></span></a>
+      <h2>e<span style='font-weight: 100'>UR</span>ovelo</h2>
+      {% capture my-include %}{% include eurovelo-project.md %}{% endcapture %}
+      {{ my-include | markdownify }}
+    </div>
   </div>
 </section>
 
 <section id='blog-showcase'>
   <h1>BLOGS</h1>
     <div class='list'>
-    {% assign blogs = 'Eurovelo 3 - The trip, Eurovelo 3 - The making of, Cartothèque' | split: ', ' %}
-    {% for blog in blogs %}
+    {% for blog in layout.blogs %}
     <div class='blog'>
+      <a href="/blogs/{{ blog.url }}"><span></span></a>
       <!-- presentation proper -->
-      <a href="/blogs/{{ layout.url_mapping[blog] }}"><div class='presentation-proper'>
-        <img src="/img/eurovelo-3-track.png">
-        <h2>{{ blog }}</h2>
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
-      </div></a>
+      <div class='presentation-proper'>
+        <h2>{{ blog.full_title }}</h2>
+        {% capture my-include %}{% include {{ blog.url | replace: '.html', '.md' }} %}{% endcapture %}
+        {{ my-include | markdownify }}
+      </div>
       <!-- latest posts -->
       <ul>
         <li><img src="/img/eurovelo-3-track.png"><p><strong>Latest posts</strong></p></li>
-        {% for post in site.categories[blog] limit:3 %}
+        {% for post in site.categories[blog.title] limit:3 %}
           <li>
             <a href="{{ post.url }}">
               <img src='{{ post.thumbnail }}'/>
