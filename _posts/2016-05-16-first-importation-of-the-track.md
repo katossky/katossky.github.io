@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Importing the Eurovelo 3 track from OpenStreetMap
-categories: [Eurovelo 3 - The making of]
+categories: [eURovelo]
 tags:       [leaflet.js, OverPass API, OSM relations, OpenStreetMap, overpass (R package), rgeos (R package), geojsonio (R package)]
 thumbnail:  /img/thumbnails/first-importation-of-the-track.png
 summary:    A first attempt using R.
@@ -20,7 +20,7 @@ summary:    A first attempt using R.
 
 <aside>
   <img src="/img/screenshots/2016-05-15-overpass-turbo-EV3-EV12.png">
-  <p class='legend'><strong>Latitude 57.7015602. </strong>While they share the route from Oslo to Gothenburg, Eurovelo 3 and Eurovelo 12 split in the center of Gothenburg. The first takes the ferry toward continental Denmark whereas the other continues south toward Scania. Since I rely on the track of Eurovelo 12 for this part of the itinerary, I must filter out all what is south from this place.</p>
+  <p class='legend'><strong>Latitude 57.7015602. </strong>While they share the route from Oslo to Gothenburg, Eurovelo 3 and Eurovelo 12 split in the center of Gothenburg. The first takes the ferry towards continental Denmark whereas the other continues south towards Scania. Since I rely on the track of Eurovelo 12 for this part of the itinerary, I must filter out all what is south from this place.</p>
 </aside>
 
 <aside>
@@ -40,7 +40,7 @@ summary:    A first attempt using R.
 
 <aside>
   <img src="/img/screenshots/2016-05-16-oversimplified-line-near-dusseldorf.png">
-  <p class='legend'><strong>A bad line approximation near Düsseldorf (Germany) forces the cylists to swim twice across the Rhine. </strong>An unexpected consequence of line discontinuity is bad line approximation. Indeed, the shorter a line is, the most probable its approximation is a segment.</p>
+  <p class='legend'><strong>A bad line approximation near Düsseldorf (Germany) forces cylists to swim twice across the Rhine. </strong>An unexpected consequence of line discontinuity is bad line approximation. Indeed, the shorter a line is, the most probable its approximation is a segment.</p>
 </aside>
 
 <aside>
@@ -48,23 +48,23 @@ summary:    A first attempt using R.
   <p class='legend'><strong>Dark-shaded bridge near Düsseldorf (Germany). </strong> Large roads — as here a highway bridge — are often rendered by two or more lines, one for each group of lanes. The unwanted consequence of this practice is a dark-shaded line at medium and small scale.</p>
 </aside>
 
-Today is **the** day: the day where my [Eurovelo 3 project](/eurovelo.html) comes to life. I just downloaded all the data about the route one can find on OpenStreetMap, cleaned it, and [published it](/eurovelo.html). There is of course much more work to come to enrich this first step but that's it: the first and most important step. This post an extended account of the process.
+Today is **the** day: the day where my [Eurovelo 3 project](/eurovelo.html) comes to life. I just downloaded all the data about the route one can find on OpenStreetMap, cleaned it, and [published it](/eurovelo.html). There is of course much more work to come to enrich this first step but that is it: the first and most important step. This post an extended account of the process.
 
-I've already talked about [how to import data from OpenStreetMap](). But now, the problem is not only to plot the raw data, but also to filter them so that only the information needed is present.
+I have already talked about [how to import data from OpenStreetMap](). But now, the problem is not only to plot the raw data, but also to filter them so that only the information needed is present.
 
 **First step, finding all available data.** In [my latest post on the subject](), we realised that looking in OpenStreetMap's database for all objects containing the keyword "Eurovelo 3" leads:
 
-- to missing some tracks listed with other keywords, such the part of the route between Oslo and Gothenburg, recorded as part of Eurovelo 12 rather than Eurovelo 3 ;
-- to fetching undesired results, such a duplicate itinirary in Danmark.
+- to missing some tracks listed with other keywords, such as the part of the route between Oslo and Gothenburg, recorded as part of Eurovelo 12 rather than Eurovelo 3 ;
+- to fetching undesired results, such as a duplicate itinerary in Danmark.
 
-I confront both issues by manually editting the list of objects (or "relations" in OpenStreetMap's dialect) returned by a simple request. For instance, on [Overpass Turbo](http://overpass-turbo.eu), the request:
+I confront both issues by manually editing the list of objects (or "relations" in OpenStreetMap's dialect) returned by a simple request. For instance, on [Overpass Turbo](http://overpass-turbo.eu), the request:
 
     relation[name~"[Ee](uro)?[Vv](elo)? ?3"];
     out tags;
 
 ... returns 14 *relations*, only 3 of which correspond to an actual portion of the Eurovelo 3 route: in Norway (relation n°[`2797378`](http://www.openstreetmap.org/relation/2797378)), Denmark ([`1911568`](http://www.openstreetmap.org/relation/1911568)) and Germany ([`2795128`](http://www.openstreetmap.org/relation/2795128)). I discard the others.
 
-Similarly, I extend the list with other *relations* that depict the itinerary but under a different name. A bit of investigation is needed here. Visiting [the Eurovelo website](http://www.eurovelo.com/en/eurovelos) reveals that Eurovelo 3 share some of the route with the following itiniraries: Eurovelo 12 between Oslo (Norway) and Gothenburg (Sweden) ; Eurovelo 6 between Orléans (France) and Tours (France) ; Eurovelo 1 between Pamplona (Spain) and Burgos (Spain).
+Similarly, I extend the list with other *relations* that depict the itinerary but under a different name. A bit of investigation is needed here. Visiting [the Eurovelo website](http://www.eurovelo.com/en/eurovelos) reveals that Eurovelo 3 share some of the route with the following itineraries: Eurovelo 12 between Oslo (Norway) and Gothenburg (Sweden) ; Eurovelo 6 between Orléans (France) and Tours (France) ; Eurovelo 1 between Pamplona (Spain) and Burgos (Spain).
 
 The requests:
 
@@ -77,7 +77,7 @@ The requests:
     relation[name~"[Ee](uro)?[Vv](elo)? ?12"];
     out tags;
 
-... are deceptive. Eurovelo 1 is registered solely in France and Norway (and thus not between Pamplona and Burgos); Eurovelo 6 is recorded almost everywhere *but* between Orléans and Tours. The only good news is that the route in Sweden is recorded as *relation* n°[`1770999`](http://www.openstreetmap.org/relation/1770999).
+... are disappointing. Eurovelo 1 is registered solely in France and Norway (and thus not between Pamplona and Burgos); Eurovelo 6 is recorded almost everywhere *but* between Orléans and Tours. The only good news is that the route in Sweden is recorded as *relation* n°[`1770999`](http://www.openstreetmap.org/relation/1770999).
 
 **Second step, downloading and filtering.** Now that I know which *relations* I am interested in, I can use <img src="/img/logos/r.png" title='R'> to collect the data directly from Overpass thanks to the [`overpass`](https://github.com/hrbrmstr/overpass) package:
 
@@ -104,9 +104,9 @@ The requests:
     Germany <- query(2795128)
     Norway  <- query(2797378)
 
-But the Swedish case is special: since Eurovelo 12 in Sweden only shares a limited part of the route with Eurovelo 3, I must remove all the track south of latitude `57.7015602`.
+But the Swedish case is special: since Eurovelo 12 in Sweden only shares a limited part of the route with Eurovelo 3, I must remove all the route south of latitude `57.7015602`.
 
-However, handling spatial objects in <img src="/img/logos/r.png" title='R'> is maybe not as easy as it seems. The [`sp`](https://cran.r-project.org/web/packages/sp/index.html) package is here unavoidable, but it is also tricky to use. Filtering out the points with latitude smaller than `57.7015602` feels simple but surprisingly, it requires to understand in-depth the struture of `sp`-objects. We get a little help from the [`rgeos`](https://cran.r-project.org/web/packages/rgeos/index.html) package, at least for the most common spatial operations, such as intersection of shapes.
+However, handling spatial objects in <img src="/img/logos/r.png" title='R'> is not as easy as imagined. The [`sp`](https://cran.r-project.org/web/packages/sp/index.html) package is here unavoidable, and also tricky to use. Filtering out the points with latitude smaller than `57.7015602` feels simple but surprisingly, it requires to understand in-depth the struture of `sp`-objects. I get a little help from the [`rgeos`](https://cran.r-project.org/web/packages/rgeos/index.html) package, at least for the most common spatial operations, such as intersection of shapes.
 
     # install_packages('rgeos')
     library(rgeos) # for gEnvelope and gIntersection
@@ -141,7 +141,7 @@ However, handling spatial objects in <img src="/img/logos/r.png" title='R'> is m
     plot(Sweden, col='grey')
     plot(bbox, add=TRUE)
 
-**Last but not least, we must bundle the 4 tracks together, and export them in a readable format.** Indeed, the Javascript library I am using for rendering the map, <img src="/img/logos/leaflet.png" title='Leaflet'>, reads `geoJSON` files.
+**Last but not least, we must bundle the 4 tracks together, and export them in a readable format.** Indeed, the Javascript library I am using for rendering the map, {{ include logo.md }}, reads `geoJSON` files.
 
     # gIntersection returns all the segments as only
     # one "Lines" object containing many "Line"
@@ -196,11 +196,11 @@ However, handling spatial objects in <img src="/img/logos/r.png" title='R'> is m
     library(geojsonio)
     geojson_write(EV3, file='ev3-simplified.geojson')
 
-That's done! Now we can just relax and admire the result of our efforts:
+That's done! Now let's just relax and admire the result of our efforts:
 
 <div class='wide'><div id='map'></div></div>
 
-There are of course some details to improve (see images). Most importantly, many lines are disconnected whereas they should actually be part of the same path. It has numerous consequences, such as:
+There are of course some details to improve (see images on the right). Most importantly, many lines are disconnected whereas they should actually be part of the same path. It has numerous consequences, such as:
 
 - visible gaps on the map ;
 - poor line simplification ; since each line has few points, there is often only one way to simplify: transform it to a segment ;

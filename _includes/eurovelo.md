@@ -1,0 +1,1 @@
+You wonder how it is possible to build such a neat project as {% include logo.md what='eURovelo' %}? You would love to have interactive maps on your website or to work with data from OpenStreetMap but you do not know where to start? No matter whether you are a GIS-geek or a mapping amateur, you are at the right place.

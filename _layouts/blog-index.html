@@ -2,7 +2,12 @@
 layout: default
 ---
 
+<section>
 <h1>{{page.title}}</h1>
+{% capture my-include %}
+  {% include {{ page.name | replace: '.html', '.md'}} %}
+{% endcapture %}
+{{ my-include | markdownify }}
 <ul id='blog-index'>
   {% if page.title == 'All posts' %}
     {% for post in site.posts %} 
@@ -46,6 +51,7 @@ layout: default
   {% endfor %}
   {% endif %}
 </ul>
+</section>
 
 <!-- http://stackoverflow.com/questions/6222616/with-css-use-for-overflowed-block-of-multi-lines -->
 <script src="/js/jquery.dotdotdot.min.js" type="text/javascript"></script>

@@ -1,5 +1,8 @@
 main#post{
-
+section{
+  
+  padding: 40px 40px 40px 40px;
+  
   counter-reset: sidenote-counter;
   
   h1{
@@ -80,15 +83,6 @@ main#post{
     &.high{height: 450px;}
   }
 
-  .discreet{
-    color: inherit;
-    border-bottom: 1px dotted;
-    text-decoration: none;
-    &:hover{
-      border-bottom: 1px solid;
-    }
-  }
-
   a.copyright{
     @extend .discreet;
     &:before{
@@ -148,4 +142,4 @@ main#post{
       }
     }
   }
-}
+}}
