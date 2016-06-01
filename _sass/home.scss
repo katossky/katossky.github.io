@@ -3,7 +3,7 @@ main#home{
   // https://css-tricks.com/snippets/css/a-guide-to-flexbox/
   justify-content: space-between;
   section {
-    width: 49%;
+    width: 70%;
     height: 100%;
     padding: 40px 40px 40px 0px;
     h1{
@@ -12,6 +12,7 @@ main#home{
       margin-top: 0px; // don't ask me why...
       font-style: italic;
     }
+    ul{margin-left: 40px;}
     a, a:hover {
       color: inherit;
       text-decoration: inherit;
