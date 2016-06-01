@@ -122,18 +122,6 @@ header{
     background-color: $header-color-background;
   }
 }
-main#home{
-  #project-showcase h1{color: #660000;} 
-  .project{
-    color: #660000;
-    &:hover{border-color: fade-out(#660000, 0.9);}
-  }
-  #blog-showcase h1{color: #197575;}
-  .blog{
-    color: #197575;
-    &:hover{border-color: fade-out(#197575, 0.9);}
-  }
-}
 main#blog-index{
   span.tag{background-color: $header-color-background;}
 }

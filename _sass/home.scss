@@ -1,123 +1,69 @@
 main#home{
+
+  // DIMENSIONS OF MAIN PARTS OF THE PAGE  --------------------------
   display: flex;
-  // https://css-tricks.com/snippets/css/a-guide-to-flexbox/
   justify-content: space-between;
+  // https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
   section {
     width: 70%;
     height: 100%;
-    padding: 40px 40px 40px 0px;
-    h1{
-      margin-left: 40px;
-      border-bottom: solid 1px;
-      margin-top: 0px; // don't ask me why...
-      font-style: italic;
-    }
-    ul{margin-left: 40px;}
-    a, a:hover {
-      color: inherit;
-      text-decoration: inherit;
-    }
-    .list{
-      padding-left: 40px;
-      height: 100%; // PB here...
-      // since height refers to the total height of the containing div
-      // but it works
-      overflow-x: visible;
-      overflow-y: scroll;
-    }
-    .project, .blog{
-      margin-top: -10px;
-      padding-left: 20px;
-      margin-left: -40px;
-      border-left: 20px solid transparent;
-      ul{border-bottom: 0.5px solid;}
-      // box-shadow:    -5px 0px 5px 0px #606060;
-      transition: border-left 0.4s;
-      // http://stackoverflow.com/questions/286275/gray-out-image-with-css#answer-139092
-      img{
-                filter: grayscale(70%);
-        -webkit-filter: grayscale(70%);
-      }
-      &:hover{
-        img{
-                 filter: grayscale(20%);
-         -webkit-filter: grayscale(20%);
-        }
-      }
-      // http://stackoverflow.com/questions/796087/make-a-div-into-a-link
-      position: relative;
-      & > a span { 
-        position:absolute; 
-        width:100%;
-        height:100%;
-        top:0;
-        left: 0;
-        z-index: 1;
-        /* fixes overlap error in IE7/8 */
-        background-image: url('/img/empty.png');
-      }
-      p a{
-        &:not(.logo){@extend .discreet;}
-        /* makes inside links accessible */
-        position:relative;
-        z-index: 2;
-      }
-    }
+    padding: 40px 40px 40px 40px;
   }
-  .project{
-    div img{
-      float: left;
-      width: 50%;
-      margin: 10px 10px 10px 0;
+
+  // STYLING ---------------------------------------------------------
+  h1{
+    border-bottom: solid 1px;
+    margin-top: 0px; // don't ask me why...
+    font-style: italic;
+  }
+
+
+  // STYLING OF THE INDIVIDUAL POST VIGNETTES ------------------------
+  .post-list{
+    list-style:  none;
+    padding:      0px;
+  }
+  .post-vignette{
+    a, a:hover {
+     color: inherit;
+     text-decoration: inherit;
+    }
+    // z-index: 2; // in case of an absolute-positionned link on top
+    display: inline-block;
+    width: 100px;
+    margin: 5px;
+    position: relative;
+    // overflow: hidden; // https://css-tricks.com/all-about-floats/
+    p{
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left:0;
+      padding: 5px;
+      text-align: center;
+      transform: translate(0, -50%);
+      // http://stackoverflow.com/questions/33319100/vertical-align-of-p-text-inside-div#33319329
+      width: 100%;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.4s;
+      span{
+        display: block;
+      }
+      .title{text-decoration: underline;}
+    }
+    &{font-size: 80%;}
+    img{
+      border-radius: 50%;
+      opacity: 1;
+      transition: opacity 0.5s, border-radius 0.4s;
+    }
+    &:hover{
+      // effect with border-radius funny but maybe not useful
+      img{opacity: 0;}
+      p  {opacity: 1;}
     }
   }
 
-  // defaults to gray
-  // no transition because I cannot apply transition
-  // to border or to filter properties
-  #blog-showcase{
-    h2{
-      font-size: 150%;
-    }
-    ul{
-      list-style:  none;
-      padding:      0px;
-      li{
-        z-index: 2;
-        display: inline-block;
-        width: 23%;
-        position: relative;
-        overflow: hidden; // https://css-tricks.com/all-about-floats/
-        p{
-          margin: 0;
-          position: absolute;
-          top: 50%;
-          left:0;
-          padding: 5px;
-          text-align: center;
-          transform: translate(0, -50%);
-          // http://stackoverflow.com/questions/33319100/vertical-align-of-p-text-inside-div#33319329
-          width: 100%;
-          overflow: hidden;
-          opacity: 0;
-          transition: opacity 0.4s;
-          span{
-            display: block;
-          }
-          .title{text-decoration: underline;}
-        }
-        &{font-size: 80%;}
-        img{
-          border-radius: 50%;
-          opacity: 1;
-          transition: opacity 0.5s, border-radius 0.4s;
-        }
-        &:hover{
-          // effect with border-radius funny but maybe not useful
-          img{opacity: 0;}
-          p  {opacity: 1;}
-        }
-      }
-    }
-  }
 }
