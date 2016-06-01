@@ -6,9 +6,15 @@ main#home{
   // https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
   section {
-    width: 70%;
     height: 100%;
+  }
+  #blog-showcase {
     padding: 40px 40px 40px 40px;
+    width: 70%;
+  }
+  #project-showcase {
+    width: 30%;
+    margin-top: 40px;
   }
 
   // STYLING ---------------------------------------------------------
@@ -18,6 +24,29 @@ main#home{
     font-style: italic;
   }
 
+  // STYLING OF THE AD-LIKE PROJECT PRESENTATION ---------------------
+  $beg-color: darken(#ffd65e, 10%);
+  $end-color: darken($beg-color, 15%);
+  $sha-color: darken($beg-color, 17%);
+  .project{
+    p{
+      margin: 0px;
+      text-align: center;
+    }
+    -webkit-border-radius: 5px; -moz-border-radius: 5px;border-radius: 5px;
+    padding: 10px 10px 10px 10px;
+    // text-decoration:none; display:inline-block;
+    // text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
+    // font-weight:bold;
+    color: #FFFFFF;
+    box-shadow:         inset 0 0 10px $sha-color;
+    background-image: -webkit-gradient(linear, left top, left bottom, from($beg-color), to($end-color));
+    background-image: -webkit-linear-gradient(top, $beg-color, $end-color);
+    background-image: -moz-linear-gradient(top, $beg-color, $end-color);
+    background-image: -ms-linear-gradient(top, $beg-color, $end-color);
+    background-image: -o-linear-gradient(top, $beg-color, $end-color);
+    background-image: linear-gradient(to bottom, $beg-color, $end-color);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=$beg-color, endColorstr=$end-color);
+  }
 
   // STYLING OF THE INDIVIDUAL POST VIGNETTES ------------------------
   .post-list{
