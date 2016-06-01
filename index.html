@@ -5,32 +5,19 @@ title:    Arthur Katossky
 
 <section id='blog-showcase'>
   <h1>BLOGS</h1>
-    <div class='list'>
-    {% for blog in layout.blogs %}
-    <div class='blog'>
-      <a href="/blogs/{{ blog.url }}"><span></span></a>
-      <!-- presentation proper -->
-      <div class='presentation-proper'>
-        <h2>{{ blog.full_title }}</h2>
-        {% capture my-include %}{% include {{ blog.url | replace: '.html', '.md' }} %}{% endcapture %}
-        {{ my-include | markdownify }}
-      </div>
-      <!-- latest posts -->
-      <ul>
-        <li><img src="/img/eurovelo-3-track.png"><p><strong>Latest posts</strong></p></li>
-        {% for post in site.categories[blog.title] limit:3 %}
-          <li>
-            <a href="{{ post.url }}">
-              <img src='{{ post.thumbnail }}'/>
-              <p>
-                <span class='date'>{{ post.date | date: "%d/%m/%Y" }}</span>
-                <span class='title'>{{ post.title }}</span>
-              </p>
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
+  <!-- latest posts -->
+  <ul>
+    <!--<li class='post-vignette'><img src="/img/eurovelo-3-track.png"><p><strong>Latest posts</strong></p></li>-->
+    {% for post in site.posts %}
+    <li  class='post-vignette'>
+      <a href="{{ post.url }}">
+        <img src='{{ post.thumbnail }}'/>
+        <p>
+          <span class='date'>{{ post.date | date: "%d/%m/%Y" }}</span>
+          <span class='title'>{{ post.title }}</span>
+        </p>
+      </a>
+    </li>
     {% endfor %}
-  </div>
+  </ul>
 </section>

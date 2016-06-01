@@ -105,20 +105,11 @@ main#home{
           }
           .title{text-decoration: underline;}
         }
-        &:not(:first-child){font-size: 80%;}
+        &{font-size: 80%;}
         img{
           border-radius: 50%;
           opacity: 1;
           transition: opacity 0.5s, border-radius 0.4s;
-        }
-        &:first-child{
-          p{
-            opacity: 1;
-            text-align: left;
-          }
-          img{
-            opacity: 0;
-          }
         }
         &:hover{
           // effect with border-radius funny but maybe not useful
