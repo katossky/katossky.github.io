@@ -29,12 +29,15 @@ main#home{
   $end-color: darken($beg-color, 15%);
   $sha-color: darken($beg-color, 17%);
   .project{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     p{
       margin: 0px;
       text-align: center;
     }
     -webkit-border-radius: 5px; -moz-border-radius: 5px;border-radius: 5px;
-    padding: 10px 10px 10px 10px;
+    padding: 10px 10% 10px 10%;
     // text-decoration:none; display:inline-block;
     // text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
     // font-weight:bold;
@@ -47,6 +50,52 @@ main#home{
     background-image: -o-linear-gradient(top, $beg-color, $end-color);
     background-image: linear-gradient(to bottom, $beg-color, $end-color);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=$beg-color, endColorstr=$end-color);
   }
+
+  i{
+    position: relative;
+    span{
+      position: absolute;
+      color: $end-color;
+      right: 0;
+      left: 0;
+      text-align: center;
+    }
+    .direction-from{
+      top:5px;
+      font-size: 12px;
+    }
+    .direction-to{
+      top:28px;
+      font-size: 14px;
+    }
+  }
+
+
+
+  /*.image-container{
+    float:right;
+    position:relative;
+    max-width: 50%;
+    max-height: 90%;
+    img {
+      width: 100%;
+      // position: absolute;
+      z-index:1;
+    }
+    .screen{
+      //float: right;
+      position: absolute;
+      left:0;
+      right:0;
+      top:0;
+      bottom:0;
+      height: 100%;
+      background-color: $beg-color;
+      z-index:10;
+      opacity:0.5;
+    }
+  }*/
+
 
   // STYLING OF THE INDIVIDUAL POST VIGNETTES ------------------------
   .post-list{
