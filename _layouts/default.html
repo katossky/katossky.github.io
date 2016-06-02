@@ -37,7 +37,7 @@ blogs:
       <nav><ul>
         <li{% if page.url == '/' %}   class="active" {% endif %}><a href="/">Home </a>
         </li>
-        <li{% if slice == 'blogs/' %} class="active" {% endif %}><a href="#">Blogs</a>
+        <li{% if slice == 'blogs/' or slice contains '2016/' %} class="active" {% endif %}><a href="/blogs">Blogs</a>
            <ul>
               <li><a href="/blogs/all-posts.html">All posts</a><span>{{ site.posts | size }}</span></li>
             {% for category in site.categories %}
