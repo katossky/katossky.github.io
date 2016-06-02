@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      The Pilgrim Road
-categories: [A Ride on Eurovelo 3]
+title:      The Pigrims' Route
+categories: [A Ride on The Pilgrims' Route]
 tags:       [Eurovelo, itinerary, bike-touring]
 thumbnail:  /img/thumbnails/the-pilgrim-road.png
 ---

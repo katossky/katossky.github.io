@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Importing the Namur-Tours GPS track
-categories: [eURovelo]
+categories: [Journey Planner - The Making of]
 tags:       [leaflet.js, gpx (format), rgeos (R package), geojsonio (R package), xml2 (R package), Namur, Tours, CycloTransEurope, Chamina]
 thumbnail:  /img/thumbnails/importing-the-namur-tours-gps-track.png
 summary:    A conversion from GPX to geoJSON with R.

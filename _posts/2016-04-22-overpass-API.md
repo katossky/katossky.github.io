@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      The Overpass API
-categories: [eURovelo]
+categories: [Journey Planner - The Making of]
 tags:       [leaflet.js, OverPass API, regular expressions, OSM relations, OpenStreetMap]
 thumbnail:  /img/thumbnails/overpass-api-small.jpg
 summary:    An exploration of OpenStreetMap's feature extraction tool

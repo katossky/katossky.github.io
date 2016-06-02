@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Importing the German GPS track
-categories: [eURovelo]
+categories: [Journey Planner - The Making of]
 tags:       [Radnetz, Eurovelo network, Eurovelo 3]
 thumbnail:  /img/thumbnails/importing-the-german-gps-track.png
 summary:    A comparison of the OpenStreetMap track with the one from Radnetz Deutschland.
