@@ -36,18 +36,24 @@ For now, this site is hosting **a journey planner**, in construction, for those 
 </section>
 
 <section id='project-showcase'>
-  <div class='project'>
+  <a href='/eurovelo'><div class='project' id='plan-your-journey'>
     <!--<div class='image-container'>
       <div class='screen'></div>
       <img src="/img/eurovelo-3-route.png">
     </div>-->
-    <i class="fa fa-map-signs fa-5x" aria-hidden="true">
+    <!--<p id='plan-your-journey-icon'>
+    </i></p>
+    <div>
+      
+    <div>
+    -->
+    <div id='plan-your-journey-icon'>
+      <i class="fa fa-map-signs fa-5x" aria-hidden="true">
       <span class="direction-from">Trondheim</span>
       <span class="direction-to">Santiago</span>
-    </i>
-    <div>
-      <p>Plan your <i class="fa fa-bicycle" aria-hidden="true"></i> trip on</p>
-      <p> <strong><em>The Pilgrim way</em></strong></p>
-    <div>
-  </div>
+      </i>
+    </div>
+    <p>Plan your <i class="fa fa-bicycle" aria-hidden="true"></i> trip on</p>
+    <p> <strong><em>The Pilgrim way</em></strong></p>
+  </div></a>
 </section>
