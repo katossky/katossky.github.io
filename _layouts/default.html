@@ -31,15 +31,11 @@ blogs:
     <script src='/js/jquery-2.2.3.min.js'></script>
   </head>
   <body>
+    {% if page.url != '/plan-your-journey-on-the-pilgrim-way' %}
     <header>
       {% assign slice = page.url | slice:1, 6 %}
       <nav><ul>
         <li{% if page.url == '/' %}   class="active" {% endif %}><a href="/">Home </a>
-        </li>
-        <li{% if page.url == '/eurovelo.html' %} class="active" {% endif %}><a href="#">Projects</a>
-           <ul>
-              <li><a href="/eurovelo.html">Eurovelo 3</a></li>
-          </ul>
         </li>
         <li{% if slice == 'blogs/' %} class="active" {% endif %}><a href="#">Blogs</a>
            <ul>
@@ -55,9 +51,10 @@ blogs:
         <!--<li><a href="#">Résumé</a></li>-->
       </ul></nav>
     </header>
+    {% endif %}
     <div id='left-column'>
+      {% if page.url != '/plan-your-journey-on-the-pilgrim-way' %}
       <div id='me'><a href="/"><img src='/img/arthur.png'/></a></div>
-      {% if page.url != '/eurovelo' %}
       <p><strong>Arthur</strong> is a statistician, data scientist, environmental economist, organic food grower, amateur graphist and urbanist. He loves food, bike touring, coding, handcrafts, arts, epistemology, maps and social sciences. He speaks French, English, Danish, basic Spanish, and is learning Italian and German.</p>
       <!-- probably this text should change depending on the page -->
       <p>He doesn't always talk about himself in the third person.</p>
@@ -73,7 +70,7 @@ blogs:
         <p>{{ page.footer }} Website hosted by GitHub and run with Jekyll & Less. Picture from the <a href='http://www.editions-delcourt.fr/bouletmaton'>Bouletmaton</a>, &copy; Delcourt 2016.</p>
       </footer>
     </div>
-    <main {% if page.url == '/' %} id='home' {% elsif page.url == '/eurovelo' %} id='project-container' {% elsif slice == 'blogs/'%} id='blog-index' {% else %} id='post' {% endif %}>
+    <main {% if page.url == '/' %} id='home' {% elsif page.url == '/blogs/' %} id='blogs' {% elsif page.url == '/plan-your-journey-on-the-pilgrim-way' %} id='project-container' {% elsif slice == 'blogs/'%} id='blog-index' {% else %} id='post' {% endif %}>
       {{ content }}
     </main>
   </body>

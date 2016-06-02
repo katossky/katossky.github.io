@@ -17,9 +17,7 @@ For now, this site is hosting **a journey planner**, in construction, for those 
 
 ## Latest posts
 
-<!-- latest posts -->
 <ul class='post-list'>
-  <!--<li class='post-vignette'><img src="/img/eurovelo-3-track.png"><p><strong>Latest posts</strong></p></li>-->
   {% for post in site.posts %}
   <li  class='post-vignette'>
     <a href="{{ post.url }}">
@@ -36,17 +34,7 @@ For now, this site is hosting **a journey planner**, in construction, for those 
 </section>
 
 <section id='project-showcase'>
-  <a href='/eurovelo'><div class='project' id='plan-your-journey'>
-    <!--<div class='image-container'>
-      <div class='screen'></div>
-      <img src="/img/eurovelo-3-route.png">
-    </div>-->
-    <!--<p id='plan-your-journey-icon'>
-    </i></p>
-    <div>
-      
-    <div>
-    -->
+  <a href='plan-your-journey-on-the-pilgrim-way'><div class='project' id='plan-your-journey'>
     <div id='plan-your-journey-icon'>
       <i class="fa fa-map-signs fa-5x" aria-hidden="true">
       <span class="direction-from">Trondheim</span>
