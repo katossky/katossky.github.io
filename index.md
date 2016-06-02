@@ -9,11 +9,11 @@ title:    Arthur Katossky
 
 ## Why this website?
 
-Starting on July, 1<sup>st</sup>, I will be riding my bike accross Europe from Trondheim (Norway) to Santiago (Spain) along *The Pigrim Way*. I simultaneously decided it was good timing for launching a website that would summarize my diverse activities: from statistics to cooking, from biking to gardening.
+Starting on July, 1<sup>st</sup>, I will be riding my bike accross Europe from Trondheim (Norway) to Santiago (Spain) along *The Pigrims' Route*. I simultaneously decided it was good timing for launching a website that would summarize my diverse activities: from statistics to cooking, from biking to gardening.
 
 ## What can I find here?
 
-For now, this site is hosting [a journey planner](plan-your-journey-on-the-pilgrim-way) (in construction), intended for helping those who also want to ride *The Pigrims' Route*, and a series of topical blogs, especially two about my bike tour: [a narrative one](blogs/a-ride-on-the-pilgrims-route), and [a technical one](blogs/journey-planner-the-making-of).
+For now, this site is hosting [a journey planner](plan-your-journey-on-the-pilgrims-route) (in construction), intended for helping those who also want to ride *The Pigrims' Route*, and a series of topical blogs, especially two about my bike tour: [a narrative one](blogs/a-ride-on-the-pilgrims-route), and [a technical one](blogs/journey-planner-the-making-of).
 
 ## Latest posts
 
@@ -34,7 +34,7 @@ For now, this site is hosting [a journey planner](plan-your-journey-on-the-pilgr
 </section>
 
 <section id='project-showcase'>
-  <a href='plan-your-journey-on-the-pilgrim-way'><div class='project' id='plan-your-journey'>
+  <a href='plan-your-journey-on-the-pilgrims-route'><div class='project' id='plan-your-journey'>
     <div id='plan-your-journey-icon'>
       <i class="fa fa-map-signs fa-5x" aria-hidden="true">
       <span class="direction-from">Trondheim</span>
@@ -42,6 +42,6 @@ For now, this site is hosting [a journey planner](plan-your-journey-on-the-pilgr
       </i>
     </div>
     <p>Plan your <i class="fa fa-bicycle" aria-hidden="true"></i> trip on</p>
-    <p> <strong><em>The Pilgrim way</em></strong></p>
+    <p> <strong><em>The Pilgrims' Route</em></strong></p>
   </div></a>
 </section>
