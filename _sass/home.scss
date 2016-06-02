@@ -11,6 +11,7 @@ main#home{
   #blog-showcase {
     padding: 40px 40px 40px 40px;
     width: 70%;
+    max-width:     500px;
   }
   #project-showcase {
     width: 30%;
@@ -22,6 +23,13 @@ main#home{
     border-bottom: solid 1px;
     margin-top: 0px; // don't ask me why...
     font-style: italic;
+  }
+  h2{
+    text-align: center;
+    font-size: 200%;
+    // font-weight: 600;
+    // text-decoration: underline;
+    font-family: 'across-the-road', cursive;
   }
 
   // STYLING OF THE AD-LIKE PROJECT PRESENTATION ---------------------
@@ -101,6 +109,8 @@ main#home{
   .post-list{
     list-style:  none;
     padding:      0px;
+    height: 110px;
+    width: 600%;
   }
   .post-vignette{
     a, a:hover {

@@ -7,11 +7,15 @@ title:    Arthur Katossky
   
 # THE ECLECTIC CYCLIST
 
-**Why this website?** Starting on July, 1<sup>st</sup>, I will be riding my bike accross Europe from Trondheim (Norway) to Santiago (Spain) along *The Pigrim Way*. I simultaneously decided it was good timing for launching a website that would summarize my diverse activities: from statistics to cooking, from biking to gardening.
+## Why this website?
 
-**What can I find here?** For now, this site is hosting **a journey planner**, in construction, for those who want to follow me on *The Pigrim way* and a series of topical blogs.
+Starting on July, 1<sup>st</sup>, I will be riding my bike accross Europe from Trondheim (Norway) to Santiago (Spain) along *The Pigrim Way*. I simultaneously decided it was good timing for launching a website that would summarize my diverse activities: from statistics to cooking, from biking to gardening.
 
-# LATEST POSTS
+## What can I find here?
+
+For now, this site is hosting **a journey planner**, in construction, for those who want to follow me on *The Pigrim way*, and a series of topical blogs, especially two about my bike tour: a narrative one, and a technical one.
+
+## Latest posts
 
 <!-- latest posts -->
 <ul class='post-list'>

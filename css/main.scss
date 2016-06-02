@@ -15,6 +15,11 @@ $right-column-width: (100% - $variable-between-column-margin)/2;
 @import "blog-index";
 // @import "syntax.css";
 
+@font-face {
+  font-family: 'across-the-road';
+  src:  url('/fonts/across-the-road.ttf')  format('truetype'),;
+}
+
 footer{
   font-size: 80%;
 }
@@ -80,6 +85,7 @@ body {
   // probably should take the size of the profile picture instead
   padding-left:    2*$margin-page+$column-width-left;
   padding-right:   $margin-page;
+  overflow-x:      hidden;
   //padding-bottom:  $margin-page;
 }
 main#home{
