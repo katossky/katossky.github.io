@@ -14,6 +14,7 @@ $right-column-width: (100% - $variable-between-column-margin)/2;
 @import "header";
 @import "blog-index";
 @import "post-vignettes";
+@import "journey-planner";
 // @import "syntax.css";
 
 @font-face{
@@ -21,9 +22,11 @@ $right-column-width: (100% - $variable-between-column-margin)/2;
   src:  url('/fonts/great-vibes.ttf')  format('truetype');
 }
 
-footer{
-  font-size: 80%;
+@font-face{
+  font-family: 'handwriting-draft';
+  src:  url('/fonts/handwriting-draft.ttf')  format('truetype');
 }
+
 #me {
   max-width: 165px;
   margin: 15px auto;
@@ -42,30 +45,6 @@ footer{
       transform: rotate(7deg);
     }
   }
-}
-
-// ribbon on the planner
-.ribbon-wrapper{
-  margin-left: 160px;
-  margin-top:  160px;
-  z-index: 2000;
-  position: relative;
-  width: 100%;
-}
-.ribbon{
-  width: 100%;
-  margin-left: -50%;
-  font: bold 200%  monospace;
-  color: #333;
-  text-align: center;
-  text-shadow: rgba(255,255,255,0.7) -1px 1px 0px;
-  -webkit-transform: rotate(-45deg);
-  -moz-transform:    rotate(-45deg);
-  -ms-transform:     rotate(-45deg);
-  -o-transform:      rotate(-45deg);
-  background-color: #BFDC7A;
-  border: 2px solid white;
-  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 // GENERAL DEFAULTS ----------------------------------------------
@@ -110,6 +89,14 @@ header nav{
   width:         $column-width-left;
   // height:        100%;
 }
+#project-container #left-column{
+  margin-left:   $margin-page;
+  margin-top:    $margin-page;
+  margin-bottom: $margin-page;
+}
+#project-container footer{
+  margin-bottom: $margin-page;
+}
 body {
   height:          100%;
   padding-top:     1.8*$header-height;
@@ -124,7 +111,7 @@ main#home{
   padding-bottom: $margin-page;
 }
 main#project-container{
-  position: absolute;
+  position: fixed;
   top:    0;
   bottom: 0;
   left:   0;
