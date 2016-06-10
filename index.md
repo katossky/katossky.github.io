@@ -13,7 +13,7 @@ Starting on July, 1<sup>st</sup>, I will be riding my bike accross Europe from T
 
 ## What can I find here?
 
-For now, this site is hosting a series of topical blogs, especially two about my bike tour: [a narrative one](blogs/a-ride-on-the-pilgrims-route), and [a technical one](blogs/journey-planner-the-making-of). You will soon find a journey planner, intended for helping those who also want to ride *The Pigrims' Route*.
+For now, this site is hosting a series of topical blogs, especially two about my bike tour: one about the trip itself ([*A ride on The Pilgrims' Route*](/blogs/a-ride-on-the-pilgrims-route)), and one about the cycling politicies of the different countries I will visit ([*The Cycling Strategy*](/blogs/the-cycling-strategy)). You will also soon find a journey planner, intended for helping those who also want to ride *The Pigrims' Route*.
 
 ## Latest posts
 
