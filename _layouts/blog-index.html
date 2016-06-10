@@ -11,13 +11,12 @@ layout: default
 {{ my-include | markdownify }}
 {% endif %}
 <ul id='blog-index'>
-  {% if page.title == 'All posts' %}
+  <!--{% if page.title == 'All posts' %}
     {% for post in site.posts %} 
     <li>
       <a href="{{ post.url }}"><img src='{{ post.thumbnail }}'/></a>
       <div class='tags-container'>
       {% assign tags = post.tags | sort: 'size') %}
-      <!-- sorting by size does not work even if tag.size exists -->
       {% for tag in tags %}
         <span class="tag">{{ tag }}</span>
       {% endfor %}
@@ -30,6 +29,7 @@ layout: default
     </li>
     {% endfor %}
   {% else %}
+  -->
   {% for category in site.categories %}
   {% if page.title == category[0] %}
     {% for post in category[1] %}

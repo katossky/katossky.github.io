@@ -21,7 +21,7 @@
         </li>
         <li{% if slice == 'blogs/' or slice contains '2016/' %} class="active" {% endif %}><a href="/blogs">Blogs</a>
            <ul>
-              <li><a href="/blogs/all-posts.html">All posts</a><span>{{ site.posts | size }}</span></li>
+              <!--<li><a href="/blogs/all-posts.html">All posts</a><span>{{ site.posts | size }}</span></li>-->
             {% for category in site.categories %}
             <!-- slugify does not support ascii only so I have the uglys use of 'replace' here; the fix is ready but not implemented https://github.com/jekyll/jekyll/issues/2965 -->
               <li><a href="/blogs/{{ category[0] | slugify | replace: 'è', 'e' }}">{{ category[0] }}</a><span>{{ category[1].size }}</span></li>
