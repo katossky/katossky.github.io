@@ -3,6 +3,7 @@
 $header-color-background:     #428bca;
 $header-color-text:           #cdddeb;
 $header-color-text-highlight: #fff;
+$link-color: #337ab7;
 /*$left-column-width:              180px;
 $fixed-between-columns-margin:    40px;
 $variable-between-columns-margin:   7%;
@@ -53,15 +54,30 @@ h2{
   font-family: 'great-vibes', cursive;
 }
 img{width: 100%;}
-p img, h1 img, h2 img{height: 1em; width: 1em;}
+p img, h1 img, h2 img{
+  height: 1em;
+  width: auto;
+  border-radius: 3px;
+}
+main ol, main ul{padding: 0 0 0 1.1em; margin: 1em 0 0 0;}
+// links
 a, a:hover, a:focus {text-decoration: none;}
 a.discreet{
   color: inherit;
-  border-bottom: 1px dotted;
-  &:hover{border-bottom: 1px solid;}
+  border-bottom: 0.25em solid rgba(60,60,60,0.15);
+  transition: border-bottom .3s;
+  &:hover, &:focus{border-bottom: 0.25em solid fade_out($link-color, 0.5);}
+}
+a.very-discreet{
+  &, &:hover, &:focus{color: inherit;}
 }
 // relative font size
 h2         {font-size: 200%;}
+blockquote {font-size: inherit;}
+footer     {font-size: 80%;}
+// tricks
+.breakproof{display: inline-block;}
+
 
 // DIMENSIONS OF MAIN PARTS OF THE WEBSITE  ---------------------
 

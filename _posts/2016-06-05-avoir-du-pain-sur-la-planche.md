@@ -19,9 +19,9 @@ The meaning of the expression was completely reversed through time. Originally, 
 
 ## The conversation
 
-> **Person A:** How is it going with [your bike trip](the-pilgrims-route)?
+> **Person A:** How is it going with [your bike trip]({% post_url 2016-01-01-the-pilgrims-route %})?
 > 
-> **Person B:** Oh, well but busy. As if it was not enough to prepare the trip itself, I also decided [to create a website](a-planner-for-the-pilgrims-route) for helping people to organise their trips on the EuroVelo network. I just wrote a list of all the features I want to implement. 6 of them represent the bare minimum for my project to be usefull, and have to be implemented before my departure in less than 30 days. In short, *j'ai du pain sur la planche.*
+> **Person B:** Oh, well but busy. As if it was not enough to prepare the trip itself, I also decided [to create a website]({% post_url 2016-01-20-a-planner-for-the-pilgrims-route %}) for helping people to organise their trips on the *EuroVelo* network. I just wrote a list of all the features I want to implement. 6 of them represent the bare minimum for my project to be usefull, and have to be implemented before my departure in less than 30 days. In short, *j'ai du pain sur la planche.*
 
 <aside>
   <p class='remark' markdown='1'>I can not think of any French expression conveying the exact opposite meaning to *avoir du plain sur la planche*. Maybe *prendre un repos bien mérité*? (*to deserve a rest*)</p>

@@ -11,11 +11,11 @@ summary:    Radnetz Deutschland distributes for free the GPS tracks of its netwo
 
 *EuroVelo 3*, doesn't it ring a bell? Yes, indeed! It's [*The Pilgrims' Route*]({% post_url 2016-01-01-the-pilgrims-route %}), the bike route of over 5000 km running from Trondheim (Norway) south to Santiago-de-Compostella (Spain) that [I will ride this summer]({% post_url 2016-01-01-the-pilgrims-route %}). Maybe you also remember [my project]({% post_url 2016-01-20-a-planner-for-the-pilgrims-route %}) to make a journey planning service for this route.
 
-So, why not take advantage of *dnetz*'s GPS tracks for mapping Eurovelo 3? We can even compare them with [the data from *OpenStreetMap*]({% post_url 2016-04-22-how-to-download-data-from-openstreetmap %})!
+So, why not take advantage of *dnetz*'s GPS tracks for mapping *EuroVelo* 3? We can even compare them with [the data from *OpenStreetMap*]({% post_url 2016-04-22-how-to-download-data-from-openstreetmap %})!
 
 ## Quickly built...
 
-The track of route {% include logo.md what='ev3' %} / {% include logo.md what='d7' %} is available [here](http://www.radnetz-deutschland.de/index.php?eID=tx_nawsecuredl&u=0&file=fileadmin/Redaktion/Dateien/D-Route_7/Tracks/D-Route7.gpx&t=1463668847&hash=8937aaabac1003afcde14b04a65162cdf25eea22) in format {% include logo.md what='gpx' %} and, applying [what we learned the other day]({% post_url 2016-05-17-how-to-convert-gpx-to-geojson-with-r %}), it is now just a question of minutes between when we download the file and when we display it on a map.
+The track of route {% include logo.md what='d7' %} is available [here](http://www.radnetz-deutschland.de/index.php?eID=tx_nawsecuredl&u=0&file=fileadmin/Redaktion/Dateien/D-Route_7/Tracks/D-Route7.gpx&t=1463668847&hash=8937aaabac1003afcde14b04a65162cdf25eea22) in format {% include logo.md what='gpx' %} and, applying [what we learned the other day]({% post_url 2016-05-17-how-to-convert-gpx-to-geojson-with-r %}), it is now just a question of minutes between when we download the file and when we display it on a map.
 
 <div class='wide'>
   <div id='map' class='high'></div>
@@ -24,7 +24,7 @@ The track of route {% include logo.md what='ev3' %} / {% include logo.md what='d
 
 ## ... and quickly analysed
 
-The first and happy result is that data from *dnetz* (in blue) are complete, with one consistent and continuous line from Flensburg to Aachen. This is to oppose to the track from OpenStreetMap, which is completely irregular, with many line breaks causing an ugly rendering on the map<label for="sn-leaflet" class="sidenote-number"></label><input type="checkbox" id="sn-leaflet"/><span class='sidenote'>I use the `JavaScript` library {% include logo.md what='leaflet' %} the construction of the map. I will explain how it works an other day but you can already have a look at [this intoductive exemple](http://leafletjs.com){: .discreet} on *Leaflet*'s website.</span>.
+The first and happy result is that data from *dnetz* (in blue) are complete, with one consistent and continuous line from Flensburg to Aachen. This is to oppose to the track from *OpenStreetMap*, which is completely irregular, with many line breaks causing an ugly rendering on the map<label for="sn-leaflet" class="sidenote-number"></label><input type="checkbox" id="sn-leaflet"/><span class='sidenote'>I use the `JavaScript` library {% include logo.md what='leaflet' %} for the construction of the map. I will explain how it works an other day but you can already have a look at [this intoductive exemple](http://leafletjs.com){: .discreet} on *Leaflet*'s website.</span>.
 
 The second (and less happy) result is that the two tracks surprisingly disagree on non-negligeable parts of the itinerary, for instance at the arrival to Hambburg.
 
