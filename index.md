@@ -9,7 +9,7 @@ title:    Arthur Katossky
 
 ## Why this website?
 
-Starting on July, 1<sup>st</sup>, I will be riding my bike accross Europe from Trondheim (Norway) to Santiago (Spain) along *The Pigrims' Route*, route number 3 in the *EuroVelo* network. This trip is mainly about my trip, but I will also write about my other pleasures in life: mapping, cooking, gardening and statistics.
+Starting on July, 1<sup>st</sup>, I will be riding my bike accross Europe from Trondheim (Norway) to Santiago (Spain) along *The Pigrims' Route*, route number 3 in the *EuroVelo* network. This website is mainly about my trip, but I will also write about my other pleasures in life: mapping, cooking, gardening and statistics.
 
 ## What can I find here?
 
