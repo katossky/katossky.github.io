@@ -3,6 +3,7 @@
 $header-color-background:     #428bca;
 $header-color-text:           #cdddeb;
 $header-color-text-highlight: #fff;
+$link-color: #337ab7;
 /*$left-column-width:              180px;
 $fixed-between-columns-margin:    40px;
 $variable-between-columns-margin:   7%;
@@ -13,11 +14,20 @@ $right-column-width: (100% - $variable-between-column-margin)/2;
 @import "home";
 @import "header";
 @import "blog-index";
+@import "post-vignettes";
+@import "journey-planner";
 // @import "syntax.css";
 
-footer{
-  font-size: 80%;
+@font-face{
+  font-family: 'great-vibes';
+  src:  url('/fonts/great-vibes.ttf')  format('truetype');
 }
+
+@font-face{
+  font-family: 'handwriting-draft';
+  src:  url('/fonts/handwriting-draft.ttf')  format('truetype');
+}
+
 #me {
   max-width: 165px;
   margin: 15px auto;
@@ -38,15 +48,36 @@ footer{
   }
 }
 
-// GENERAL DEFAULTS
-img{width: 100%;}
-p img, h1 img, h2 img{height: 1em; width: 1em;}
-a, a:hover {text-decoration: none;}
-.discreet{
-  color: inherit;
-  border-bottom: 1px dotted;
-  &:hover{border-bottom: 1px solid;}
+// GENERAL DEFAULTS ----------------------------------------------
+h2{
+  text-align: center;
+  font-family: 'great-vibes', cursive;
 }
+img{width: 100%;}
+p img, h1 img, h2 img{
+  height: 1em;
+  width: auto;
+  border-radius: 3px;
+}
+main ol, main ul{padding: 0 0 0 1.1em; margin: 1em 0 0 0;}
+// links
+a, a:hover, a:focus {text-decoration: none;}
+a.discreet{
+  color: inherit;
+  border-bottom: 0.25em solid rgba(60,60,60,0.15);
+  transition: border-bottom .3s;
+  &:hover, &:focus{border-bottom: 0.25em solid fade_out($link-color, 0.5);}
+}
+a.very-discreet{
+  &, &:hover, &:focus{color: inherit;}
+}
+// relative font size
+h2         {font-size: 200%;}
+blockquote {font-size: inherit;}
+footer     {font-size: 80%;}
+// tricks
+.breakproof{display: inline-block;}
+
 
 // DIMENSIONS OF MAIN PARTS OF THE WEBSITE  ---------------------
 
@@ -74,12 +105,21 @@ header nav{
   width:         $column-width-left;
   // height:        100%;
 }
+#project-container #left-column{
+  margin-left:   $margin-page;
+  margin-top:    $margin-page;
+  margin-bottom: $margin-page;
+}
+#project-container footer{
+  margin-bottom: $margin-page;
+}
 body {
   height:          100%;
   padding-top:     1.8*$header-height;
   // probably should take the size of the profile picture instead
   padding-left:    2*$margin-page+$column-width-left;
   padding-right:   $margin-page;
+  overflow-x:      hidden;
   //padding-bottom:  $margin-page;
 }
 main#home{
@@ -87,8 +127,8 @@ main#home{
   padding-bottom: $margin-page;
 }
 main#project-container{
-  position: absolute;
-  top:    $header-height;
+  position: fixed;
+  top:    0;
   bottom: 0;
   left:   0;
   right:  0;
@@ -120,18 +160,6 @@ header{
   }
   & > ul > li > ul {
     background-color: $header-color-background;
-  }
-}
-main#home{
-  #project-showcase h1{color: #660000;} 
-  .project{
-    color: #660000;
-    &:hover{border-color: fade-out(#660000, 0.9);}
-  }
-  #blog-showcase h1{color: #197575;}
-  .blog{
-    color: #197575;
-    &:hover{border-color: fade-out(#197575, 0.9);}
   }
 }
 main#blog-index{

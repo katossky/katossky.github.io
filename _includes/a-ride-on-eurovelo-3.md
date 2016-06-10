@@ -1,3 +1,0 @@
-This summer, I will ride the bike on *The Pilgrim Road*, number {% include logo.md what='ev3' %} in the Eurovelo network. I will start the ride in [Trondheim](https://fr.wikipedia.org/wiki/Trondheim) in Norway to [Santiago-de-Compostella](https://en.wikipedia.org/wiki/Santiago_de_Compostela).
-
-{% if page.url != '/' %} You will get updated about my hopefully exciting adventures: I will visit numerous places, eat in tens of crazy restaurants, interview amazing bikers and politicians. *Cherry on the cake*, if you feel like giving Eurovelo {% include logo.md what='ev3' %} a try, I am working hard on making planning easier with my  project. {% endif %}

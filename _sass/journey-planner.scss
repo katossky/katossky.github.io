@@ -1,0 +1,66 @@
+#project-container{
+  // SIZE OF THE MAIN ELEMENTS ---------------------
+  #left-column{
+    position: fixed;
+    top:0;
+    bottom: 0;
+    left:0;
+
+    //top:           50%;
+    width:         280px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+10,ffffff+90,ffffff+100&0+0,0.3+10,0.3+90,0+100 */
+    background: rgba(255,255,255,0.7);
+    box-shadow: 0px 0px 100px 100px rgba(255,255,255,0.7);
+  }
+
+  footer{
+    width:         280px;
+    position: fixed;
+    bottom: 0;
+  }
+
+  h1{
+    height: 120px;
+  }
+
+
+
+  // ribbon on the planner
+  .ribbon-wrapper{
+    margin-left: 110px;
+    margin-top:  90px;
+    z-index: 2000;
+    position: relative;
+    width: 100%;
+  }
+  .ribbon{
+    width: 100%;
+    margin-left: -50%;
+    font: bold 25px  monospace;
+    color: #333;
+    text-align: center;
+    text-shadow: rgba(255,255,255,0.7) -1px 1px 0px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform:    rotate(-45deg);
+    -ms-transform:     rotate(-45deg);
+    -o-transform:      rotate(-45deg);
+    background-color: #BFDC7A;
+    border: 2px solid white;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  // STYLING OF TITLE
+  h1{
+    font-family: handwriting-draft;
+  }
+
+  // STYLING OF BUTTONS
+  button{
+    border: none;
+    display: block;
+    margin-left: 10%;
+    margin-right: auto;
+    margin-bottom: 10px;
+  }
+
+}

@@ -1,5 +1,5 @@
 header{
-  z-index:       10;
+  z-index:  2000;
   position: fixed;
   top:      0;
   left:     0;
@@ -64,7 +64,7 @@ header{
           li {
             text-transform: none;
             position: relative;
-            width: 250px;
+            width: 300px;
             span {
               float: right;
               display: inline-block;

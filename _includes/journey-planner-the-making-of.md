@@ -1,0 +1,1 @@
+You wonder how it is possible to build a similar web-app to my [bike journey planner](/plan-your-journey-on-the-pilgrim-way)? You would love to have interactive maps on your website or to work with data from OpenStreetMap but you do not know where to start? No matter whether you are a GIS-geek or a mapping amateur, you are at the right place.

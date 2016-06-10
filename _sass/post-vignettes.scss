@@ -1,0 +1,43 @@
+.post-list{
+  list-style:  none;
+  padding:      0px;
+}
+.post-vignette{
+  a, a:hover {
+   color: inherit;
+   text-decoration: inherit;
+  }
+  // z-index: 2; // in case of an absolute-positionned link on top
+  display: inline-block;
+  position: relative;
+  // overflow: hidden; // https://css-tricks.com/all-about-floats/
+  p{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left:0;
+    padding: 5px;
+    text-align: center;
+    transform: translate(0, -50%);
+    // http://stackoverflow.com/questions/33319100/vertical-align-of-p-text-inside-div#33319329
+    width: 100%;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.4s;
+    span{
+      display: block;
+    }
+    .title{text-decoration: underline;}
+  }
+  &{font-size: 80%;}
+  img{
+    border-radius: 50%;
+    opacity: 1;
+    transition: opacity 0.5s, border-radius 0.4s;
+  }
+  &:hover{
+    // effect with border-radius funny but maybe not useful
+    img{opacity: 0;}
+    p  {opacity: 1;}
+  }
+}
