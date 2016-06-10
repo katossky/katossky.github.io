@@ -16,9 +16,9 @@ $right-column-width: (100% - $variable-between-column-margin)/2;
 @import "post-vignettes";
 // @import "syntax.css";
 
-@font-face {
-  font-family: 'across-the-road';
-  src:  url('/fonts/across-the-road.ttf')  format('truetype'),;
+@font-face{
+  font-family: 'great-vibes';
+  src:  url('/fonts/great-vibes.ttf')  format('truetype');
 }
 
 footer{
@@ -69,6 +69,10 @@ footer{
 }
 
 // GENERAL DEFAULTS ----------------------------------------------
+h2{
+  text-align: center;
+  font-family: 'great-vibes', cursive;
+}
 img{width: 100%;}
 p img, h1 img, h2 img{height: 1em; width: 1em;}
 a, a:hover, a:focus {text-decoration: none;}
@@ -77,6 +81,8 @@ a.discreet{
   border-bottom: 1px dotted;
   &:hover{border-bottom: 1px solid;}
 }
+// relative font size
+h2         {font-size: 200%;}
 
 // DIMENSIONS OF MAIN PARTS OF THE WEBSITE  ---------------------
 
