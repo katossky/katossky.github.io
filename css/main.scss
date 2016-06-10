@@ -44,7 +44,31 @@ footer{
   }
 }
 
-// GENERAL DEFAULTS
+// ribbon on the planner
+.ribbon-wrapper{
+  margin-left: 160px;
+  margin-top:  160px;
+  z-index: 2000;
+  position: relative;
+  width: 100%;
+}
+.ribbon{
+  width: 100%;
+  margin-left: -50%;
+  font: bold 200%  monospace;
+  color: #333;
+  text-align: center;
+  text-shadow: rgba(255,255,255,0.7) -1px 1px 0px;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform:    rotate(-45deg);
+  -ms-transform:     rotate(-45deg);
+  -o-transform:      rotate(-45deg);
+  background-color: #BFDC7A;
+  border: 2px solid white;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+// GENERAL DEFAULTS ----------------------------------------------
 img{width: 100%;}
 p img, h1 img, h2 img{height: 1em; width: 1em;}
 a, a:hover, a:focus {text-decoration: none;}
