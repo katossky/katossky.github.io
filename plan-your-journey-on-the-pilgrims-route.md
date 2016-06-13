@@ -28,7 +28,7 @@ title:  eurovelo
     zoomControl: false,
   })
   
-  L.control.zoom({position:'topright'}).addTo(map);
+  L.control.zoom({position:'bottomright'}).addTo(map);
 
   // chose a 'known provider' from there: http://leaflet-extras.github.io/leaflet-providers/preview/
   L.tileLayer(
