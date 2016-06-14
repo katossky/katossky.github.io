@@ -1,6 +1,6 @@
 ---
 layout:   page
-title:    Arthur Katossky
+title:    The Eclectic Cyclist
 ---
 
 <section id='blog-showcase' markdown='1'>

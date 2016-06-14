@@ -1,9 +1,5 @@
 ---
 ---
-$header-color-background:     #428bca;
-$header-color-text:           #cdddeb;
-$header-color-text-highlight: #fff;
-$link-color: #337ab7;
 /*$left-column-width:              180px;
 $fixed-between-columns-margin:    40px;
 $variable-between-columns-margin:   7%;
@@ -64,9 +60,8 @@ main ol, main ul{padding: 0 0 0 1.1em; margin: 1em 0 0 0;}
 a, a:hover, a:focus {text-decoration: none;}
 a.discreet{
   color: inherit;
-  border-bottom: 0.25em solid rgba(60,60,60,0.15);
+  border-bottom: 0.25em solid;
   transition: border-bottom .3s;
-  &:hover, &:focus{border-bottom: 0.25em solid fade_out($link-color, 0.5);}
 }
 a.very-discreet{
   &, &:hover, &:focus{color: inherit;}
@@ -138,6 +133,17 @@ main#post{
 }
 
 // COLORS ------------------------------------
+
+$header-color-background:     #428bca;
+$header-color-text:           #cdddeb;
+$header-color-text-highlight: #fff;
+$link-color:                  #337ab7;
+
+a.discreet{
+  border-color: rgba(60,60,60,0.15);
+  &:hover, &:focus{border-color: fade_out($link-color, 0.5);}
+}
+
 header{
   background-color: $header-color-background;
   nav{
