@@ -55,7 +55,11 @@ p img, h1 img, h2 img{
   width: auto;
   border-radius: 3px;
 }
-main ol, main ul{padding: 0 0 0 1.1em; margin: 1em 0 0 0;}
+main ol, main ul{
+  padding: 0 0 0 0;
+  li{margin-left: 10%;}
+  margin: 1em 0 0 0;
+}
 // links
 a, a:hover, a:focus {text-decoration: none;}
 a.discreet{
@@ -125,11 +129,6 @@ main#project-container{
   bottom: 0;
   left:   0;
   right:  0;
-}
-main#blog-index{
-  height:         100%; // prevent from scrolling
-}
-main#post{
 }
 
 // COLORS ------------------------------------

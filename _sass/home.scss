@@ -1,16 +1,15 @@
 main#home, main#blogs{
 
   // DIMENSIONS OF MAIN PARTS OF THE PAGE  --------------------------
-  display: flex;
-  justify-content: space-between;
+  // display: flex;
+  // justify-content: space-between;
   // https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
   section {
     height: 100%;
   }
   #blog-showcase {
-    padding: 40px 40px 40px 40px;
-    width: 70%;
+    padding: 40px 0 40px 40px;
     max-width:     500px;
   }
   #project-showcase {
