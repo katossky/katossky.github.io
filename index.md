@@ -33,6 +33,10 @@ For now, this site is hosting a series of topical blogs, especially two about my
 
 </section>
 
+<div id='curl-effect'>
+  <a href="/journey-planner"><div></div></a>
+</div>
+
 <!--<section id='project-showcase'>
   <a href='plan-your-journey-on-the-pilgrims-route'><div class='project' id='plan-your-journey'>
     <div id='plan-your-journey-icon'>
