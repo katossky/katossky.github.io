@@ -1,5 +1,6 @@
 permalink: /:year/:month/:title
 gems:
   - jekyll-feed
+  - jekyll-redirect-from
 sass:
   sass_dir: _sass
