@@ -1,6 +1,7 @@
 ---
-layout: default
-title:  eurovelo
+layout:        default
+title:         eurovelo
+redirect_from: /plan-your-journey-on-the-pilgrims-route
 ---
 
 <main id='project-container'>
