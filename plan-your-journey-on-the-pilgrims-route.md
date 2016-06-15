@@ -16,11 +16,20 @@ title:  eurovelo
     <footer markdown='1'>Font [*Handwriting Draft*](http://fontscafe.com/font/handwriting-draft-font){: .discreet} &copy; [*fontscafe.com*](http://fontscafe.com){: .discreet}. Track created by the *OpenStreetMap* community and [*Biroto*](http://www.biroto.eu/en/cycle-route/europe/eurovelo-pilgrims-route-ev3/rt00000408){: .discreet} under [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0){: .discreet} and rendered on the map with [*Leaflet*](leafletjs.com){: .discreet}. Tiles &copy; Esri.
 </footer>
   </section>
+  <section id='controls'>
+    <div id='counter'><span class='odometer'>0</span> kilometers</div>
+  </section>
 </main>
 
 <script>
     
   // SETTING ---------------------------------------------------------------
+
+  od = new Odometer({
+    el: document.querySelector('#counter > span'),
+    format: '(,ddd)'
+  });
+
   var map = L.map('project-container', {
     minZoom: 4,
     center: [55, -10],
@@ -36,9 +45,13 @@ title:  eurovelo
     'ArcGIS/rest/services/World_Topo_Map/'+
     'MapServer/tile/{z}/{y}/{x}'
   ).addTo(map);
-
+  
   $.getJSON("/data/2016-05-21-ev3.geojson", function(data) {
-    L.geoJson(data).addTo(map);
+    var layer = L.geoJson(data);
+    layer.addTo(map);
+    layer.on('click', function(e){
+      od.update(turf.lineDistance(data.features[0]));
+    });
   });
 
  </script>
