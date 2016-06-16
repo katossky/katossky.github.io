@@ -2,6 +2,31 @@
 layout:        default
 title:         eurovelo
 redirect_from: /plan-your-journey-on-the-pilgrims-route
+cities:
+  - Trondheim
+  - Oslo
+  - Gothenburg / Göteborg
+  - Aalborg
+  - Viborg
+  - Hamburg / Hambourg
+  - Bremen / Brême
+  - Osnabrück
+  - Münster
+  - Duisburg
+  - Düsseldorf
+  - Cologne / Köln
+  - Bonn
+  - Aachen / Aix-la-C.
+  - Namur
+  - Charleroi
+  - Paris
+  - Orléans
+  - Tours
+  - Angoulême
+  - Pamplona
+  - Burgos
+  - Léon
+  - Santiago / St-Jacques
 ---
 
 <header id='project-header'>
@@ -36,6 +61,14 @@ redirect_from: /plan-your-journey-on-the-pilgrims-route
 <script>
     
   // SETTING ---------------------------------------------------------------
+
+  $( "#querry-from" ).autocomplete({
+    source: {{ page.cities | jsonify}}
+  });
+
+  $( "#querry-to" ).autocomplete({
+    source: {{ page.cities | jsonify}}
+  });
 
   var map = L.map('map-pannel', {
     minZoom: 4,
