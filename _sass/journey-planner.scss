@@ -1,28 +1,5 @@
 #project-container{
 
-  // SIZE OF THE MAIN ELEMENTS ---------------------
-  #left-column{
-    position: fixed;
-    top:0;
-    left:0;
-    z-index: 1001;
-    @media(max-width: 800px){
-      right:  0;
-      width:  auto;
-      background: rgba(255,255,255,0.9);
-      box-shadow: 0px 0px 20px 20px rgba(255,255,255,0.9);
-      :not(h1){
-        display: none;
-      }
-    }
-    @media(min-width: 800px){
-      bottom: 0;
-      width:  280px;
-      background: rgba(255,255,255,0.7);
-      box-shadow: 0px 0px 100px 100px rgba(255,255,255,0.7);
-    }
-  }
-
   #controls{
     position: fixed;
     z-index: 1001;
@@ -55,29 +32,14 @@
 
   // STYLING OF BUTTONS
   button{
-    border: none;
-    display: block;
-    margin-left: 10%;
-    margin-right: auto;
-    margin-bottom: 10px;
-  }
+  // button{
+  //   border: none;
+  //   display: block;
+  //   margin-left: 10%;
+  //   margin-right: auto;
+  //   margin-bottom: 10px;
+  // }
   
   // STYLING OF THE MAP
   .leaflet-control-attribution{display: none;}
-
-  // STYLING OF THE COUNTER
-  #counter{
-    -moz-border-radius: 0.15em;
-    -webkit-border-radius: 0.15em;
-    border-radius: 0.15em;
-    font-size: 200%;
-    background-color: #f0f8ff;
-    font-family: "Helvetica Neue", sans-serif;
-    font-weight: 100;
-    padding: 0 0.12em;
-    line-height: 1.2em;
-    background-size: 16px 16px;
-    box-shadow: -2px 3px 3px 4px rgba(0,0,0,0.5);
-    .odometer{width: 3em; text-align: right;}
-  }
 }
