@@ -1,37 +1,68 @@
+#project-header{
+}
+
 #project-container{
 
-  #controls{
-    position: fixed;
-    z-index: 1001;
-    @media(max-width: 800px){
-      bottom: 0;
-      left:0;
-    }
-    @media(min-width: 800px){
-      top:0;
-      right:0;
-    }
+  // POSITION OF MAIN ELEMENTS ----------------------------
+  
+  $querry-pannel-width: 250px;
+  $itineary-pannel-width: 300px;
+
+  #querry-pannel{
+    z-index:                 1001;
+    position:               fixed;
+    top:                     60px;
+    bottom:                   0px;
+    left:                    40px;
+    width:   $querry-pannel-width;
+  }
+  #map-pannel{
+    position:               fixed;
+    top:                     40px;
+    bottom:                   0px;
+    left:                     0px;
+    right: $itineary-pannel-width;
+  }
+  #itinerary-pannel{
+    position:               fixed;
+    top:                     40px;
+    right:                    0px;
+    bottom:                   0px;
+    width: $itineary-pannel-width;
   }
 
-  footer{
-    width:    280px;
-    position: fixed;
-    bottom:   0;
-  }
-
+  // SPACING
   h1{
-    @media(min-width: 800px){height: 120px;}
+    margin-bottom: 20px;
+  }
+  .input-group{
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
+  // ALIGNMENT
+  .input-group span:first-child span{
+    width:           30px;
+    display: inline-block;
+    text-align:      left;
+  }
+  /* webkit solution */
+  #days::-webkit-input-placeholder { text-align:right; }
+  /* mozilla solution */
+  #days:-moz-placeholder { text-align:right; }
+
+
+  // POSITION OF SECONDARY ELEMENTS
+  
+
+  
   // STYLING OF TITLE
   h1{
-    @media(max-width: 800px){text-align: center;}
     font-size: 250%;
     font-family: handwriting-draft;
   }
 
   // STYLING OF BUTTONS
-  button{
   // button{
   //   border: none;
   //   display: block;

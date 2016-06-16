@@ -145,24 +145,19 @@ a.discreet{
 
 header{
   background-color: $header-color-background;
-  nav{
-    a, span {
-      color: $header-color-text;
-    }
-    a:hover, a:focus, span:hover, span:focus{
+  a, span {
+    color: $header-color-text;
+  }
+  a:hover, a:focus, span:hover, span:focus{
+    color: $header-color-text-highlight;
+  }
+  .active {
+    & > a{
       color: $header-color-text-highlight;
     }
-    .active {
-      & > a{
-        color: $header-color-text-highlight;
-      }
-      &:after {
-        color: $header-color-text-highlight;
-      }
+    &:after {
+      color: $header-color-text-highlight;
     }
-  }
-  & > ul > li > ul {
-    background-color: $header-color-background;
   }
 }
 main#blog-index{

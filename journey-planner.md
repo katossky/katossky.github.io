@@ -4,15 +4,40 @@ title:         eurovelo
 redirect_from: /plan-your-journey-on-the-pilgrims-route
 ---
 
-<main id='project-container'>
+<header id='project-header'>
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</header>
 
+<main id='project-container'>
+  <div id='querry-pannel'>
+    <h1>A Planner for The Pilgrims' Route</h1>
+    <div class="input-group">
+      <span class="input-group-addon"><span>From</span></span>
+      <input name="querry-from" id="querry-from" type="text" class="form-control" placeholder="Trondheim, Oslo...">
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon"><span>To</span></span>
+      <input name="querry-to" id="querry-to" type="text" class="form-control" placeholder="Santiago, Bordeaux...">
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon"><span>In</span></span>
+      <input name="days" id="days" type="text" class="form-control" placeholder="1, 12, 20...">
+      <span class="input-group-addon">days</span>
+    </div>
+  </div>
+  <div id='map-pannel'></div>
+  <div id='itinerary-pannel'></div>
 </main>
 
 <script>
     
   // SETTING ---------------------------------------------------------------
 
-  var map = L.map('project-container', {
+  var map = L.map('map-pannel', {
     minZoom: 4,
     center: [55, -10],
     zoom: 4,
