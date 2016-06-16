@@ -113,6 +113,18 @@ cities:
       <input name="days" id="days" type="text" class="form-control" placeholder="1, 12, 20...">
       <span class="input-group-addon">days</span>
     </div>
+    <div class="input-group">
+      <span class="input-group-addon"><span>At</span></span>
+      <select class="form-control" id="speed">
+        <option value=   ''>   </option>
+        <option value= '60'> 60</option>
+        <option value= '70'> 70</option>
+        <option value= '80'> 80</option>
+        <option value= '90'> 90</option>
+        <option value='100'>100</option>
+      </select>
+      <span class="input-group-addon">km/day in average</span>
+    </div>
   </div>
   <div id='map-pannel'></div>
   <div id='itinerary-pannel'></div>
@@ -182,11 +194,43 @@ cities:
         weight:  3.5
       }).getLayers()[0];
       itinerary.addTo(map);
+      compute_stages();
       map.flyToBounds(itinerary.getBounds());
     }
 
-    from.on('add', slice_itinerary);
-    to.on('add', slice_itinerary);
+    var stages         = new L.layerGroup();
+
+    var compute_stages = function(){
+      if(map.hasLayer('stages')){
+        map.removeLayer(stages);
+      }
+      stages.clearLayers();
+      var speed            = $('#speed').val();
+      if(speed != ''){
+        speed              = speed*1;
+        var itinerary_json = itinerary.toGeoJSON();
+        var distance       = turf.lineDistance(itinerary_json);
+        var number_of_days = Math.ceil(distance / speed);
+        var dayly_distance = distance / number_of_days;
+        for(i=1; i<number_of_days; i++){
+          var stage = turf.along(
+            itinerary_json,
+            i*dayly_distance,
+            'kilometers'
+          );
+          var stage_coord = stage.geometry.coordinates.reverse();
+          stages.addLayer(L.circleMarker(
+            stage_coord,
+            {stroke: false, fillOpacity: 1, radius: 5}
+          ));
+        }
+        stages.addTo(map);
+      }
+    }
+
+    from       .on('add',    slice_itinerary);
+    to         .on('add',    slice_itinerary);
+    $('#speed').on('change', compute_stages);
     
   });
   // = L.geoJson(data.features[0])
