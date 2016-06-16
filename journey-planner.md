@@ -157,7 +157,10 @@ cities:
 
   $.getJSON("/data/2016-05-21-ev3.geojson", function(data) {
 
-    var the_pilgrims_route = new L.geoJson(data);
+    var the_pilgrims_route = new L.geoJson(data, {
+      opacity: 0.6,
+      weight:  3.5
+    });
     the_pilgrims_route = the_pilgrims_route.getLayers()[0];
     
     var itinerary = jQuery.extend(true, {}, the_pilgrims_route );
@@ -174,8 +177,12 @@ cities:
         .coordinates
         .map(function(e){return L.latLng(e) });
       map.removeLayer(itinerary);
-      itinerary = L.geoJson(new_itinerary_geojson).getLayers()[0];
+      itinerary = L.geoJson(new_itinerary_geojson, {
+        opacity: 0.6,
+        weight:  3.5
+      }).getLayers()[0];
       itinerary.addTo(map);
+      map.flyToBounds(itinerary.getBounds());
     }
 
     from.on('add', slice_itinerary);
