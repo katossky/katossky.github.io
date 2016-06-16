@@ -219,9 +219,16 @@ cities:
             'kilometers'
           );
           var stage_coord = stage.geometry.coordinates.reverse();
-          stages.addLayer(L.circleMarker(
-            stage_coord,
-            {stroke: false, fillOpacity: 1, radius: 5}
+          stages.addLayer(L.marker(
+            stage_coord, {
+              stroke:      false,
+              fillOpacity: 1,
+              radius:      5,
+              icon:        L.divIcon({
+                className: 'stage',   // Set class for CSS styling
+                html:      '<span>'+i+'</span>'
+              })
+            }
           ));
         }
         stages.addTo(map);

@@ -73,4 +73,17 @@
   
   // STYLING OF THE MAP
   .leaflet-control-attribution{display: none;}
+  .stage{
+    span{
+      border-radius: 50%;
+      display: block;
+      text-align: center;
+      vertical-align: middle;
+      color: darken(#3388ff,0.1);
+      border: 2px solid transparentize(#3388ff, 0.4);
+      background-color: white; // transparentize(#3388ff, 0.4);
+      width:  21px;
+      height: 22px;
+    }
+  }
 }
