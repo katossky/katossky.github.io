@@ -141,14 +141,6 @@ cities:
     'ArcGIS/rest/services/World_Topo_Map/'+
     'MapServer/tile/{z}/{y}/{x}'
   ).addTo(map);
-  
-  $.getJSON("/data/2016-05-21-ev3.geojson", function(data) {
-    var layer = L.geoJson(data);
-    layer.addTo(map);
-    //layer.on('click', function(e){
-    //  od.update(turf.lineDistance(data.features[0]));
-    //});
-  });
 
   var temp = L.circleMarker(
     [lats[0], lons[0]],
@@ -159,9 +151,40 @@ cities:
     {color: 'green'}
   );
   var to = L.circleMarker(
-    [lats[0], lons[0]],
+    [lats[lats.length-1], lons[lats.length-1]],
     {color: 'red'}
   );
+
+  $.getJSON("/data/2016-05-21-ev3.geojson", function(data) {
+
+    var the_pilgrims_route = new L.geoJson(data);
+    the_pilgrims_route = the_pilgrims_route.getLayers()[0];
+    
+    var itinerary = jQuery.extend(true, {}, the_pilgrims_route );
+    itinerary.addTo(map);
+
+    var slice_itinerary = function(){
+      var new_itinerary_geojson = turf.lineSlice(
+        from.toGeoJSON(),
+        to.toGeoJSON(),
+        the_pilgrims_route.toGeoJSON()
+      );
+      var new_itinerary_coords = new_itinerary_geojson
+        .geometry
+        .coordinates
+        .map(function(e){return L.latLng(e) });
+      map.removeLayer(itinerary);
+      itinerary = L.geoJson(new_itinerary_geojson).getLayers()[0];
+      itinerary.addTo(map);
+    }
+
+    from.on('add', slice_itinerary);
+    to.on('add', slice_itinerary);
+    
+  });
+  // = L.geoJson(data.features[0])
+
+  // setLatLngs( <LatLng[]> latlngs )
 
   $( "#querry-from" ).autocomplete({
     source: cities,
@@ -198,7 +221,7 @@ cities:
     },
     select: function( event, ui ){
       map.removeLayer(temp);
-      if(map.hasLayer(to)){map.removeLayer(from);}
+      if(map.hasLayer(to)){map.removeLayer(to);}
       for (i = 0; i < cities.length; i++){
         if(ui.item.value==cities[i]){
           to.setLatLng([lats[i], lons[i]]).addTo(map);
