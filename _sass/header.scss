@@ -3,80 +3,80 @@ header{
   position: fixed;
   top:      0;
   left:     0;
-  width:    100%;
+  right:    0;
+  height: 40px;
   -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
           box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
   /* nav bar after http://getbootstrap.com/examples/blog/ */
   nav{
     background-color: inherit;
     padding: 0px;
-    ul{
-      margin-bottom: 0px;
-      list-style: none;
-      padding: 0px;
+  }
+  ul{
+    margin-bottom: 0px;
+    list-style: none;
+    padding: 0px;
+  }
+  li{
+    letter-spacing: 0.5px;
+    padding: 10px;
+  }
+  .active {
+    &:after {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 0;
+      margin-left: -5px;
+      vertical-align: middle;
+      content: " ";
+      border-right: 5px solid transparent;
+      border-bottom: 5px solid;
+      border-left: 5px solid transparent;
     }
-    // la couleur du texte change au survol
-    li{
-      letter-spacing: 0.5px;
-      padding: 10px;
-    }
-    // la couleur de la section courrante change également, et une petite encoche apparaît
-    .active {
-      &:after {
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        width: 0;
-        height: 0;
-        margin-left: -5px;
-        vertical-align: middle;
-        content: " ";
-        border-right: 5px solid transparent;
-        border-bottom: 5px solid;
-        border-left: 5px solid transparent;
-      }
-    }
-    // premier niveau du menu, toujours visible
-    & > ul{
+  }
+  // premier niveau du menu, toujours visible
+  ul{
+    background-color: inherit;
+    //width: 50%;
+    //margin: 0 auto 0 auto;
+    & > li {
       background-color: inherit;
-      //width: 50%;
-      //margin: 0 auto 0 auto;
-      & > li {
+      position: relative;
+      display: inline-block;
+      text-transform: uppercase;
+      font-weight: 500;
+      // deuxième niveau du menu visible au survol
+      & > ul {
+        overflow: hidden;
         background-color: inherit;
-        position: relative;
-        display: inline-block;
-        text-transform: uppercase;
-        font-weight: 500;
-        // deuxième niveau du menu visible au survol
-        & > ul {
-          background-color: inherit;
-          display: none;
-          position: absolute;
-          top: 100%;
-          // 110% creates a hole in the menu, and one cannot
-          // smoothly move the mouse to the underlying categories
-          left: -10px;
-          width: auto;
-          -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
-                  box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
-          border-radius: 5px; 
-          border-top: 5px solid white;
-          li {
-            text-transform: none;
-            position: relative;
-            width: 300px;
-            span {
-              float: right;
-              display: inline-block;
-              &:before{content: "(";}
-              &:after {content: ")";}
-            }
+        display: none;
+        position: absolute;
+        top: 100%;
+        // 110% creates a hole in the menu, and one cannot
+        // smoothly move the mouse to the underlying categories
+        left: -10px;
+        width: auto;
+        -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+                box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+        border-radius: 5px; 
+        border-top: 5px solid white;
+        li {
+          text-transform: none;
+          position: relative;
+          width: 300px;
+          span {
+            float: right;
+            display: inline-block;
+            &:before{content: "(";}
+            &:after {content: ")";}
           }
         }
-        &:hover > ul{
-          display: block;
-          z-index: 10;
-        }
+      }
+      &:hover > ul{
+        display: block;
+        z-index: 2000;
       }
     }
   }

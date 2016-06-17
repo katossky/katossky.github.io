@@ -5,23 +5,23 @@ section{
   // 2 columns:
   // > one for the main text
   // > one for the comments
-  margin-right: 40px;
-  padding: 40px 0px 40px 40px;
+  margin-right:           40px;
+  padding:  40px 0px 40px 40px;
+  $side-column-size:       45%;
+  $side-column-size-max: 270px;
+  $main-column-size:       50%;
 
   // OTHER GENERAL SETTINGS
   counter-reset: sidenote-counter;
   
   // SIZING OF MAIN COLUMN
 
-
   & > p, & > div:not(.wide):not(.warning), & > ul, & > ol, & > blockquote{
-    padding-right: 50%;
-  }
-  & > p, & > div, & > ul, & > ol, & > blockquote{
-    margin-bottom: 15px;
+    padding-right: 100%-$main-column-size;
+    // for permitting floats to properly float
   }
   & > h1, & > h2, & > div.warning{
-    margin-right: 50%;
+    margin-right:  100%-$main-column-size;
     // to prevent overflow of the
     // decorative line under the title
   }
@@ -35,24 +35,43 @@ section{
   }
   
   .sidenote{ // aside, .wide .legend,
-    width: 65%;
-    margin-right: -100%;
-    padding-bottom: 10px;
-
+    // Sidenotes' size is given by reference to the main column;
+    // if the main column has size 30% and the side column has size
+    // 20% then the sidenote must have size: 100*20/30 %;
+    width:            100% * $side-column-size / $main-column-size;
+    max-width:                               $side-column-size-max;
+    // Same for the right margin: if the main column has size 30%,
+    // then the right border should be at -100*(100-30)/30 %
+    margin-right: -100%*(100%-$main-column-size)/$main-column-size;
+    padding-bottom:                                           10px;
   }
 
   li .sidenote{
-    width: 67.7%;
-    margin-right: -104%;
+    // A ul element is sized 90% of the main column so , if the main
+    // column has size 30% and the side column has size 20%, it means
+    // the li element has size 30*0.9 %. Then the side note must have
+    // size 100*20/(30*0.9) %.
+    // $main-column-size by $main-column-size/0.9
+
+    width:      100% * $side-column-size / ($main-column-size*0.9);
+    margin-right: -100%*(10/9)*(100%-$main-column-size)/$main-column-size;
+    //margin-right: -100% * (100% - $main-column-size*0.9)/($main-column-size*0.9);
   }
 
   aside, .wide .legend:not(.full-width){
-    width: 32.5%;
+    width:         $side-column-size;
+    max-width: $side-column-size-max;
   }
 
   .sidenote, aside{
     border-bottom:  1px solid #909090;
     margin-bottom: 10px;
+  }
+
+  // SPACING
+
+  & > p, & > div, & > ul, & > ol, & > blockquote{
+    margin-bottom: 15px;
   }
 
   // STYLING OF IMAGES AND MAPS

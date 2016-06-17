@@ -33,7 +33,11 @@ For now, this site is hosting a series of topical blogs, especially two about my
 
 </section>
 
-<section id='project-showcase'>
+<div id='curl-effect'>
+  <a href="/journey-planner"><div></div></a>
+</div>
+
+<!--<section id='project-showcase'>
   <a href='plan-your-journey-on-the-pilgrims-route'><div class='project' id='plan-your-journey'>
     <div id='plan-your-journey-icon'>
       <i class="fa fa-map-signs fa-5x" aria-hidden="true">
@@ -44,4 +48,4 @@ For now, this site is hosting a series of topical blogs, especially two about my
     <p>Plan your <i class="fa fa-bicycle" aria-hidden="true"></i> trip on</p>
     <p> <strong><em>The Pilgrims' Route</em></strong></p>
   </div></a>
-</section>
+</section>-->

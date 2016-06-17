@@ -1,9 +1,5 @@
 ---
 ---
-$header-color-background:     #428bca;
-$header-color-text:           #cdddeb;
-$header-color-text-highlight: #fff;
-$link-color: #337ab7;
 /*$left-column-width:              180px;
 $fixed-between-columns-margin:    40px;
 $variable-between-columns-margin:   7%;
@@ -59,14 +55,17 @@ p img, h1 img, h2 img{
   width: auto;
   border-radius: 3px;
 }
-main ol, main ul{padding: 0 0 0 1.1em; margin: 1em 0 0 0;}
+main ol, main ul{
+  padding: 0 0 0 0;
+  li{margin-left: 10%;}
+  margin: 1em 0 0 0;
+}
 // links
 a, a:hover, a:focus {text-decoration: none;}
 a.discreet{
   color: inherit;
-  border-bottom: 0.25em solid rgba(60,60,60,0.15);
+  border-bottom: 0.25em solid;
   transition: border-bottom .3s;
-  &:hover, &:focus{border-bottom: 0.25em solid fade_out($link-color, 0.5);}
 }
 a.very-discreet{
   &, &:hover, &:focus{color: inherit;}
@@ -105,7 +104,7 @@ header nav{
   width:         $column-width-left;
   // height:        100%;
 }
-#project-container #left-column{
+#project-container #left-column, #project-container #controls{
   margin:   $margin-page;
 }
 #project-container footer{
@@ -131,33 +130,34 @@ main#project-container{
   left:   0;
   right:  0;
 }
-main#blog-index{
-  height:         100%; // prevent from scrolling
-}
-main#post{
-}
 
 // COLORS ------------------------------------
+
+$header-color-background:     #428bca;
+$header-color-text:           #cdddeb;
+$header-color-text-highlight: #fff;
+$link-color:                  #337ab7;
+
+a.discreet{
+  border-color: rgba(60,60,60,0.15);
+  &:hover, &:focus{border-color: fade_out($link-color, 0.5);}
+}
+
 header{
   background-color: $header-color-background;
-  nav{
-    a, span {
-      color: $header-color-text;
-    }
-    a:hover, a:focus, span:hover, span:focus{
+  a, span {
+    color: $header-color-text;
+  }
+  a:hover, a:focus, span:hover, span:focus{
+    color: $header-color-text-highlight;
+  }
+  .active {
+    & > a{
       color: $header-color-text-highlight;
     }
-    .active {
-      & > a{
-        color: $header-color-text-highlight;
-      }
-      &:after {
-        color: $header-color-text-highlight;
-      }
+    &:after {
+      color: $header-color-text-highlight;
     }
-  }
-  & > ul > li > ul {
-    background-color: $header-color-background;
   }
 }
 main#blog-index{

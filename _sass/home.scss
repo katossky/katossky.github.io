@@ -1,16 +1,15 @@
 main#home, main#blogs{
 
   // DIMENSIONS OF MAIN PARTS OF THE PAGE  --------------------------
-  display: flex;
-  justify-content: space-between;
+  // display: flex;
+  // justify-content: space-between;
   // https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
   section {
     height: 100%;
   }
   #blog-showcase {
-    padding: 40px 40px 40px 40px;
-    width: 70%;
+    padding: 40px 0 40px 40px;
     max-width:     500px;
   }
   #project-showcase {
@@ -78,11 +77,49 @@ main#home, main#blogs{
   &#home .post-list{
     .post-vignette{width: 100px; margin: 5px;}
     height: 110px;
-    width: 600%;
+    width: 100%;
   }
   &#blogs{
     h1{font-size: 25px;}
     .post-list{width: 100%;}
     .post-vignette{width: 75px; margin: 2px;}
+  }
+
+  // PAGE CURL EFFECT -------------------------------
+
+  // https://codepen.io/JoostKiens/pen/sIwmb
+  #curl-effect{
+    position: fixed;
+    bottom:   0;
+    right:    0;
+    width:  100px;
+    height: 100px;
+    border-radius: 5px 0 0 0;
+    background: url("/img/2016-06-15-journey-planner.png") no-repeat;
+    background-position: 100% 100%;
+    background-size: 400px 400px;
+    transition: all .5s ease;
+    div{
+      border-radius: 5px 0 0 0;
+      width: 100%;
+      height: 100%;
+      box-shadow : -3px -3px 80px 0px rgba(100, 100, 100, .3);
+      background : 
+        linear-gradient(
+          -45deg, 
+          rgba(0,0,0,0), 
+          rgba(0,0,0,0) 40%, 
+          rgba(80,80,80,0.4) 50%, 
+          #aaa 50%, 
+          #bbb 56%, 
+          #ccc 62%, 
+          #f3f3f3 80%,
+          #fff 100%
+        );
+    }
+    &:hover{
+      width:  400px;
+      height: 400px;
+    }
   }
 }
