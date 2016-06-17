@@ -108,11 +108,11 @@ cities:
       <span class="input-group-addon"><span>To</span></span>
       <input name="querry-to" id="querry-to" type="text" class="form-control" placeholder="Santiago, Bordeaux...">
     </div>
-    <div class="input-group">
+    <!--<div class="input-group">
       <span class="input-group-addon"><span>In</span></span>
       <input name="days" id="days" type="text" class="form-control" placeholder="1, 12, 20...">
       <span class="input-group-addon">days</span>
-    </div>
+    </div>-->
     <div class="input-group">
       <span class="input-group-addon"><span>At</span></span>
       <select class="form-control" id="speed">
