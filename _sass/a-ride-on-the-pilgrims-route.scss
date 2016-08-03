@@ -1,0 +1,31 @@
+#a-ride-on-the-pilgrims-route{
+
+  #blog-pannel{
+    position: absolute;
+    left:            0;
+    top:             0;
+    height:       100%;
+    width:         50%;
+    padding:      40px;
+    overflow-y: scroll;
+  }
+  
+  #map-pannel{
+    position: absolute;
+    right:           0;
+    top:             0;
+    height:       100%;
+    width:         50%;
+  }
+
+  h1{
+    text-align: center;
+  }
+
+  // STYLING OF TITLE
+  h1{
+    font-size: 250%;
+    font-family: handwriting-draft;
+  }
+
+}

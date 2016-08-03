@@ -22,6 +22,7 @@ layout: default
   </ul></nav>
 </header>
 {% endif %}
+{% if page.url != '/blogs/a-ride-on-the-pilgrims-route' %}
 <div id='left-column'>
   <div id='me'><a href="/"><img src='/img/arthur.png'/></a></div>
   <p><strong>Arthur</strong> is a statistician, data scientist, environmental economist, organic food grower, amateur graphic designer and urbanist. He loves food, bike touring, coding, handcrafts, arts, epistemology, maps and social sciences. He speaks French, English, Danish, basic Spanish, and is learning Italian and German.</p>
@@ -31,12 +32,12 @@ layout: default
     <li><a href="https://github.com/katossky"><i class="fa fa-github fa-2x"></i></a></li>
     <li><a href="https://www.linkedin.com/in/katossky?locale=en_US"><i class="fa fa-linkedin fa-2x"></i></a></li>
     <li><a href="http://stackoverflow.com/users/2076247/arthur"><i class="fa fa-stack-overflow fa-2x"></i></a></li>
-    
   </ul>
   <footer>
     <p>{{ page.footer }} Website hosted by GitHub and run with Jekyll, Sass, Leaflet and Fontawesome. Picture from the <a href='http://www.editions-delcourt.fr/bouletmaton'>Bouletmaton</a> &copy; Delcourt 2016.</p>
   </footer>
 </div>
-<main {% if page.url == '/' %} id='home' {% elsif page.url == '/blogs/' %} id='blogs' {% elsif slice == 'blogs/'%} id='blog-index' {% else %} id='post' {% endif %}>
+{% endif %}
+<main {% if page.url == '/' %} id='home' {% elsif page.url == '/blogs/' %} id='blogs' {% elsif page.url == '/blogs/a-ride-on-the-pilgrims-route' %} id='a-ride-on-the-pilgrims-route' {% elsif slice == 'blogs/'%} id='blog-index' {% else %} id='post' {% endif %}>
   {{ content }}
 </main>

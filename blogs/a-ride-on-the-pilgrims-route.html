@@ -1,4 +1,51 @@
 ---
-layout:      blog-index
+layout:      page
 title:       A Ride on The Pilgrims' Route
 --- 
+
+<div id='blog-pannel'>
+  <h1>{{ page.title }}</h1>
+  <ul>
+  {% for category in site.categories %}
+    {% if page.title == category[0] %}
+      {% for post in category[1] %}
+      <li>
+        <a href="{{ post.url }}"><img src='{{ post.thumbnail }}'/></a>
+        <div class='tags-container'>
+        {% assign tags = post.tags | sort: 'size') %}
+        <!-- sorting by size does not work even if tag.size exists -->
+        {% for tag in tags %}
+          <span class="tag">{{ tag }}</span>
+        {% endfor %}
+        </div>
+        <p>
+          <span class='blog-index-post-date'>{{ post.date | date: "%d %B %Y" }}</span>
+          <span class='blog-index-post-title'><a href="{{ post.url }}">{{ post.title }}</a></span>
+          <p>{{ post.summary }}</p>
+        </p>
+      </li>
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+  </ul>
+</div>
+<div id='map-pannel'></div>
+
+<script>
+    
+  // SETTING ---------------------------------------------------------------
+
+  var map = L.map('map-pannel', {
+    minZoom: 4,
+    center: [55, -10],
+    zoom: 4,
+    zoomControl: false,
+  })
+
+  L.tileLayer(
+    'http://server.arcgisonline.com/'+
+    'ArcGIS/rest/services/World_Topo_Map/'+
+    'MapServer/tile/{z}/{y}/{x}'
+  ).addTo(map);
+
+</script>
