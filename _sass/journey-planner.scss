@@ -31,6 +31,15 @@
     width: $itineary-pannel-width;
   }
 
+  // MOUSE EVENTS -----------------------------
+  #querry-pannel{
+    pointer-events:          none;
+    // http://stackoverflow.com/questions/1009753/pass-mouse-events-through-absolutely-positioned-element
+    span, input, select{
+      pointer-events: auto;
+    }
+  }
+
   // SPACING
   h1{
     margin-bottom: 20px;
