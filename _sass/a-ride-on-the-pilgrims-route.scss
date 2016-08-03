@@ -28,4 +28,40 @@
     font-family: handwriting-draft;
   }
 
+  // STYLING OF LIST
+  #blog-pannel ul{
+    list-style:  none;
+    li{
+      display:     block;
+      height:      120px;
+      padding:      10px;
+      border-radius: 5px;
+      // min-width: 350px;
+      // width:     70%;
+      // max-width: 500px;
+      // margin:    20px 0;
+      // overflow:  hidden;
+      // position:  relative;
+      img{
+        width:  100px;
+        height: 100px;
+        float: left;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  // LIST HOVER EFFECT
+  #blog-pannel li:hover{
+    background: fade_out(#428bca, 0.8);
+  }
+
+  // STYLING OF INDIVIDUAL CARTOUCHE
+  #blog-pannel .blog-index-post-title{
+    display: block;
+  }
+  #blog-pannel .blog-index-post-date{
+    display: block;
+  }
+
 }
