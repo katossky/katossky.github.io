@@ -256,53 +256,53 @@ cities:
 
   var star_layers = {};
 
-  $.getJSON("/data/journey-planner/2016-06-20-michelin-restaurants.geojson", function(data) {
-    console.log(data);
+  // $.getJSON("/data/journey-planner/2016-06-20-michelin-restaurants.geojson", function(data) {
+  //   console.log(data);
 
-    L.geoJson(data, {
-      onEachFeature: function (feature, layer) {
-        var star_number = feature.properties.stars;
-        if(star_number in star_layers){
-          star_layers[star_number].addLayer(layer);
-        } else {
-          star_layers[star_number] = new L.layerGroup();
-          star_layers[star_number].addLayer(layer);
-        }
-      }
-    });
+  //   L.geoJson(data, {
+  //     onEachFeature: function (feature, layer) {
+  //       var star_number = feature.properties.stars;
+  //       if(star_number in star_layers){
+  //         star_layers[star_number].addLayer(layer);
+  //       } else {
+  //         star_layers[star_number] = new L.layerGroup();
+  //         star_layers[star_number].addLayer(layer);
+  //       }
+  //     }
+  //   });
 
-    map.on('zoomend', function(e){
-      if(map.getZoom() >= 7 && !map.hasLayer(star_layers[3])){
-        star_layers[3].addTo(map);
-      }
-      if(map.getZoom() >= 9 && !map.hasLayer(star_layers[2])){
-        star_layers[2].addTo(map);
-      }
-      if(map.getZoom() >= 10 && !map.hasLayer(star_layers[1])){
-        star_layers[1].addTo(map);
-      }
-      if(map.getZoom() >= 11 && !map.hasLayer(star_layers[0])){
-        star_layers[0].addTo(map);
-      }
-      if(map.getZoom() < 7 && map.hasLayer(star_layers[3])){
-        map.removeLayer(star_layers[3]);
-      }
-      if(map.getZoom() < 9 && map.hasLayer(star_layers[2])){
-        map.removeLayer(star_layers[2]);
-      }
-      if(map.getZoom() < 10 && map.hasLayer(star_layers[1])){
-        map.removeLayer(star_layers[1]);
-      }
-      if(map.getZoom() < 11 && map.hasLayer(star_layers[0])){
-        map.removeLayer(star_layers[0]);
-      }
-    });
+  //   map.on('zoomend', function(e){
+  //     if(map.getZoom() >= 7 && !map.hasLayer(star_layers[3])){
+  //       star_layers[3].addTo(map);
+  //     }
+  //     if(map.getZoom() >= 9 && !map.hasLayer(star_layers[2])){
+  //       star_layers[2].addTo(map);
+  //     }
+  //     if(map.getZoom() >= 10 && !map.hasLayer(star_layers[1])){
+  //       star_layers[1].addTo(map);
+  //     }
+  //     if(map.getZoom() >= 11 && !map.hasLayer(star_layers[0])){
+  //       star_layers[0].addTo(map);
+  //     }
+  //     if(map.getZoom() < 7 && map.hasLayer(star_layers[3])){
+  //       map.removeLayer(star_layers[3]);
+  //     }
+  //     if(map.getZoom() < 9 && map.hasLayer(star_layers[2])){
+  //       map.removeLayer(star_layers[2]);
+  //     }
+  //     if(map.getZoom() < 10 && map.hasLayer(star_layers[1])){
+  //       map.removeLayer(star_layers[1]);
+  //     }
+  //     if(map.getZoom() < 11 && map.hasLayer(star_layers[0])){
+  //       map.removeLayer(star_layers[0]);
+  //     }
+  //   });
 
-    // for(relation in relations){
-    //   relations[relation].addTo(map);
-    // }
+  //   // for(relation in relations){
+  //   //   relations[relation].addTo(map);
+  //   // }
 
-  });
+  // });
 
   $( "#querry-from" ).autocomplete({
     source: cities,
