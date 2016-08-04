@@ -9,14 +9,14 @@ title:       A Ride on The Pilgrims' Route
   {% for category in site.categories %}
     {% if page.title == category[0] %}
       {% for post in category[1] %}
-      <li>
-        <a href="{{ post.url }}"><img src='{{ post.thumbnail }}'/></a>
-        <p>
-          <span class='blog-index-post-title'><a href="{{ post.url }}">{{ post.title }}</a></span>
-          <span class='blog-index-post-date'>{{ post.date | date: "%d %B %Y" }}</span>
+      <a href="{{ post.url }}"><li>
+        <img src='{{ post.thumbnail }}'/>
+        <div>
+          <p class='blog-index-post-title'>{{ post.title }}</p>
+          <p class='blog-index-post-date'>{{ post.date | date: "%d %B %Y" }}</p>
           <p>{{ post.summary }}</p>
-        </p>
-      </li>
+        </div>
+      </li></a>
       {% endfor %}
     {% endif %}
   {% endfor %}
