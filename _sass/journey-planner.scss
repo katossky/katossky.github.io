@@ -6,7 +6,7 @@
   // POSITION OF MAIN ELEMENTS ----------------------------
   
   $querry-pannel-width: 250px;
-  $itineary-pannel-width: 300px;
+  $itineary-pannel-width: 0px; // 300px;
 
   #querry-pannel{
     z-index:                 1001;
@@ -29,6 +29,15 @@
     right:                    0px;
     bottom:                   0px;
     width: $itineary-pannel-width;
+  }
+
+  // MOUSE EVENTS -----------------------------
+  #querry-pannel{
+    pointer-events:          none;
+    // http://stackoverflow.com/questions/1009753/pass-mouse-events-through-absolutely-positioned-element
+    span, input, select{
+      pointer-events: auto;
+    }
   }
 
   // SPACING
