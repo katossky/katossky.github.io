@@ -43,4 +43,16 @@ title:       A Ride on The Pilgrims' Route
     'MapServer/tile/{z}/{y}/{x}'
   ).addTo(map);
 
+  $.getJSON("/data/2016-05-21-ev3.geojson", function(data) {
+
+    var the_pilgrims_route = new L.geoJson(data, {
+      opacity: 0.6,
+      weight:  3.5
+    });
+    the_pilgrims_route = the_pilgrims_route.getLayers()[0];
+    
+    var itinerary = jQuery.extend(true, {}, the_pilgrims_route );
+    itinerary.addTo(map);
+  });
+
 </script>
