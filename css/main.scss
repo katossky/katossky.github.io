@@ -25,6 +25,11 @@ $right-column-width: (100% - $variable-between-column-margin)/2;
   src:  url('/fonts/handwriting-draft.ttf')  format('truetype');
 }
 
+@font-face{
+  font-family: 'traveling-typewriter';
+  src:  url('/fonts/traveling-typewriter.ttf')  format('truetype');
+}
+
 #me {
   max-width: 165px;
   margin: 15px auto;
