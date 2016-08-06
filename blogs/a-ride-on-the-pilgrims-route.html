@@ -8,8 +8,10 @@ title:       A Ride on The Pilgrims' Route
   <ul>
   {% for category in site.categories %}
     {% if page.title == category[0] %}
+      {% assign post_json = category[1] | map: 'path' | replace: '_posts/', '/data/a-ride-on-the-pilgrims-route/' | replace: '.md', '.geojson' %}
+      {{ post_names }}
       {% for post in category[1] %}
-      <li>
+      <li id='{{ post.path | slice: 18, 100 | remove: ".md" }}'>
         <a href="{{ post.url }}"></a>
         <img src='{{ post.thumbnail }}'/>
         <p class='blog-index-post-date'>{{ post.date | date: "%Y %b %-d" }}</p>
@@ -43,6 +45,17 @@ title:       A Ride on The Pilgrims' Route
     'MapServer/tile/{z}/{y}/{x}'
   ).addTo(map);
 
+  var post_names;
+  var associated_track_files = {{ post_json }};
+  var associated_track = [];
+
+  function get_post_name(file){
+    return file
+      .replace(/\.geojson$/i, '')
+      .replace(/^\/data\/a-ride-on-the-pilgrims-route\/.{4}-.{2}-.{2}-/i, '');
+  }
+  post_names = associated_track_files.map(get_post_name);
+  
   $.getJSON("/data/2016-05-21-ev3.geojson", function(data) {
 
     var the_pilgrims_route = new L.geoJson(data, {
@@ -51,8 +64,82 @@ title:       A Ride on The Pilgrims' Route
     });
     the_pilgrims_route = the_pilgrims_route.getLayers()[0];
     
-    var itinerary = jQuery.extend(true, {}, the_pilgrims_route );
+    var itinerary = jQuery.extend(true, {}, the_pilgrims_route);
     itinerary.addTo(map);
+
+    // add post tracks to the map
+    function add_to_map(tracks){
+
+      // for each defined track
+      for(i=1; i<tracks.length; i++){
+        var track = tracks[i];
+        if(typeof track != 'undefined'){
+
+          // 1. retreive the itinerary's departure and arrival
+        
+          var from = $.grep(track.features, function(f){
+            return f.properties.stage === 'departure'
+          });
+          var to = $.grep(track.features, function(f){
+            return f.properties.stage === 'arrival'
+          });
+          from = turf.point(from[0].geometry.coordinates);
+          to   = turf.point(  to[0].geometry.coordinates);
+
+          // 2. create an approximate track along the itinerary
+          
+          var overall_track   = the_pilgrims_route.toGeoJSON();
+          associated_track[i] = turf.lineSlice(from, to, overall_track);
+          associated_track[i] = L.geoJson(associated_track[i], {
+            opacity:   1,
+            weight:    5,
+            color: '#ff6600'
+          }).getLayers()[0];
+
+          // 3. bind the appearance / disappearance of the track to the hovering of the corresponding post cartouche
+
+          var post_name = post_names[i];
+          console.log('#'+post_name);
+          $('#'+post_name).hover(
+            function(){
+              var name  = $(this).attr('id');
+              var index = post_names.indexOf(name);
+              associated_track[index].addTo(map);
+            },
+            function(){
+              var name  = $(this).attr('id');
+              var index = post_names.indexOf(name);
+              map.removeLayer(associated_track[index])
+            }
+          )
+          
+          // 4. bind the highlight of the object to the hover of the line
+
+        }
+     }
+    };
+
+    function keep_reading(array, i){
+
+      // keep calling the reading function
+      if(i < post_names.length){
+        $.getJSON(associated_track_files[i])
+          .done(function(data){
+            array[i] = data;
+          })
+          .always(function(){
+            i++;
+            return(keep_reading(array, i));
+          })
+      }else{
+        // when finished reading all files,
+        // call back add_to_map
+        add_to_map(array);
+      }
+    }
+
+    keep_reading([], 0);
+
   });
 
   var blogPannel;
