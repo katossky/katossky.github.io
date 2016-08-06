@@ -22,23 +22,31 @@
 
   h1{
     text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  section > *{
+    max-width:   420px;
+    margin-right: auto;
+    margin-left:  auto;
   }
 
   // STYLING OF TITLE
   h1{
     font-size: 250%;
     font-family: handwriting-draft;
+    border-bottom:  1px solid #909090;
   }
 
   // STYLING OF LIST
   #blog-pannel ul{
-    list-style:  none;
+    list-style:   none;
     li{
       position: relative;
       display:     block;
-      max-width:   450px;
       height:      120px;
-      margin:     0 auto;
+      margin:    0 -10px;
       padding:      10px;
       border-radius: 5px;
       overflow-y: hidden;
