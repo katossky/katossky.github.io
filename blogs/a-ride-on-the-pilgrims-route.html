@@ -55,7 +55,11 @@ title:       A Ride on The Pilgrims' Route
       .replace(/^\/data\/a-ride-on-the-pilgrims-route\/.{4}-.{2}-.{2}-/i, '');
   }
   post_names = associated_track_files.map(get_post_name);
-  
+
+  $('#close-button').click(function(){
+    map.flyToBounds(itinerary.getBounds());
+  });
+
   $.getJSON("/data/2016-05-21-ev3.geojson", function(data) {
 
     var the_pilgrims_route = new L.geoJson(data, {
@@ -66,6 +70,9 @@ title:       A Ride on The Pilgrims' Route
     
     var itinerary = jQuery.extend(true, {}, the_pilgrims_route);
     itinerary.addTo(map);
+    $(map).on('reset', function(){
+      map.flyToBounds(itinerary);
+    })
 
     // add post tracks to the map
     function add_to_map(tracks){
@@ -115,6 +122,14 @@ title:       A Ride on The Pilgrims' Route
           
           // 4. bind the highlight of the object to the hover of the line
 
+          // 5. bind the zoom event to the click on a list item
+          
+          $('#'+post_name).click(function(){
+            var name  = $(this).attr('id');
+            var index = post_names.indexOf(name);
+            map.flyToBounds(associated_track[index].getBounds());
+          })
+
         }
      }
     };
@@ -161,6 +176,7 @@ title:       A Ride on The Pilgrims' Route
       $('#close-button').click(function(){
         $("#blog-pannel").remove();
         $("#a-ride-on-the-pilgrims-route").prepend(blogPannel);
+        $(map).trigger('reset');
       });
 
     });
