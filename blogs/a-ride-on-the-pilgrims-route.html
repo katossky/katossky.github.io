@@ -3,7 +3,7 @@ layout:      page
 title:       A Ride on The Pilgrims' Route
 --- 
 
-<div id='blog-pannel'>
+<section id='blog-pannel'>
   <h1>{{ page.title }}</h1>
   <ul>
   {% for category in site.categories %}
@@ -23,8 +23,8 @@ title:       A Ride on The Pilgrims' Route
     {% endif %}
   {% endfor %}
   </ul>
-</div>
-<div id='map-pannel'></div>
+</section>
+<section id='map-pannel'></section>
 
 <script>
     
@@ -53,6 +53,31 @@ title:       A Ride on The Pilgrims' Route
     
     var itinerary = jQuery.extend(true, {}, the_pilgrims_route );
     itinerary.addTo(map);
+  });
+
+  var blogPannel;
+
+  $("#blog-pannel a").click(function(e){
+
+    // http://stackoverflow.com/questions/4002580/how-to-do-partial-page-update-with-jquery
+
+    // prevent from going to the page and save content
+    e.preventDefault();
+    blogPannel = $("#blog-pannel").clone(true);
+
+    // get the href
+    var href       = $(this).attr("href") + ' #post > section > *';
+    $("#blog-pannel").load(href, function(){
+
+      // implement a close button
+      $(this).prepend('<div id="close-button">×</div>');
+      $('#close-button').click(function(){
+        $("#blog-pannel").remove();
+        $("#a-ride-on-the-pilgrims-route").prepend(blogPannel);
+      });
+
+    });
+
   });
 
 </script>

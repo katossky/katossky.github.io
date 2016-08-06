@@ -114,4 +114,18 @@
     background: transparentize(#fff, 0.3);
   }
 
+  // CLOSE BUTTON EFFECT
+  #close-button{
+    float:         right;
+    line-height:    100%;
+    margin-right:  -10px;
+    margin-top:    -10px;
+    font-size:      400%;
+    color:          #999;
+    cursor:      pointer;
+    &:hover{ color: #111;}
+  }
+
+  // ADAPTATIONS FROM POSTS STYLE
+
 }
