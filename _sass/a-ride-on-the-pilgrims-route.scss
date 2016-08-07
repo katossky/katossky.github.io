@@ -45,7 +45,8 @@
     li{
       position: relative;
       display:     block;
-      height:      120px;
+      &:not(.no_post_yet){height: 120px;}
+      //&:not(.no_post_yet){height: 120px;}
       margin:    0 -10px;
       padding:      10px;
       border-radius: 5px;
@@ -72,12 +73,14 @@
         left: 10px;
         width:  100px;
       }
-      div{
+      &:not(.no_post_yet) div {
         position: absolute;
+        bottom: 10px;
         right: 10px;
         top: 10px;
-        bottom: 10px;
         left: 120px;
+      }
+      div{
         overflow: hidden;
         p, img{display: none;}
         h2{
@@ -91,6 +94,13 @@
           content: '•';
           margin-left: 5px;
         }
+      }
+      &.no_post_yet img{display: none;}
+      &.no_post_yet div {
+        float:        right;
+        margin-right:   0px;
+        margin-left:  110px;
+        p{margin:         0;}
       }
     }
   }
@@ -121,6 +131,9 @@
     margin-bottom:   0;
     text-align: center;
     background: transparentize(#fff, 0.3);
+  }
+  #blog-pannel li.no_post_yet .blog-index-post-date{
+    background: transparentize(#000, 0.85);
   }
 
   // CLOSE BUTTON EFFECT

@@ -11,14 +11,15 @@ title:       A Ride on The Pilgrims' Route
       {% assign post_json = category[1] | map: 'path' | replace: '_posts/', '/data/a-ride-on-the-pilgrims-route/' | replace: '.md', '.geojson' %}
       {{ post_names }}
       {% for post in category[1] %}
-      <li id='{{ post.path | slice: 18, 100 | remove: ".md" }}'>
-        <a href="{{ post.url }}"></a>
+      {% assign content = post.content | strip_newlines %}
+      <li id='{{ post.path | slice: 18, 100 | remove: ".md" }}' {% if content == '' %} class='no_post_yet' {% endif %}>
+        {% if content != '' %}<a href="{{ post.url }}"></a>{% endif %}
         <img src='{{ post.thumbnail }}'/>
-        <p class='blog-index-post-date {% if post.date_bottom %}{{ "date_bottom" }}{% endif %}'>{{ post.date | date: "%Y %b %-d" }}</p>
+        <p class='blog-index-post-date {% if post.date_bottom %} date_bottom {% endif %}'>{{ post.date | date: "%Y %b %-d" }}</p>
         <div>
           {% assign day = post.url | slice: 13, 3 %}
           <p class='blog-index-post-title'>{% if day !=  'pil' %} Day #{{ day }} {% endif %}{{ post.title }}</p>
-          <p>{{ post.content | replace: '<p>.*</p>', ''}}</p>
+          {% if content != '' %}<p>{{ content }}</p>{% endif %}
         </div>
       </li>
       {% endfor %}
