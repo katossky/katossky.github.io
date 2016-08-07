@@ -9,7 +9,6 @@ title:       A Ride on The Pilgrims' Route
   {% for category in site.categories %}
     {% if page.title == category[0] %}
       {% assign post_json = category[1] | map: 'path' | replace: '_posts/', '/data/a-ride-on-the-pilgrims-route/' | replace: '.md', '.geojson' %}
-      {{ post_names }}
       {% for post in category[1] %}
       {% assign content = post.content | strip_newlines %}
       <li id='{{ post.path | slice: 18, 100 | remove: ".md" }}' {% if content == '' %} class='no_post_yet' {% endif %}>

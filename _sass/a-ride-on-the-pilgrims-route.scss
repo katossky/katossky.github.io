@@ -91,7 +91,7 @@
           margin: 0;
         }
         h2:not(:last-of-type)::after{
-          content: '•';
+          content: '• ';
           margin-left: 5px;
         }
       }
