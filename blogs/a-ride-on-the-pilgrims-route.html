@@ -14,7 +14,7 @@ title:       A Ride on The Pilgrims' Route
       <li id='{{ post.path | slice: 18, 100 | remove: ".md" }}'>
         <a href="{{ post.url }}"></a>
         <img src='{{ post.thumbnail }}'/>
-        <p class='blog-index-post-date'>{{ post.date | date: "%Y %b %-d" }}</p>
+        <p class='blog-index-post-date {% if post.date_bottom %}{{ "date_bottom" }}{% endif %}'>{{ post.date | date: "%Y %b %-d" }}</p>
         <div>
           {% assign day = post.url | slice: 13, 3 %}
           <p class='blog-index-post-title'>{% if day !=  'pil' %} Day #{{ day }} {% endif %}{{ post.title }}</p>

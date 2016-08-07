@@ -113,7 +113,8 @@
   }
   #blog-pannel .blog-index-post-date{
     position: absolute;
-    top:          10px;
+    &:not(.date_bottom){top:    10px;}
+    &.date_bottom{      bottom: 10px;}
     left:         10px;
     width:       100px;
     display:     block;
