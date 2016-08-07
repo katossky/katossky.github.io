@@ -1,0 +1,35 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name":  "Slagghaugan",
+        "stage": "departure",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.879875,
+          63.075383
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name":  "Sheep shelter in Skaret",
+        "stage": "arrival",
+        "icon":  "shelter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.547193,
+          62.724931
+        ]
+      }
+    }
+  ]
+}

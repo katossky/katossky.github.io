@@ -1,0 +1,35 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name":  "Hjerkinn",
+        "stage": "arrival",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.596030,
+          62.218319
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name":  "Sheep shelter in Skaret",
+        "stage": "departure",
+        "icon":  "shelter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.547193,
+          62.724931
+        ]
+      }
+    }
+  ]
+}

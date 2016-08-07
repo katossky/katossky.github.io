@@ -1,0 +1,35 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Santiago-de-Compostella",
+        "stage": "arrival",
+        "icon": "point"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.544679,
+          42.881070
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Trondheim",
+        "stage": "departure",
+        "icon": "point"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.399766,
+          63.435909
+        ]
+      }
+    }
+  ]
+}

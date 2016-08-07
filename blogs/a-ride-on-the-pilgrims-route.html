@@ -13,7 +13,7 @@ title:       A Ride on The Pilgrims' Route
       {% assign content = post.content | strip_newlines %}
       <li id='{{ post.path | slice: 18, 100 | remove: ".md" }}' {% if content == '' %} class='no_post_yet' {% endif %}>
         {% if content != '' %}<a href="{{ post.url }}"></a>{% endif %}
-        <img src='{{ post.thumbnail }}'/>
+        {% if post.thumbnail %}<img src='{{ post.thumbnail }}'/>{% endif %}
         <p class='blog-index-post-date {% if post.date_bottom %} date_bottom {% endif %}'>{{ post.date | date: "%Y %b %-d" }}</p>
         <div>
           {% assign day = post.url | slice: 13, 3 %}
@@ -78,7 +78,7 @@ title:       A Ride on The Pilgrims' Route
     function add_to_map(tracks){
 
       // for each defined track
-      for(i=1; i<tracks.length; i++){
+      for(i=0; i<tracks.length; i++){
         var track = tracks[i];
         if(typeof track != 'undefined'){
 
@@ -106,9 +106,9 @@ title:       A Ride on The Pilgrims' Route
           // 3. bind the appearance / disappearance of the track to the hovering of the corresponding post cartouche
 
           var post_name = post_names[i];
-          console.log('#'+post_name);
           $('#'+post_name).hover(
             function(){
+              console.log('here');
               var name  = $(this).attr('id');
               var index = post_names.indexOf(name);
               associated_track[index].addTo(map);
