@@ -135,5 +135,26 @@
   }
 
   // ADAPTATIONS FROM POSTS STYLE
+  section > div > img /*, section > div > .scroll*/ {
+    margin-bottom: 10px;
+  }
+  .scroll-x{
+   div{
+     overflow-x: scroll;
+   }
+   img {
+      height: 200px;
+      width: auto;
+    }
+  }
+  section > div .legend{
+    border-bottom:  1px solid #909090;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .legend, .remark, .source{
+    color: #808080;
+    font-size: 80%;
+  }
 
 }
