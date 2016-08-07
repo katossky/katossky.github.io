@@ -30,6 +30,38 @@
           63.377039562164256
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "cathedral",
+        "name": "Trondheim's cathedral",
+        "stage": "church",
+        "icon": "house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "platform",
+        "name": "Granåsen Ski jumping platform",
+        "stage": "sport",
+        "icon": "house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0,
+          0
+        ]
+      }
     }
   ]
 }
