@@ -16,8 +16,16 @@ title:       A Ride on The Pilgrims' Route
         {% if post.thumbnail %}<img src='{{ post.thumbnail }}'/>{% endif %}
         <p class='blog-index-post-date {% if post.date_bottom %} date_bottom {% endif %}'>{{ post.date | date: "%Y %b %-d" }}</p>
         <div>
-          {% assign day = post.url | slice: 13, 3 %}
-          <p class='blog-index-post-title'>{% if day !=  'pil' %} Day #{{ day }} {% endif %}{{ post.title }}</p>
+          <p class='blog-index-post-title'>
+          {% assign switch = post.url | slice:  9, 4 %}
+          {% if switch == 'day-' %}
+            {% assign day    = post.url | slice: 13, 3 %}
+            Day #{{ day }}
+          {% elsif switch == 'days' %}
+            {% assign days = post.url | slice: 14, 10 | split: '-' %}
+            Days #{{ days[0] }} to #{{ days[1] }}
+          {% endif %}{{ post.title }}
+          </p>
           {% if content != '' %}<p>{{ content }}</p>{% endif %}
         </div>
       </li>
