@@ -64,10 +64,6 @@ title:       A Ride on The Pilgrims' Route
   }
   post_names = associated_track_files.map(get_post_name);
 
-  $('#close-button').click(function(){
-    map.flyToBounds(itinerary.getBounds());
-  });
-
   $.getJSON("/data/2016-05-21-ev3.geojson", function(data) {
 
     var the_pilgrims_route = new L.geoJson(data, {
@@ -139,7 +135,17 @@ title:       A Ride on The Pilgrims' Route
           })
 
         }
-     }
+      }
+      
+      // 6. remove the object when the post is closed 
+
+      $(map).on('reset', function(){
+        for(t=0; t<associated_track.length; t++){
+          if(map.hasLayer(associated_track[t])){
+            map.removeLayer(associated_track[t]);
+          }
+        }
+      })
     };
 
     function keep_reading(array, i){
