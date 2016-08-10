@@ -1,0 +1,34 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name":  "Hamar countryside",
+        "stage": "arrival",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.096968,
+          60.724743
+        ]
+      }
+    },
+    {
+      "properties": {
+        "name":  "Gaupen",
+        "stage": "departure",
+        "icon":  "house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.767947,
+          60.865371
+        ]
+      }
+    }
+  ]
+}

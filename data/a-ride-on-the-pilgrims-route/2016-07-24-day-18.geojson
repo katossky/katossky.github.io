@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "properties": {
+        "name":  "Strömstad",
+        "stage": "arrival",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.199127,
+          58.925983
+        ]
+      }
+    },
+    {
+      "properties": {
+        "name":  "Shore of Glomma river, Fredrikstad",
+        "stage": "departure",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.974204,
+          59.218466
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name":  "Hjerkinn",
+        "stage": "departure",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.596030,
+          62.218319
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name":  "Ringebu",
+        "stage": "arrival",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.158063,
+          61.550933
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "properties": {
+        "name":  "Vejle station",
+        "stage": "arrival",
+        "icon":  "train"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           9.5222168,
+          55.7034031
+        ]
+      }
+    },
+    {
+      "properties": {
+        "name":  "Adric's, Silkeborg",
+        "stage": "departure",
+        "icon":  "house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           9.589696,
+          56.177630
+        ]
+      }
+    }
+  ]
+}

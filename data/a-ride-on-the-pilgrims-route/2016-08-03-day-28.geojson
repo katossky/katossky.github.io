@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "properties": {
+        "name":  "Dollerup",
+        "stage": "arrival",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           9.324288,
+          56.371698
+        ]
+      }
+    },
+    {
+      "properties": {
+        "name":  "Mariager Fjord",
+        "stage": "departure",
+        "icon":  "shelter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           9.835581,
+          56.637882
+        ]
+      }
+    }
+  ]
+}

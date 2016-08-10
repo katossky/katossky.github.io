@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "properties": {
+        "name":  "Moss municipal park",
+        "stage": "arrival",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.678238,
+          59.437171
+        ]
+      }
+    },
+    {
+      "properties": {
+        "name":  "Sofiemyr stadium",
+        "stage": "departure",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.818073,
+          59.799508
+        ]
+      }
+    }
+  ]
+}

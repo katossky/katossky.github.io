@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "properties": {
+        "name":  "Skagen Klitplantage",
+        "stage": "arrival",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.523141,
+          57.704330
+        ]
+      }
+    },
+    {
+      "properties": {
+        "name":  "Marina of Fredrikshavn",
+        "stage": "departure",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.537071,
+          57.465686
+        ]
+      }
+    }
+  ]
+}

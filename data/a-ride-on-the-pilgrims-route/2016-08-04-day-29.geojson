@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "properties": {
+        "name":  "Dollerup",
+        "stage": "departure",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           9.324288,
+          56.371698
+        ]
+      }
+    },
+    {
+      "properties": {
+        "name":  "Adric's, Silkeborg",
+        "stage": "arrival",
+        "icon":  "house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           9.589696,
+          56.177630
+        ]
+      }
+    }
+  ]
+}

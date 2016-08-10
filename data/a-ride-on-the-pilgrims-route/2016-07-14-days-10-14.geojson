@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "properties": {
+        "name":  "Oslo",
+        "stage": "departure",
+        "icon":  "flat"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.766816,
+          59.920324
+        ]
+      }
+    },
+    {
+      "properties": {
+        "name":  "Oslo",
+        "stage": "arrival",
+        "icon":  "flat"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.766816,
+          59.920324
+        ]
+      }
+    }
+  ]
+}

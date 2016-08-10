@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "properties": {
+        "name":  "Fiskebäckskil",
+        "stage": "arrival",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.466178,
+          58.252286
+        ]
+      }
+    },
+    {
+      "properties": {
+        "name":  "Fjällbacka",
+        "stage": "departure",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.280537,
+          58.591793 
+        ]
+      }
+    }
+  ]
+}
