@@ -113,7 +113,6 @@ title:       A Ride on The Pilgrims' Route
           var post_name = post_names[i];
           $('#'+post_name).hover(
             function(){
-              console.log('here');
               var name  = $(this).attr('id');
               var index = post_names.indexOf(name);
               associated_track[index].addTo(map);
@@ -158,15 +157,22 @@ title:       A Ride on The Pilgrims' Route
 
       // keep calling the reading function
       if(i < post_names.length){
-        $.getJSON(associated_track_files[i])
-          .done(function(data){
-            array[i] = data;
-          })
-          .always(function(){
-            i++;
-            return(keep_reading(array, i));
-          })
-      }else{
+        var file = associated_track_files[i];
+        // remove the files without corresponding geojson files
+        if(/days?-[0123456789]+\.geojson$/i.test(file)){
+          $.getJSON(file)
+            .done(function(data){
+              array[i] = data;
+            })
+            .always(function(){
+              i++;
+              keep_reading(array, i);
+            })
+        } else {
+          i++;
+          keep_reading(array, i);
+        }
+      } else {
         // when finished reading all files,
         // call back add_to_map
         add_to_map(array);
