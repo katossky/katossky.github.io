@@ -20,10 +20,10 @@ title:       A Ride on The Pilgrims' Route
           {% assign switch = post.url | slice:  9, 4 %}
           {% if switch == 'day-' %}
             {% assign day    = post.url | slice: 13, 3 %}
-            Day #{{ day }}
+            Day #{{ day }} | 
           {% elsif switch == 'days' %}
             {% assign days = post.url | slice: 14, 10 | split: '-' %}
-            Days #{{ days[0] }} to #{{ days[1] }}
+            Days #{{ days[0] }} to #{{ days[1] }} | 
           {% endif %}{{ post.title }}
           </p>
           {% if content != '' %}<p>{{ content }}</p>{% endif %}
