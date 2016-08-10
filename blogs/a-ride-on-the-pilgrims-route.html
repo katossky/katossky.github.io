@@ -42,6 +42,7 @@ title:       A Ride on The Pilgrims' Route
 
   var map = L.map('map-pannel', {
     minZoom: 4,
+    // maxZoom: 11,
     center: [55, 5],
     zoom: 4,
     zoomControl: false,
@@ -131,7 +132,12 @@ title:       A Ride on The Pilgrims' Route
           $('#'+post_name).click(function(){
             var name  = $(this).attr('id');
             var index = post_names.indexOf(name);
-            map.flyToBounds(associated_track[index].getBounds());
+            map.flyToBounds(
+              associated_track[index].getBounds(),
+              {
+                maxZoom: 10
+              }
+            );
           })
 
         }
