@@ -48,140 +48,103 @@ title:       A Ride on The Pilgrims' Route
     zoomControl: false,
   })
 
+  var the_pilgrims_route, the_pilgrims_route_geojson;
+  var files = {{ post_json }};
+
   L.tileLayer(
     'http://server.arcgisonline.com/'+
     'ArcGIS/rest/services/World_Topo_Map/'+
     'MapServer/tile/{z}/{y}/{x}'
   ).addTo(map);
 
-  var post_names;
-  var associated_track_files = {{ post_json }};
-  var associated_track = [];
+  var load_day_track = function(file, name){
+    $.getJSON(file).done(
+      function(data){
+        // 1. retreive the itinerary's departure and arrival
+        var from = $.grep(data.features, function(f){
+          return f.properties.stage === 'departure'
+        });
+        var to   = $.grep(data.features, function(f){
+          return f.properties.stage === 'arrival'
+        });
+        from = turf.point(from[0].geometry.coordinates);
+        to   = turf.point(  to[0].geometry.coordinates);
 
-  function get_post_name(file){
-    return file
-      .replace(/\.geojson$/i, '')
-      .replace(/^\/data\/a-ride-on-the-pilgrims-route\/.{4}-.{2}-.{2}-/i, '');
+        // 2. create an approximate track along the whole itinerary
+        var track = the_pilgrims_route_geojson;
+        track = turf.lineSlice(from, to, track);
+        track = new L.geoJson(track, {
+          opacity:   1,
+          weight:    5,
+          color: '#ff6600'
+        });
+        track = track.getLayers()[0];
+
+        // 3. bind the appearance / disappearance of the track
+        //    to the hovering of the corresponding post cartouche
+
+        $('#'+name).hover(
+          function(){
+            track.addTo(map);
+          },
+          function(){
+            map.removeLayer(track);
+          }
+        )
+
+        // 4. bind the highlight of the object to the hover of the line
+
+        // 5. bind the zoom event to the click on a list item
+          
+        $('#'+name).click(function(){
+          map.flyToBounds( track.getBounds(), { maxZoom: 10 } );
+        })
+
+        // 6. remove the object when the post is closed 
+
+        $(map).on('reset', function(){
+          if( map.hasLayer(track) ){ map.removeLayer(track); }
+        })
+
+      }
+    )
   }
-  post_names = associated_track_files.map(get_post_name);
 
-  $.getJSON("/data/2016-05-21-ev3.geojson", function(data) {
+  var load_the_pilgrims_route = function(data){
 
-    var the_pilgrims_route = new L.geoJson(data, {
+    the_pilgrims_route = new L.geoJson(data, {
       opacity: 0.6,
       weight:  3.5
     });
+
     the_pilgrims_route = the_pilgrims_route.getLayers()[0];
     
-    var itinerary = jQuery.extend(true, {}, the_pilgrims_route);
-    itinerary.addTo(map);
+    the_pilgrims_route.addTo(map);
+    the_pilgrims_route_geojson = the_pilgrims_route.toGeoJSON();
+
     $(map).on('reset', function(){
-      map.flyToBounds(itinerary);
+      map.flyToBounds(the_pilgrims_route);
     })
 
     // add post tracks to the map
-    function add_to_map(tracks){
 
-      // for each defined track
-      for(i=0; i<tracks.length; i++){
-        var track = tracks[i];
-        if(typeof track != 'undefined'){
-
-          // 1. retreive the itinerary's departure and arrival
-        
-          var from = $.grep(track.features, function(f){
-            return f.properties.stage === 'departure'
-          });
-          var to = $.grep(track.features, function(f){
-            return f.properties.stage === 'arrival'
-          });
-          from = turf.point(from[0].geometry.coordinates);
-          to   = turf.point(  to[0].geometry.coordinates);
-
-          // 2. create an approximate track along the itinerary
-          
-          var overall_track   = the_pilgrims_route.toGeoJSON();
-          associated_track[i] = turf.lineSlice(from, to, overall_track);
-          associated_track[i] = L.geoJson(associated_track[i], {
-            opacity:   1,
-            weight:    5,
-            color: '#ff6600'
-          }).getLayers()[0];
-
-          // 3. bind the appearance / disappearance of the track to the hovering of the corresponding post cartouche
-
-          var post_name = post_names[i];
-          $('#'+post_name).hover(
-            function(){
-              var name  = $(this).attr('id');
-              var index = post_names.indexOf(name);
-              associated_track[index].addTo(map);
-            },
-            function(){
-              var name  = $(this).attr('id');
-              var index = post_names.indexOf(name);
-              map.removeLayer(associated_track[index])
-            }
-          )
-          
-          // 4. bind the highlight of the object to the hover of the line
-
-          // 5. bind the zoom event to the click on a list item
-          
-          $('#'+post_name).click(function(){
-            var name  = $(this).attr('id');
-            var index = post_names.indexOf(name);
-            map.flyToBounds(
-              associated_track[index].getBounds(),
-              {
-                maxZoom: 10
-              }
-            );
-          })
-
-        }
-      }
-      
-      // 6. remove the object when the post is closed 
-
-      $(map).on('reset', function(){
-        for(t=0; t<associated_track.length; t++){
-          if(map.hasLayer(associated_track[t])){
-            map.removeLayer(associated_track[t]);
-          }
-        }
-      })
-    };
-
-    function keep_reading(array, i){
-
-      // keep calling the reading function
-      if(i < post_names.length){
-        var file = associated_track_files[i];
-        // remove the files without corresponding geojson files
-        if(/days?-[0123456789]+\.geojson$/i.test(file)){
-          $.getJSON(file)
-            .done(function(data){
-              array[i] = data;
-            })
-            .always(function(){
-              i++;
-              keep_reading(array, i);
-            })
-        } else {
-          i++;
-          keep_reading(array, i);
-        }
-      } else {
-        // when finished reading all files,
-        // call back add_to_map
-        add_to_map(array);
+    for(i=0; i<files.length; i++){
+      var file = files[i];
+      var name = file
+        .replace(/\.geojson$/i, '')
+        .replace(/^\/data\/a-ride-on-the-pilgrims-route\/.{4}-.{2}-.{2}-/i, '');
+      if(/^days?/i.test(name)){
+        load_day_track(file, name);
       }
     }
 
-    keep_reading([], 0);
+  }
 
-  });
+  $.getJSON("/data/2016-05-21-ev3.geojson").done(load_the_pilgrims_route);
+
+  // http://stackoverflow.com/questions/6080050/how-does-jquerys-promise-method-really-work
+  // http://stackoverflow.com/questions/30241506/ajax-callbacks-when-getting-multiple-xml-files
+  // http://documentup.com/kriskowal/q/
 
   var blogPannel;
 
