@@ -46,6 +46,7 @@ title:       A Ride on The Pilgrims' Route
   var blogContent = blogPannel.clone(true);
   var blogURL     = window.location.href;
   var blogTitle   = "A Ride on The Pilgrims' Route"; // document.title
+  var blogScroll;
   
   var the_pilgrims_route, the_pilgrims_route_geojson;
   var files = {{ post_json }};
@@ -63,8 +64,8 @@ title:       A Ride on The Pilgrims' Route
     if(newState.title     !=undefined) state.title     = newState.title;
 
     window.history.replaceState(state, "", window.location.pathname);
-  //   console.log('Updated content of current navigation history state:');
-  //   console.log( window.history.state );
+    console.log('Updated content of current navigation history state:');
+    console.log( window.history.state );
   });
   
   // first update
@@ -97,7 +98,7 @@ title:       A Ride on The Pilgrims' Route
     // prevent from going to the page
     e.preventDefault();
     // save latest parameters of previous page
-    var blogScroll = blogPannel.scrollTop();
+    blogScroll = blogPannel.scrollTop();
     blogPannel.trigger('refresh', {scroll: blogPannel.scrollTop()});
 
     // get the href
@@ -120,23 +121,7 @@ title:       A Ride on The Pilgrims' Route
 
       // implement a close button
       var button = $('<div id="close-button">×</div>');
-      // close post function
-      var closePost = function(){
-
-        console.log('Going back to blog summary.');
-        // change html back to the blog entry list and reset map
-        blogPannel.html(blogContent.html()).scrollTop(blogScroll);
-
-        // update URL
-        window.history.pushState({
-          content:   blogPannel.html(),
-          title:     blogTitle
-        }, "", blogURL);
-      };
- 
-      // trigger close function
-      blogPannel.on( 'click', '#close-button', closePost);
-
+      
       // add close button to the post
       button.prependTo(blogPannel);
 
@@ -150,6 +135,21 @@ title:       A Ride on The Pilgrims' Route
 
   });
 
+
+  blogPannel.on( 'click', '#close-button', function(){
+
+        console.log('Going back to blog summary.');
+
+        // change html back to the blog entry list and reset map
+        blogPannel.html(blogContent.html()).scrollTop(blogScroll);
+
+        // update URL
+        window.history.pushState({
+          content:   blogPannel.html(),
+          title:     blogTitle
+        }, "", blogURL);
+        console.log('Created the corresponding state in the navigation history.');
+  });
   // detect navigation with back and forth buttons
   window.onpopstate = function(e){
     console.log('Restoring previous state.');
