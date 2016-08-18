@@ -38,18 +38,43 @@ title:       A Ride on The Pilgrims' Route
 
 <script>
     
+  // UTILITIES -------------------------------------------------------------
+
   // SETTING ---------------------------------------------------------------
 
-  var map = L.map('map-pannel', {
-    minZoom: 4,
-    // maxZoom: 11,
-    center: [55, 5],
-    zoom: 4,
-    zoomControl: false,
-  })
-
+  var blogPannel  = $("#blog-pannel");
+  var blogContent = blogPannel.clone(true);
+  var blogURL     = window.location.href;
+  var blogTitle   = "A Ride on The Pilgrims' Route"; // document.title
+  
   var the_pilgrims_route, the_pilgrims_route_geojson;
   var files = {{ post_json }};
+
+  var map = L.map('map-pannel', {minZoom: 4});
+
+  // // KEEPING TRACK WITH CHANGES --------------------------------------------
+
+  blogPannel.on( 'refresh' , function(event, newState){
+    
+    var state;
+    window.history.state==null ? state = {} : state = window.history.state;
+    if(newState.scroll    !=undefined) state.scroll    = newState.scroll;
+    if(newState.content   !=undefined) state.content   = newState.content;
+    if(newState.title     !=undefined) state.title     = newState.title;
+
+    window.history.replaceState(state, "", window.location.pathname);
+  //   console.log('Updated content of current navigation history state:');
+  //   console.log( window.history.state );
+  });
+  
+  // first update
+  blogPannel.trigger('refresh', {
+    content   : blogPannel.html(),
+    title     : blogTitle,
+    scroll    : blogPannel.scrollTop()
+  })
+
+  map.setView([55, 5], 4);
 
   L.tileLayer(
     'http://server.arcgisonline.com/'+
@@ -57,119 +82,82 @@ title:       A Ride on The Pilgrims' Route
     'MapServer/tile/{z}/{y}/{x}'
   ).addTo(map);
 
-  var load_day_track = function(file, name){
-    $.getJSON(file).done(
-      function(data){
-        // 1. retreive the itinerary's departure and arrival
-        var from = $.grep(data.features, function(f){
-          return f.properties.stage === 'departure'
-        });
-        var to   = $.grep(data.features, function(f){
-          return f.properties.stage === 'arrival'
-        });
-        from = turf.point(from[0].geometry.coordinates);
-        to   = turf.point(  to[0].geometry.coordinates);
 
-        // 2. create an approximate track along the whole itinerary
-        var track = the_pilgrims_route_geojson;
-        track = turf.lineSlice(from, to, track);
-        track = new L.geoJson(track, {
-          opacity:   1,
-          weight:    5,
-          color: '#ff6600'
-        });
-        track = track.getLayers()[0];
 
-        // 3. bind the appearance / disappearance of the track
-        //    to the hovering of the corresponding post cartouche
 
-        $('#'+name).hover(
-          function(){
-            track.addTo(map);
-          },
-          function(){
-            map.removeLayer(track);
-          }
-        )
 
-        // 4. bind the highlight of the object to the hover of the line
 
-        // 5. bind the zoom event to the click on a list item
-          
-        $('#'+name).click(function(){
-          map.flyToBounds( track.getBounds(), { maxZoom: 10 } );
-        })
 
-        // 6. remove the object when the post is closed 
 
-        $(map).on('reset', function(){
-          if( map.hasLayer(track) ){ map.removeLayer(track); }
-        })
 
-      }
-    )
-  }
-
-  var load_the_pilgrims_route = function(data){
-
-    the_pilgrims_route = new L.geoJson(data, {
-      opacity: 0.6,
-      weight:  3.5
-    });
-
-    the_pilgrims_route = the_pilgrims_route.getLayers()[0];
-    
-    the_pilgrims_route.addTo(map);
-    the_pilgrims_route_geojson = the_pilgrims_route.toGeoJSON();
-
-    $(map).on('reset', function(){
-      map.flyToBounds(the_pilgrims_route);
-    })
-
-    // add post tracks to the map
-
-    for(i=0; i<files.length; i++){
-      var file = files[i];
-      var name = file
-        .replace(/\.geojson$/i, '')
-        .replace(/^\/data\/a-ride-on-the-pilgrims-route\/.{4}-.{2}-.{2}-/i, '');
-      if(/^days?/i.test(name)){
-        load_day_track(file, name);
-      }
-    }
-
-  }
-
-  $.getJSON("/data/2016-05-21-ev3.geojson").done(load_the_pilgrims_route);
-
-  // http://stackoverflow.com/questions/6080050/how-does-jquerys-promise-method-really-work
-  // http://stackoverflow.com/questions/30241506/ajax-callbacks-when-getting-multiple-xml-files
-  // http://documentup.com/kriskowal/q/
-
-  var blogPannel;
-
-  $("#blog-pannel a").click(function(e){
+  blogPannel.on( 'click', 'a', function(e){
 
     // http://stackoverflow.com/questions/4002580/how-to-do-partial-page-update-with-jquery
-
-    // prevent from going to the page and save content
+    
+    // prevent from going to the page
     e.preventDefault();
-    blogPannel = $("#blog-pannel").clone(true);
+    // save latest parameters of previous page
+    var blogScroll = blogPannel.scrollTop();
+    blogPannel.trigger('refresh', {scroll: blogPannel.scrollTop()});
 
     // get the href
-    var href       = $(this).attr("href") + ' #post > section > *';
-    $("#blog-pannel").load(href, function(){
+    var postURL = $(this).attr("href");
+    console.log('Going to URL: ' + postURL);
+    // create a new state in the navigation history
+    window.history.pushState({scroll: 0}, "", postURL);
+    console.log('Created the corresponding state in the navigation history.');
+    // load the content of the post
+
+    $.get(postURL, function(text){
+
+      var html        = $(text);
+      var postTitle   = html.filter('title').text() ;
+      var postContent = html.filter('#post').find('section > *') ;
+      blogPannel.empty().prepend(postContent).scrollTop(0);
+
+      // update title
+      document.title = postTitle;
 
       // implement a close button
-      $(this).prepend('<div id="close-button">×</div>');
-      $('#close-button').click(function(){
-        $("#blog-pannel").remove();
-        $("#a-ride-on-the-pilgrims-route").prepend(blogPannel);
-        $(map).trigger('reset');
+      var button = $('<div id="close-button">×</div>');
+      // close post function
+      var closePost = function(){
+
+        console.log('Going back to blog summary.');
+        // change html back to the blog entry list and reset map
+        blogPannel.html(blogContent.html()).scrollTop(blogScroll);
+
+        // update URL
+        window.history.pushState({
+          content:   blogPannel.html(),
+          title:     blogTitle
+        }, "", blogURL);
+      };
+ 
+      // trigger close function
+      blogPannel.on( 'click', '#close-button', closePost);
+
+      // add close button to the post
+      button.prependTo(blogPannel);
+
+      // update content
+      blogPannel.trigger('refresh', {
+        content:   blogPannel.html(),
+        title:     postTitle
       });
 
     });
 
   });
+
+  // detect navigation with back and forth buttons
+  window.onpopstate = function(e){
+    console.log('Restoring previous state.');
+    if(e.state){
+      $("#blog-pannel").html(e.state.content).scrollTop(e.state.scroll);
+      document.title = e.state.title;
+      console.log('Update title to: ' + e.state.title);
+    }
+  };
 
 </script>
