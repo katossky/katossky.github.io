@@ -1,5 +1,5 @@
 ---
-layout:     post
+layout:     a-ride-on-the-pilgrims-route
 title:      The Pigrims' Route
 categories: [A Ride on The Pilgrims' Route]
 tags:       [EuroVelo, itinerary, bike-touring]
