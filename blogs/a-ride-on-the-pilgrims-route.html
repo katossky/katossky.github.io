@@ -3,36 +3,60 @@ layout:      a-ride-on-the-pilgrims-route
 title:       A Ride on The Pilgrims' Route
 --- 
 
-<section id='blog-pannel'>
-  <h1>{{ page.title }}</h1>
-  <ul>
-  {% for category in site.categories %}
-    {% if page.title == category[0] %}
-      {% for post in category[1] %}
-      {% assign content = post.content | strip_newlines %}
-      <li id='{{ post.path | slice: 7, 100 | remove: ".md" }}' {% if content == '' %} class='no_post_yet' {% endif %}>
-        {% if content != '' %}<a href="{{ post.url }}"></a>{% endif %}
-        {% if post.thumbnail %}<img src='{{ post.thumbnail }}'/>{% endif %}
-        <p class='blog-index-post-date {% if post.date_bottom %} date_bottom {% endif %}'>{{ post.date | date: "%Y %b %-d" }}</p>
-        <div>
-          <p class='blog-index-post-title'>
-          {% assign switch = post.url | slice:  9, 4 %}
-          {% if switch == 'day-' %}
-            {% assign day    = post.url | slice: 13, 3 %}
-            Day #{{ day }} | 
-          {% elsif switch == 'days' %}
-            {% assign days = post.url | slice: 14, 10 | split: '-' %}
-            Days #{{ days[0] }} to #{{ days[1] }} | 
-          {% endif %}{{ post.title }}
-          </p>
-          {% if content != '' %}<p>{{ content }}</p>{% endif %}
-        </div>
-      </li>
-      {% endfor %}
-    {% endif %}
-  {% endfor %}
-  </ul>
-</section>
-<section id='map-pannel'></section>
-
-<script src='/js/a-ride-on-the-pilgrims-route.js'></script>
+<h2>Latest posts</h2>
+<ul>
+{% for category in site.categories %}
+  {% if page.title == category[0] %}
+    {% for post in category[1] %}
+    {% assign content = post.content | strip_newlines %}
+    {% unless content == '' %}
+    <li id='{{ post.path | slice: 7, 100 | remove: ".md" }}'>
+      <a href="{{ post.url }}"></a>
+      {% if post.thumbnail %}<img src='{{ post.thumbnail }}'/>{% endif %}
+      <p class='blog-index-post-date {% if post.date_bottom %} date_bottom {% endif %}'>{{ post.date | date: "%Y %b %-d" }}</p>
+      <div>
+        <p class='blog-index-post-title'>
+        {% assign switch = post.url | slice:  9, 4 %}
+        {% if switch == 'day-' %}
+          {% assign day    = post.url | slice: 13, 3 %}
+          Day #{{ day }} | 
+        {% elsif switch == 'days' %}
+          {% assign days = post.url | slice: 14, 10 | split: '-' %}
+          Days #{{ days[0] }} to #{{ days[1] }} | 
+        {% endif %}{{ post.title }}
+        </p>
+        <p>{{ content }}</p>
+      </div>
+    </li>
+    {% endunless %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+</ul>
+<h2>All stages</h2>
+<ul>
+{% for category in site.categories %}
+  {% if page.title == category[0] %}
+    {% for post in category[1] %}
+    {% assign content = post.content | strip_newlines %}
+    {% unless post.stage == false %}
+    <li id='{{ post.path | slice: 7, 100 | remove: ".md" }}' class='no_post_yet'>
+      <p class='blog-index-post-date {% if post.date_bottom %} date_bottom {% endif %}'>{{ post.date | date: "%Y %b %-d" }}</p>
+      <div>
+        <p class='blog-index-post-title'>
+        {% assign switch = post.url | slice:  9, 4 %}
+        {% if switch == 'day-' %}
+          {% assign day    = post.url | slice: 13, 3 %}
+          Day #{{ day }} | 
+        {% elsif switch == 'days' %}
+          {% assign days = post.url | slice: 14, 10 | split: '-' %}
+          Days #{{ days[0] }} to #{{ days[1] }} | 
+        {% endif %}{{ post.title }}
+        </p>
+      </div>
+    </li>
+    {% endunless %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+</ul>
