@@ -8,10 +8,9 @@ title:       A Ride on The Pilgrims' Route
   <ul>
   {% for category in site.categories %}
     {% if page.title == category[0] %}
-      {% assign post_json = category[1] | map: 'path' | replace: '_posts/', '/data/a-ride-on-the-pilgrims-route/' | replace: '.md', '.geojson' %}
       {% for post in category[1] %}
       {% assign content = post.content | strip_newlines %}
-      <li id='{{ post.path | slice: 18, 100 | remove: ".md" }}' {% if content == '' %} class='no_post_yet' {% endif %}>
+      <li id='{{ post.path | slice: 7, 100 | remove: ".md" }}' {% if content == '' %} class='no_post_yet' {% endif %}>
         {% if content != '' %}<a href="{{ post.url }}"></a>{% endif %}
         {% if post.thumbnail %}<img src='{{ post.thumbnail }}'/>{% endif %}
         <p class='blog-index-post-date {% if post.date_bottom %} date_bottom {% endif %}'>{{ post.date | date: "%Y %b %-d" }}</p>
@@ -36,128 +35,4 @@ title:       A Ride on The Pilgrims' Route
 </section>
 <section id='map-pannel'></section>
 
-<script>
-    
-  // UTILITIES -------------------------------------------------------------
-
-  // SETTING ---------------------------------------------------------------
-
-  var blogPannel  = $("#blog-pannel");
-  var blogContent = blogPannel.clone(true);
-  var blogURL     = window.location.href;
-  var blogTitle   = "A Ride on The Pilgrims' Route"; // document.title
-  var blogScroll;
-  
-  var the_pilgrims_route, the_pilgrims_route_geojson;
-  var files = {{ post_json }};
-
-  var map = L.map('map-pannel', {minZoom: 4});
-
-  // // KEEPING TRACK WITH CHANGES --------------------------------------------
-
-  blogPannel.on( 'refresh' , function(event, newState){
-    
-    var state;
-    window.history.state==null ? state = {} : state = window.history.state;
-    if(newState.scroll    !=undefined) state.scroll    = newState.scroll;
-    if(newState.content   !=undefined) state.content   = newState.content;
-    if(newState.title     !=undefined) state.title     = newState.title;
-
-    window.history.replaceState(state, "", window.location.pathname);
-    console.log('Updated content of current navigation history state:');
-    console.log( window.history.state );
-  });
-  
-  // first update
-  blogPannel.trigger('refresh', {
-    content   : blogPannel.html(),
-    title     : blogTitle,
-    scroll    : blogPannel.scrollTop()
-  })
-
-  map.setView([55, 5], 4);
-
-  L.tileLayer(
-    'http://server.arcgisonline.com/'+
-    'ArcGIS/rest/services/World_Topo_Map/'+
-    'MapServer/tile/{z}/{y}/{x}'
-  ).addTo(map);
-
-
-
-
-
-
-
-
-
-  blogPannel.on( 'click', 'a', function(e){
-
-    // http://stackoverflow.com/questions/4002580/how-to-do-partial-page-update-with-jquery
-    
-    // prevent from going to the page
-    e.preventDefault();
-    // save latest parameters of previous page
-    blogScroll = blogPannel.scrollTop();
-    blogPannel.trigger('refresh', {scroll: blogPannel.scrollTop()});
-
-    // get the href
-    var postURL = $(this).attr("href");
-    console.log('Going to URL: ' + postURL);
-    // create a new state in the navigation history
-    window.history.pushState({scroll: 0}, "", postURL);
-    console.log('Created the corresponding state in the navigation history.');
-    // load the content of the post
-
-    $.get(postURL, function(text){
-
-      var html        = $(text);
-      var postTitle   = html.filter('title').text() ;
-      var postContent = html.filter('#post').find('section > *') ;
-      blogPannel.empty().prepend(postContent).scrollTop(0);
-
-      // update title
-      document.title = postTitle;
-
-      // implement a close button
-      var button = $('<div id="close-button">×</div>');
-      
-      // add close button to the post
-      button.prependTo(blogPannel);
-
-      // update content
-      blogPannel.trigger('refresh', {
-        content:   blogPannel.html(),
-        title:     postTitle
-      });
-
-    });
-
-  });
-
-
-  blogPannel.on( 'click', '#close-button', function(){
-
-        console.log('Going back to blog summary.');
-
-        // change html back to the blog entry list and reset map
-        blogPannel.html(blogContent.html()).scrollTop(blogScroll);
-
-        // update URL
-        window.history.pushState({
-          content:   blogPannel.html(),
-          title:     blogTitle
-        }, "", blogURL);
-        console.log('Created the corresponding state in the navigation history.');
-  });
-  // detect navigation with back and forth buttons
-  window.onpopstate = function(e){
-    console.log('Restoring previous state.');
-    if(e.state){
-      $("#blog-pannel").html(e.state.content).scrollTop(e.state.scroll);
-      document.title = e.state.title;
-      console.log('Update title to: ' + e.state.title);
-    }
-  };
-
-</script>
+<script src='/js/a-ride-on-the-pilgrims-route.js'></script>
