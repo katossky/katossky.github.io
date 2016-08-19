@@ -19,6 +19,8 @@ For now, this site is hosting a series of topical blogs, especially two about my
 
 <ul class='post-list'>
   {% for post in site.posts %}
+  {% assign content = post.content | strip_newlines %}
+  {% if content != '' %}
   <li  class='post-vignette'>
     <a href="{{ post.url }}">
       <img src='{{ post.thumbnail }}'/>
@@ -28,6 +30,7 @@ For now, this site is hosting a series of topical blogs, especially two about my
       </p>
     </a>
   </li>
+  {% endif %}
   {% endfor %}
 </ul>
 
