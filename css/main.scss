@@ -12,6 +12,7 @@ $right-column-width: (100% - $variable-between-column-margin)/2;
 @import "blog-index";
 @import "post-vignettes";
 @import "journey-planner";
+@import "a-ride-on-the-pilgrims-route";
 // @import "syntax.css";
 
 @font-face{
@@ -22,6 +23,11 @@ $right-column-width: (100% - $variable-between-column-margin)/2;
 @font-face{
   font-family: 'handwriting-draft';
   src:  url('/fonts/handwriting-draft.ttf')  format('truetype');
+}
+
+@font-face{
+  font-family: 'traveling-typewriter';
+  src:  url('/fonts/traveling-typewriter.ttf')  format('truetype');
 }
 
 #me {
@@ -123,12 +129,15 @@ main#home{
   height:         100%; // prevent from scrolling
   padding-bottom: $margin-page;
 }
-main#project-container{
+main#project-container, main#a-ride-on-the-pilgrims-route{
   position: fixed;
   top:    0;
   bottom: 0;
   left:   0;
   right:  0;
+}
+main#a-ride-on-the-pilgrims-route{
+  top:    $header-height;
 }
 
 // COLORS ------------------------------------

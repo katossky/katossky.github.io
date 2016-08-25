@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "properties": {
+        "name":  "Aleksander's, Aalborg",
+        "stage": "departure",
+        "icon":  "flat"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           9.896356,
+          57.051459
+        ]
+      }
+    },
+    {
+      "properties": {
+        "name":  "Mariager Fjord",
+        "stage": "arrival",
+        "icon":  "shelter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           9.835581,
+          56.637882
+        ]
+      }
+    }
+  ]
+}

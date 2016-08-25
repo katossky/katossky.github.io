@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "properties": {
+        "name":  "Moss municipal park",
+        "stage": "departure",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.678238,
+          59.437171
+        ]
+      }
+    },
+    {
+      "properties": {
+        "name":  "Shore of Glomma river, Fredrikstad",
+        "stage": "arrival",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.974204,
+          59.218466
+        ]
+      }
+    }
+  ]
+}

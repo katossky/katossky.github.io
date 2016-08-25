@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "properties": {
+        "name":  "Ratzeburg Plantage",
+        "stage": "departure",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           9.106501,
+          55.541308
+        ]
+      }
+    },
+    {
+      "properties": {
+        "name":  "Marie's, Sønderborg",
+        "stage": "arrival",
+        "icon":  "flat"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           9.795077,
+          54.912716 
+        ]
+      }
+    }
+  ]
+}

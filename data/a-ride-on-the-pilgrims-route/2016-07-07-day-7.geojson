@@ -1,0 +1,35 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name":  "Gaupen",
+        "stage": "arrival",
+        "icon":  "house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.767947,
+          60.865371
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name":  "Ringebu",
+        "stage": "departure",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.158063,
+          61.550933
+        ]
+      }
+    }
+  ]
+}

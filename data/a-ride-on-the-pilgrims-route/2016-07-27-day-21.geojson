@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "properties": {
+        "name":  "Fiskebäckskil",
+        "stage": "departure",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.466178,
+          58.252286
+        ]
+      }
+    },
+    {
+      "properties": {
+        "name":  "Boxvik (Orust island)",
+        "stage": "arrival",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.495681,
+          58.110521
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "properties": {
+        "name":  "Hanne & Martin's, Alingsås",
+        "stage": "departure",
+        "icon":  "house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.485108,
+          57.894139
+        ]
+      }
+    },
+    {
+      "properties": {
+        "name":  "Marina of Fredrikshavn",
+        "stage": "arrival",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.537071,
+          57.465686
+        ]
+      }
+    }
+  ]
+}

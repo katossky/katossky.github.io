@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "properties": {
+        "name":  "Strömstad",
+        "stage": "departure",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.199127,
+          58.925983
+        ]
+      }
+    },
+    {
+      "properties": {
+        "name":  "Fjällbacka",
+        "stage": "arrival",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.280537,
+          58.591793
+        ]
+      }
+    }
+  ]
+}

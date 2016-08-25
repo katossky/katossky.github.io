@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "properties": {
+        "name":  "Marie's, Sønderborg",
+        "stage": "departure",
+        "icon":  "flat"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           9.795077,
+          54.912716 
+        ]
+      }
+    },
+    {
+      "properties": {
+        "name":  "Marie's, Sønderborg",
+        "stage": "arrival",
+        "icon":  "flat"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           9.795077,
+          54.912716 
+        ]
+      }
+    }
+  ]
+}

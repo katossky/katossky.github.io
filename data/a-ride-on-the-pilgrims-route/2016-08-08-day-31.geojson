@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "properties": {
+        "name":  "Ratzeburg Plantage",
+        "stage": "arrival",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           9.106501,
+          55.541308
+        ]
+      }
+    },
+    {
+      "properties": {
+        "name":  "Jelling station",
+        "stage": "departure",
+        "icon":  "train"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           9.4215062,
+          55.7456329
+        ]
+      }
+    }
+  ]
+}

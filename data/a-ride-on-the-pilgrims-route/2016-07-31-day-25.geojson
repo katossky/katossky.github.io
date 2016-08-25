@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "properties": {
+        "name":  "Skagen Klitplantage",
+        "stage": "departure",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.523141,
+          57.704330
+        ]
+      }
+    },
+    {
+      "properties": {
+        "name":  "Garden, Aalborg",
+        "stage": "arrival",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.907376,
+          57.055307
+        ]
+      }
+    }
+  ]
+}

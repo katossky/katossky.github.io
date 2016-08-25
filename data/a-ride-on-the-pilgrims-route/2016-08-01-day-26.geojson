@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "properties": {
+        "name":  "Aleksander's, Aalbrog",
+        "stage": "arrival",
+        "icon":  "flat"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+           9.896356,
+          57.051459
+        ]
+      }
+    },
+    {
+      "properties": {
+        "name":  "Garden, Aalborg",
+        "stage": "departure",
+        "icon":  "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.907376,
+          57.055307
+        ]
+      }
+    }
+  ]
+}

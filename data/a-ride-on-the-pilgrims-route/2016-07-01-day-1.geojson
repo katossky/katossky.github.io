@@ -1,0 +1,67 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Midtsandtangen recreational area",
+        "stage": "departure",
+        "icon": "tent"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.719952583312988,
+          63.43220863422721
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "May-Britt and Stig's",
+        "stage": "arrival",
+        "icon": "house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.366255044937134,
+          63.377039562164256
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "cathedral",
+        "name": "Trondheim's cathedral",
+        "stage": "church",
+        "icon": "house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "platform",
+        "name": "Granåsen Ski jumping platform",
+        "stage": "sport",
+        "icon": "house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0,
+          0
+        ]
+      }
+    }
+  ]
+}

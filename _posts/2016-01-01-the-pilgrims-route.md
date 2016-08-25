@@ -1,9 +1,10 @@
 ---
-layout:     post
+layout:     a-ride-on-the-pilgrims-route
 title:      The Pigrims' Route
 categories: [A Ride on The Pilgrims' Route]
 tags:       [EuroVelo, itinerary, bike-touring]
 thumbnail:  /img/thumbnails/the-pilgrim-road.png
+stage:      false
 ---
 
 This summer, I plan to do a big ride on the cycle route [*The Pilgrims' Route*](http://www.eurovelo.com/en/eurovelos/eurovelo-3), also known as *EuroVelo* {% include logo.md what='ev3' %}, from [Trondheim](https://fr.wikipedia.org/wiki/Trondheim){: .discreet} in Norway to [Santiago-de-Compostella](https://en.wikipedia.org/wiki/Santiago_de_Compostela){: .discreet} in Spain. <!-- http://stackoverflow.com/questions/2017001/adding-a-class-attribute-to-a-hyperlink-in-markdown#3062435 -->
