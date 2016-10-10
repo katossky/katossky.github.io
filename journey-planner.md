@@ -167,6 +167,15 @@ cities:
     {color: 'red'}
   );
 
+  $.getJSON("/data/2015-09-pamplona-san-sebastian.geojson", function(data) {
+    var pampluna_sanSebastian = new L.geoJson(data, {
+      opacity: 0.6,
+      weight:  3.5
+    });
+    pampluna_sanSebastian = pampluna_sanSebastian.getLayers()[0];
+    pampluna_sanSebastian.addTo(map);
+  });
+
   $.getJSON("/data/2016-05-21-ev3.geojson", function(data) {
 
     var the_pilgrims_route = new L.geoJson(data, {
